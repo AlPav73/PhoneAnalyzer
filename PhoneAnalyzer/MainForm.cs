@@ -14,7 +14,7 @@ namespace PhoneAnalyzer
         public MainForm()
         {
             InitializeComponent();
-
+            LoadSettings();
             RefreshAllGrids();
         }
 
@@ -26,99 +26,91 @@ namespace PhoneAnalyzer
 
         private void RefreshAllGrids()
         {
-            RefreshProvider();
-            RefreshOutNumber();
-            RefreshInNumber();
+            RefreshAtcCall();
+            RefreshNumber();
             RefreshSubdivision();
             RefreshWorker();
             RefreshCall();
         }
 
-        private void RefreshProvider()
+        private void RefreshAtcCall()
         {
-            providerGrid.DataSource = db.Providers.ToList(); //.Select(p => p.ToGrid()).ToList();
-            GridHelper.SetHeaders(providerGrid, new[] { "ID", "Название", "Тариф" });
-            GridHelper.SetInvisible(providerGrid, new[] { 0 });
+            atcCallGrid.DataSource = db.AtcCalls.OrderBy(p => p.Date).Select(p => p.ToGrid()).ToList();
+            GridHelper.SetHeaders(atcCallGrid, new[] { "ID", "Подразделение", "Куда звонили", "Дата", "Длительность" });
+            GridHelper.SetInvisible(atcCallGrid, new[] { 0 });
         }
 
-        private void RefreshOutNumber()
+        private void RefreshNumber()
         {
-            outNumberGrid.DataSource = db.OutNumbers.ToList(); //.Select(p => p.ToGrid()).ToList();
-            GridHelper.SetHeaders(outNumberGrid, new[] { "ID", "Провайдер", "Номер" });
+            outNumberGrid.DataSource = db.Numbers.OrderBy(p => p.PhoneNumber).Select(p => p.ToGrid()).ToList();
+            GridHelper.SetHeaders(outNumberGrid, new[] { "ID", "Сотрудник", "Номер", "Тип" });
             GridHelper.SetInvisible(outNumberGrid, new[] { 0 });
-        }
-
-        private void RefreshInNumber()
-        {
-            inNumberGrid.DataSource = db.InNumbers.ToList(); //.Select(p => p.ToGrid()).ToList();
-            GridHelper.SetHeaders(inNumberGrid, new[] { "ID", "Внешний номер", "Сотрудник", "Номер" });
-            GridHelper.SetInvisible(inNumberGrid, new[] { 0 });
         }
 
         private void RefreshSubdivision()
         {
-            subdivisionGrid.DataSource = db.Subdivisions.ToList(); //.Select(p => p.ToGrid()).ToList();
-            GridHelper.SetHeaders(subdivisionGrid, new[] { "ID", "Название", "ФИО руководителя" });
+            subdivisionGrid.DataSource = db.Subdivisions.OrderBy(p => p.Name).Select(p => p.ToGrid()).ToList();
+            GridHelper.SetHeaders(subdivisionGrid, new[] { "ID", "Название", "ФИО руководителя", "Email" });
             GridHelper.SetInvisible(subdivisionGrid, new[] { 0 });
         }
 
         private void RefreshWorker()
         {
-            workerGrid.DataSource = db.Workers.ToList(); //.Select(p => p.ToGrid()).ToList();
-            GridHelper.SetHeaders(workerGrid, new[] { "ID", "Подразделение", "ФИО", "Оклад" });
+            workerGrid.DataSource = db.Workers.OrderBy(p => p.Fio).Select(p => p.ToGrid()).ToList();
+            GridHelper.SetHeaders(workerGrid, new[] { "ID", "ФИО", "Подразделение", "Оклад" });
             GridHelper.SetInvisible(workerGrid, new[] { 0 });
         }
 
         private void RefreshCall()
         {
-            callGrid.DataSource = db.Calls.ToList(); //.Select(p => p.ToGrid()).ToList();
-            GridHelper.SetHeaders(callGrid, new[] { "ID", "Номер", "Куда звонили", "Дата", "Время" });
+            callGrid.DataSource = db.Calls.OrderBy(p => p.Date).Select(p => p.ToGrid()).ToList();
+            GridHelper.SetHeaders(callGrid, new[] { "ID", "Номер", "Куда звонили", "Дата", "Длительность", "Сумма" });
             GridHelper.SetInvisible(callGrid, new[] { 0 });
         }
 
 
         //
-        //**********   Provider   **********
+        //**********   AtcCall   **********
         //
 
-        private void btnAddProvider_Click(object sender, EventArgs e)
+        private void btnAddAtcCall_Click(object sender, EventArgs e)
         {
-            var form = new AddProviderForm();
+            var form = new AddAtcCallForm();
             form.ShowDialog();
-            RefreshProvider();
+            RefreshAtcCall();
         }
 
-        private void btnEditProvider_Click(object sender, EventArgs e)
+        private void btnEditAtcCall_Click(object sender, EventArgs e)
         {
-            if (providerGrid.SelectedRows.Count == 0)
+            if (atcCallGrid.SelectedRows.Count == 0)
             {
                 return;
             }
 
-            int id = GridHelper.GetIntFromRow(providerGrid.SelectedRows[0], 0);
-            EditProvider(id);
+            int id = GridHelper.GetIntFromRow(atcCallGrid.SelectedRows[0], 0);
+            EditAtcCall(id);
         }
 
-        private void EditProvider(int id)
+        private void EditAtcCall(int id)
         {
-            var form = new AddProviderForm(id);
+            var form = new AddAtcCallForm(id);
             form.ShowDialog();
-            RefreshProvider();
+            RefreshAtcCall();
         }
 
-        private void btnDeleteProvider_Click(object sender, EventArgs e)
+        private void btnDeleteAtcCall_Click(object sender, EventArgs e)
         {
-            if (providerGrid.SelectedRows.Count == 0)
+            if (atcCallGrid.SelectedRows.Count == 0)
             {
                 return;
             }
 
-            int id = GridHelper.GetIntFromRow(providerGrid.SelectedRows[0], 0);
+            int id = GridHelper.GetIntFromRow(atcCallGrid.SelectedRows[0], 0);
 
-            db.Providers.DeleteAllOnSubmit(db.Providers.Where(t => t.Id == id));
+            db.AtcCalls.DeleteAllOnSubmit(db.AtcCalls.Where(t => t.Id == id));
             db.SubmitChanges();
 
-            RefreshProvider();
+            RefreshAtcCall();
         }
 
         //
@@ -127,9 +119,9 @@ namespace PhoneAnalyzer
 
         private void btnAddOutNumber_Click(object sender, EventArgs e)
         {
-            var form = new AddOutNumberForm();
+            var form = new AddNumberForm();
             form.ShowDialog();
-            RefreshOutNumber();
+            RefreshNumber();
         }
 
         private void btnEditOutNumber_Click(object sender, EventArgs e)
@@ -145,9 +137,9 @@ namespace PhoneAnalyzer
 
         private void EditOutNumber(int id)
         {
-            var form = new AddOutNumberForm(id);
+            var form = new AddNumberForm(id);
             form.ShowDialog();
-            RefreshOutNumber();
+            RefreshNumber();
         }
 
         private void btnDeleteOutNumber_Click(object sender, EventArgs e)
@@ -159,54 +151,10 @@ namespace PhoneAnalyzer
 
             int id = GridHelper.GetIntFromRow(outNumberGrid.SelectedRows[0], 0);
 
-            db.OutNumbers.DeleteAllOnSubmit(db.OutNumbers.Where(t => t.Id == id));
+            db.Numbers.DeleteAllOnSubmit(db.Numbers.Where(t => t.Id == id));
             db.SubmitChanges();
 
-            RefreshOutNumber();
-        }
-
-        //
-        //**********   InNumber   **********
-        //
-
-        private void btnAddInNumber_Click(object sender, EventArgs e)
-        {
-            var form = new AddInNumberForm();
-            form.ShowDialog();
-            RefreshInNumber();
-        }
-
-        private void btnEditInNumber_Click(object sender, EventArgs e)
-        {
-            if (inNumberGrid.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            int id = GridHelper.GetIntFromRow(inNumberGrid.SelectedRows[0], 0);
-            EditInNumber(id);
-        }
-
-        private void EditInNumber(int id)
-        {
-            var form = new AddInNumberForm(id);
-            form.ShowDialog();
-            RefreshInNumber();
-        }
-
-        private void btnDeleteInNumber_Click(object sender, EventArgs e)
-        {
-            if (inNumberGrid.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            int id = GridHelper.GetIntFromRow(inNumberGrid.SelectedRows[0], 0);
-
-            db.InNumbers.DeleteAllOnSubmit(db.InNumbers.Where(t => t.Id == id));
-            db.SubmitChanges();
-
-            RefreshInNumber();
+            RefreshNumber();
         }
 
         //
@@ -339,6 +287,27 @@ namespace PhoneAnalyzer
             db.SubmitChanges();
 
             RefreshCall();
+        }
+
+        private void LoadSettings()
+        {
+            txtHost.Text = Setting.Host;
+            txtPort.Text = Setting.Port.ToString();
+            txtLogin.Text = Setting.Login;
+            txtPassword.Text = Setting.Password;
+            txtFinEmail.Text = Setting.FinEmail;
+        }
+
+        private void btnSaveSettings_Click(object sender, EventArgs e)
+        {
+            var port = 0;
+            Int32.TryParse(txtPort.Text, out port);
+
+            Setting.Host = txtHost.Text;
+            Setting.Port = port;
+            Setting.Login = txtLogin.Text;
+            Setting.Password = txtPassword.Text;
+            Setting.FinEmail = txtFinEmail.Text;
         }
     }
 

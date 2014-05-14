@@ -1,7 +1,15 @@
 ﻿namespace PhoneAnalyzer.Helpers
 {
+    /// <summary>
+    /// Содержит методы, которые помогают работать со строками
+    /// </summary>
     public class StringHelper
     {
+        /// <summary>
+        /// Возвращает строку месяца
+        /// </summary>
+        /// <param name="month">Месяц</param>
+        /// <returns>Строка месяца</returns>
         public static string GetMonth(int month)
         {
             switch (month)
@@ -37,6 +45,11 @@
 
         #region RurPhrase
 
+        /// <summary>
+        /// Возвращает цену прописью
+        /// </summary>
+        /// <param name="money">Цена в рублях</param>
+        /// <returns>Цена прописью</returns>
         public static string RurPhrase(decimal money)
         {
             return CurPhrase(money, "рубль", "рубля", "рублей", "копейка", "копейки", "копеек");

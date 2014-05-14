@@ -34,12 +34,14 @@ namespace PhoneAnalyzer.Forms
             this.txtName = new System.Windows.Forms.TextBox();
             this.labelDirectorFio = new System.Windows.Forms.Label();
             this.txtDirectorFio = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(245, 64);
+            this.btnCancel.Location = new System.Drawing.Point(245, 90);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 7;
@@ -48,7 +50,7 @@ namespace PhoneAnalyzer.Forms
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(164, 64);
+            this.btnAdd.Location = new System.Drawing.Point(164, 90);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 6;
@@ -62,7 +64,7 @@ namespace PhoneAnalyzer.Forms
             this.labelName.Location = new System.Drawing.Point(63, 15);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(63, 13);
-            this.labelName.TabIndex = 6;
+            this.labelName.TabIndex = 0;
             this.labelName.Text = "Название: ";
             // 
             // txtName
@@ -79,7 +81,7 @@ namespace PhoneAnalyzer.Forms
             this.labelDirectorFio.Location = new System.Drawing.Point(13, 41);
             this.labelDirectorFio.Name = "labelDirectorFio";
             this.labelDirectorFio.Size = new System.Drawing.Size(113, 13);
-            this.labelDirectorFio.TabIndex = 6;
+            this.labelDirectorFio.TabIndex = 2;
             this.labelDirectorFio.Text = "ФИО руководителя: ";
             // 
             // txtDirectorFio
@@ -88,13 +90,32 @@ namespace PhoneAnalyzer.Forms
             this.txtDirectorFio.MaxLength = 255;
             this.txtDirectorFio.Name = "txtDirectorFio";
             this.txtDirectorFio.Size = new System.Drawing.Size(188, 20);
-            this.txtDirectorFio.TabIndex = 2;
+            this.txtDirectorFio.TabIndex = 3;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(132, 64);
+            this.txtEmail.MaxLength = 255;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(188, 20);
+            this.txtEmail.TabIndex = 5;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(88, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Email: ";
             // 
             // AddSubdivisionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(332, 101);
+            this.ClientSize = new System.Drawing.Size(332, 123);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.txtDirectorFio);
@@ -119,6 +140,8 @@ namespace PhoneAnalyzer.Forms
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox txtDirectorFio;
         private System.Windows.Forms.Label labelDirectorFio;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label label1;
 
     }
 }

@@ -60,31 +60,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AtcCall.cs" />
+    <Compile Include="Classes\Call.cs" />
+    <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Subdivision.cs" />
     <Compile Include="DataBase.cs" />
+    <Compile Include="Forms\AddAtcCallForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddAtcCallForm.designer.cs">
+      <DependentUpon>AddAtcCallForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddCallForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AddCallForm.designer.cs">
       <DependentUpon>AddCallForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddInNumberForm.cs">
+    <Compile Include="Forms\AddNumberForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\AddInNumberForm.designer.cs">
-      <DependentUpon>AddInNumberForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AddOutNumberForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AddOutNumberForm.designer.cs">
-      <DependentUpon>AddOutNumberForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AddProviderForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AddProviderForm.designer.cs">
-      <DependentUpon>AddProviderForm.cs</DependentUpon>
+    <Compile Include="Forms\AddNumberForm.designer.cs">
+      <DependentUpon>AddNumberForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddSubdivisionForm.cs">
       <SubType>Form</SubType>
@@ -101,18 +98,22 @@
     <Compile Include="Forms\ValidateForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Grids\GridAtcCall.cs" />
+    <Compile Include="Grids\GridSubdivision.cs" />
+    <Compile Include="Grids\GridWorker.cs" />
+    <Compile Include="Grids\GridCall.cs" />
+    <Compile Include="Grids\GridNumber.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Helpers\GridHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
-    <Compile Include="Classes\InNumber.cs" />
+    <Compile Include="Classes\Number.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Classes\OutNumber.cs" />
     <Compile Include="Classes\PaDb.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -120,19 +121,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Classes\Provider.cs" />
     <Compile Include="Classes\Worker.cs" />
+    <Compile Include="Type\NumberType.cs" />
+    <EmbeddedResource Include="Forms\AddAtcCallForm.resx">
+      <DependentUpon>AddAtcCallForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddCallForm.resx">
       <DependentUpon>AddCallForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddInNumberForm.resx">
-      <DependentUpon>AddInNumberForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddOutNumberForm.resx">
-      <DependentUpon>AddOutNumberForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddProviderForm.resx">
-      <DependentUpon>AddProviderForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\AddNumberForm.resx">
+      <DependentUpon>AddNumberForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddSubdivisionForm.resx">
       <DependentUpon>AddSubdivisionForm.cs</DependentUpon>

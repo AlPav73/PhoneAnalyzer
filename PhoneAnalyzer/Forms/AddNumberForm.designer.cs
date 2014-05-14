@@ -1,6 +1,6 @@
 namespace PhoneAnalyzer.Forms
 {
-    partial class AddInNumberForm
+    partial class AddNumberForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,7 +33,7 @@ namespace PhoneAnalyzer.Forms
             this.labelOutNumberId = new System.Windows.Forms.Label();
             this.labelWorkerId = new System.Windows.Forms.Label();
             this.labelNumber = new System.Windows.Forms.Label();
-            this.ddlOutNumber = new System.Windows.Forms.ComboBox();
+            this.ddlNumberTypes = new System.Windows.Forms.ComboBox();
             this.ddlWorker = new System.Windows.Forms.ComboBox();
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
@@ -41,19 +41,19 @@ namespace PhoneAnalyzer.Forms
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(228, 92);
+            this.btnCancel.Location = new System.Drawing.Point(227, 92);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Отмена";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(147, 92);
+            this.btnAdd.Location = new System.Drawing.Point(146, 92);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 3;
+            this.btnAdd.TabIndex = 6;
             this.btnAdd.Text = "Добавить";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -61,70 +61,70 @@ namespace PhoneAnalyzer.Forms
             // labelOutNumberId
             // 
             this.labelOutNumberId.AutoSize = true;
-            this.labelOutNumberId.Location = new System.Drawing.Point(12, 15);
+            this.labelOutNumberId.Location = new System.Drawing.Point(31, 68);
             this.labelOutNumberId.Name = "labelOutNumberId";
-            this.labelOutNumberId.Size = new System.Drawing.Size(93, 13);
-            this.labelOutNumberId.TabIndex = 6;
-            this.labelOutNumberId.Text = "Внешний номер: ";
+            this.labelOutNumberId.Size = new System.Drawing.Size(73, 13);
+            this.labelOutNumberId.TabIndex = 4;
+            this.labelOutNumberId.Text = "Тип номера: ";
             // 
             // labelWorkerId
             // 
             this.labelWorkerId.AutoSize = true;
-            this.labelWorkerId.Location = new System.Drawing.Point(39, 42);
+            this.labelWorkerId.Location = new System.Drawing.Point(38, 15);
             this.labelWorkerId.Name = "labelWorkerId";
             this.labelWorkerId.Size = new System.Drawing.Size(66, 13);
-            this.labelWorkerId.TabIndex = 6;
+            this.labelWorkerId.TabIndex = 0;
             this.labelWorkerId.Text = "Сотрудник: ";
             // 
             // labelNumber
             // 
             this.labelNumber.AutoSize = true;
-            this.labelNumber.Location = new System.Drawing.Point(58, 69);
+            this.labelNumber.Location = new System.Drawing.Point(57, 42);
             this.labelNumber.Name = "labelNumber";
             this.labelNumber.Size = new System.Drawing.Size(47, 13);
-            this.labelNumber.TabIndex = 6;
+            this.labelNumber.TabIndex = 2;
             this.labelNumber.Text = "Номер: ";
             // 
-            // ddlOutNumber
+            // ddlNumberTypes
             // 
-            this.ddlOutNumber.FormattingEnabled = true;
-            this.ddlOutNumber.Location = new System.Drawing.Point(111, 12);
-            this.ddlOutNumber.Name = "ddlOutNumber";
-            this.ddlOutNumber.Size = new System.Drawing.Size(192, 21);
-            this.ddlOutNumber.TabIndex = 0;
+            this.ddlNumberTypes.FormattingEnabled = true;
+            this.ddlNumberTypes.Location = new System.Drawing.Point(110, 65);
+            this.ddlNumberTypes.Name = "ddlNumberTypes";
+            this.ddlNumberTypes.Size = new System.Drawing.Size(192, 21);
+            this.ddlNumberTypes.TabIndex = 5;
             // 
             // ddlWorker
             // 
             this.ddlWorker.FormattingEnabled = true;
-            this.ddlWorker.Location = new System.Drawing.Point(111, 39);
+            this.ddlWorker.Location = new System.Drawing.Point(110, 12);
             this.ddlWorker.Name = "ddlWorker";
             this.ddlWorker.Size = new System.Drawing.Size(192, 21);
             this.ddlWorker.TabIndex = 1;
             // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(111, 66);
+            this.txtNumber.Location = new System.Drawing.Point(110, 39);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(192, 20);
-            this.txtNumber.TabIndex = 2;
+            this.txtNumber.TabIndex = 3;
             // 
-            // AddInNumberForm
+            // AddNumberForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(314, 126);
             this.Controls.Add(this.txtNumber);
             this.Controls.Add(this.ddlWorker);
-            this.Controls.Add(this.ddlOutNumber);
+            this.Controls.Add(this.ddlNumberTypes);
             this.Controls.Add(this.labelOutNumberId);
             this.Controls.Add(this.labelWorkerId);
             this.Controls.Add(this.labelNumber);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "AddInNumberForm";
+            this.Name = "AddNumberForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "внутренний номер";
+            this.Text = "номер";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,7 +137,7 @@ namespace PhoneAnalyzer.Forms
         private System.Windows.Forms.Label labelOutNumberId;
         private System.Windows.Forms.Label labelWorkerId;
         private System.Windows.Forms.Label labelNumber;
-        private System.Windows.Forms.ComboBox ddlOutNumber;
+        private System.Windows.Forms.ComboBox ddlNumberTypes;
         private System.Windows.Forms.ComboBox ddlWorker;
         private System.Windows.Forms.TextBox txtNumber;
 

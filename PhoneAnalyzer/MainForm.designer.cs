@@ -30,26 +30,16 @@ namespace PhoneAnalyzer
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.providerTab = new System.Windows.Forms.TabPage();
-            this.providerGrid = new System.Windows.Forms.DataGridView();
-            this.btnDeleteProvider = new System.Windows.Forms.Button();
-            this.btnEditProvider = new System.Windows.Forms.Button();
-            this.btnAddProvider = new System.Windows.Forms.Button();
-            this.outNumberTab = new System.Windows.Forms.TabPage();
-            this.outNumberGrid = new System.Windows.Forms.DataGridView();
-            this.btnDeleteOutNumber = new System.Windows.Forms.Button();
-            this.btnEditOutNumber = new System.Windows.Forms.Button();
-            this.btnAddOutNumber = new System.Windows.Forms.Button();
-            this.inNumberTab = new System.Windows.Forms.TabPage();
-            this.inNumberGrid = new System.Windows.Forms.DataGridView();
-            this.btnDeleteInNumber = new System.Windows.Forms.Button();
-            this.btnEditInNumber = new System.Windows.Forms.Button();
-            this.btnAddInNumber = new System.Windows.Forms.Button();
             this.subdivisionTab = new System.Windows.Forms.TabPage();
             this.subdivisionGrid = new System.Windows.Forms.DataGridView();
             this.btnDeleteSubdivision = new System.Windows.Forms.Button();
             this.btnEditSubdivision = new System.Windows.Forms.Button();
             this.btnAddSubdivision = new System.Windows.Forms.Button();
+            this.numberTab = new System.Windows.Forms.TabPage();
+            this.outNumberGrid = new System.Windows.Forms.DataGridView();
+            this.btnDeleteOutNumber = new System.Windows.Forms.Button();
+            this.btnEditOutNumber = new System.Windows.Forms.Button();
+            this.btnAddOutNumber = new System.Windows.Forms.Button();
             this.workerTab = new System.Windows.Forms.TabPage();
             this.workerGrid = new System.Windows.Forms.DataGridView();
             this.btnDeleteWorker = new System.Windows.Forms.Button();
@@ -60,29 +50,47 @@ namespace PhoneAnalyzer
             this.btnDeleteCall = new System.Windows.Forms.Button();
             this.btnEditCall = new System.Windows.Forms.Button();
             this.btnAddCall = new System.Windows.Forms.Button();
+            this.atcCallTab = new System.Windows.Forms.TabPage();
+            this.atcCallGrid = new System.Windows.Forms.DataGridView();
+            this.btnDeleteAtcCall = new System.Windows.Forms.Button();
+            this.btnEditAtcCall = new System.Windows.Forms.Button();
+            this.btnAddAtcCall = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtFinEmail = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSaveSettings = new System.Windows.Forms.Button();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtPort = new System.Windows.Forms.TextBox();
+            this.txtHost = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
-            this.providerTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.providerGrid)).BeginInit();
-            this.outNumberTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.outNumberGrid)).BeginInit();
-            this.inNumberTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.inNumberGrid)).BeginInit();
             this.subdivisionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subdivisionGrid)).BeginInit();
+            this.numberTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.outNumberGrid)).BeginInit();
             this.workerTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.workerGrid)).BeginInit();
             this.callTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.callGrid)).BeginInit();
+            this.atcCallTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).BeginInit();
+            this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.providerTab);
             this.tabControl.Controls.Add(this.subdivisionTab);
-            this.tabControl.Controls.Add(this.outNumberTab);
-            this.tabControl.Controls.Add(this.inNumberTab);
+            this.tabControl.Controls.Add(this.numberTab);
             this.tabControl.Controls.Add(this.workerTab);
             this.tabControl.Controls.Add(this.callTab);
+            this.tabControl.Controls.Add(this.atcCallTab);
+            this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
@@ -90,87 +98,87 @@ namespace PhoneAnalyzer
             this.tabControl.Size = new System.Drawing.Size(791, 573);
             this.tabControl.TabIndex = 0;
             // 
-            // providerTab
+            // subdivisionTab
             // 
-            this.providerTab.Controls.Add(this.providerGrid);
-            this.providerTab.Controls.Add(this.btnDeleteProvider);
-            this.providerTab.Controls.Add(this.btnEditProvider);
-            this.providerTab.Controls.Add(this.btnAddProvider);
-            this.providerTab.Location = new System.Drawing.Point(4, 22);
-            this.providerTab.Name = "providerTab";
-            this.providerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.providerTab.Size = new System.Drawing.Size(783, 547);
-            this.providerTab.TabIndex = 0;
-            this.providerTab.Text = "Провайдеры";
-            this.providerTab.UseVisualStyleBackColor = true;
+            this.subdivisionTab.Controls.Add(this.subdivisionGrid);
+            this.subdivisionTab.Controls.Add(this.btnDeleteSubdivision);
+            this.subdivisionTab.Controls.Add(this.btnEditSubdivision);
+            this.subdivisionTab.Controls.Add(this.btnAddSubdivision);
+            this.subdivisionTab.Location = new System.Drawing.Point(4, 22);
+            this.subdivisionTab.Name = "subdivisionTab";
+            this.subdivisionTab.Padding = new System.Windows.Forms.Padding(3);
+            this.subdivisionTab.Size = new System.Drawing.Size(783, 547);
+            this.subdivisionTab.TabIndex = 0;
+            this.subdivisionTab.Text = "Подразделения";
+            this.subdivisionTab.UseVisualStyleBackColor = true;
             // 
-            // providerGrid
+            // subdivisionGrid
             // 
-            this.providerGrid.AllowUserToAddRows = false;
-            this.providerGrid.AllowUserToDeleteRows = false;
-            this.providerGrid.AllowUserToOrderColumns = true;
+            this.subdivisionGrid.AllowUserToAddRows = false;
+            this.subdivisionGrid.AllowUserToDeleteRows = false;
+            this.subdivisionGrid.AllowUserToOrderColumns = true;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.providerGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.providerGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.subdivisionGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.subdivisionGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.providerGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.providerGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.providerGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.providerGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.providerGrid.Location = new System.Drawing.Point(8, 6);
-            this.providerGrid.Name = "providerGrid";
-            this.providerGrid.ReadOnly = true;
-            this.providerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.providerGrid.Size = new System.Drawing.Size(768, 504);
-            this.providerGrid.TabIndex = 0;
+            this.subdivisionGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.subdivisionGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.subdivisionGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.subdivisionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.subdivisionGrid.Location = new System.Drawing.Point(8, 6);
+            this.subdivisionGrid.Name = "subdivisionGrid";
+            this.subdivisionGrid.ReadOnly = true;
+            this.subdivisionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.subdivisionGrid.Size = new System.Drawing.Size(768, 504);
+            this.subdivisionGrid.TabIndex = 0;
             // 
-            // btnDeleteProvider
+            // btnDeleteSubdivision
             // 
-            this.btnDeleteProvider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteProvider.Location = new System.Drawing.Point(701, 516);
-            this.btnDeleteProvider.Name = "btnDeleteProvider";
-            this.btnDeleteProvider.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteProvider.TabIndex = 3;
-            this.btnDeleteProvider.Text = "Удалить";
-            this.btnDeleteProvider.UseVisualStyleBackColor = true;
-            this.btnDeleteProvider.Click += new System.EventHandler(this.btnDeleteProvider_Click);
+            this.btnDeleteSubdivision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteSubdivision.Location = new System.Drawing.Point(701, 516);
+            this.btnDeleteSubdivision.Name = "btnDeleteSubdivision";
+            this.btnDeleteSubdivision.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteSubdivision.TabIndex = 3;
+            this.btnDeleteSubdivision.Text = "Удалить";
+            this.btnDeleteSubdivision.UseVisualStyleBackColor = true;
+            this.btnDeleteSubdivision.Click += new System.EventHandler(this.btnDeleteSubdivision_Click);
             // 
-            // btnEditProvider
+            // btnEditSubdivision
             // 
-            this.btnEditProvider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditProvider.Location = new System.Drawing.Point(620, 516);
-            this.btnEditProvider.Name = "btnEditProvider";
-            this.btnEditProvider.Size = new System.Drawing.Size(75, 23);
-            this.btnEditProvider.TabIndex = 2;
-            this.btnEditProvider.Text = "Изменить";
-            this.btnEditProvider.UseVisualStyleBackColor = true;
-            this.btnEditProvider.Click += new System.EventHandler(this.btnEditProvider_Click);
+            this.btnEditSubdivision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditSubdivision.Location = new System.Drawing.Point(620, 516);
+            this.btnEditSubdivision.Name = "btnEditSubdivision";
+            this.btnEditSubdivision.Size = new System.Drawing.Size(75, 23);
+            this.btnEditSubdivision.TabIndex = 2;
+            this.btnEditSubdivision.Text = "Изменить";
+            this.btnEditSubdivision.UseVisualStyleBackColor = true;
+            this.btnEditSubdivision.Click += new System.EventHandler(this.btnEditSubdivision_Click);
             // 
-            // btnAddProvider
+            // btnAddSubdivision
             // 
-            this.btnAddProvider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddProvider.Location = new System.Drawing.Point(539, 516);
-            this.btnAddProvider.Name = "btnAddProvider";
-            this.btnAddProvider.Size = new System.Drawing.Size(75, 23);
-            this.btnAddProvider.TabIndex = 1;
-            this.btnAddProvider.Text = "Добавить";
-            this.btnAddProvider.UseVisualStyleBackColor = true;
-            this.btnAddProvider.Click += new System.EventHandler(this.btnAddProvider_Click);
+            this.btnAddSubdivision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddSubdivision.Location = new System.Drawing.Point(539, 516);
+            this.btnAddSubdivision.Name = "btnAddSubdivision";
+            this.btnAddSubdivision.Size = new System.Drawing.Size(75, 23);
+            this.btnAddSubdivision.TabIndex = 1;
+            this.btnAddSubdivision.Text = "Добавить";
+            this.btnAddSubdivision.UseVisualStyleBackColor = true;
+            this.btnAddSubdivision.Click += new System.EventHandler(this.btnAddSubdivision_Click);
             // 
-            // outNumberTab
+            // numberTab
             // 
-            this.outNumberTab.Controls.Add(this.outNumberGrid);
-            this.outNumberTab.Controls.Add(this.btnDeleteOutNumber);
-            this.outNumberTab.Controls.Add(this.btnEditOutNumber);
-            this.outNumberTab.Controls.Add(this.btnAddOutNumber);
-            this.outNumberTab.Location = new System.Drawing.Point(4, 22);
-            this.outNumberTab.Name = "outNumberTab";
-            this.outNumberTab.Padding = new System.Windows.Forms.Padding(3);
-            this.outNumberTab.Size = new System.Drawing.Size(783, 547);
-            this.outNumberTab.TabIndex = 0;
-            this.outNumberTab.Text = "Внешние номера";
-            this.outNumberTab.UseVisualStyleBackColor = true;
+            this.numberTab.Controls.Add(this.outNumberGrid);
+            this.numberTab.Controls.Add(this.btnDeleteOutNumber);
+            this.numberTab.Controls.Add(this.btnEditOutNumber);
+            this.numberTab.Controls.Add(this.btnAddOutNumber);
+            this.numberTab.Location = new System.Drawing.Point(4, 22);
+            this.numberTab.Name = "numberTab";
+            this.numberTab.Padding = new System.Windows.Forms.Padding(3);
+            this.numberTab.Size = new System.Drawing.Size(783, 547);
+            this.numberTab.TabIndex = 0;
+            this.numberTab.Text = "Номера";
+            this.numberTab.UseVisualStyleBackColor = true;
             // 
             // outNumberGrid
             // 
@@ -224,140 +232,6 @@ namespace PhoneAnalyzer
             this.btnAddOutNumber.Text = "Добавить";
             this.btnAddOutNumber.UseVisualStyleBackColor = true;
             this.btnAddOutNumber.Click += new System.EventHandler(this.btnAddOutNumber_Click);
-            // 
-            // inNumberTab
-            // 
-            this.inNumberTab.Controls.Add(this.inNumberGrid);
-            this.inNumberTab.Controls.Add(this.btnDeleteInNumber);
-            this.inNumberTab.Controls.Add(this.btnEditInNumber);
-            this.inNumberTab.Controls.Add(this.btnAddInNumber);
-            this.inNumberTab.Location = new System.Drawing.Point(4, 22);
-            this.inNumberTab.Name = "inNumberTab";
-            this.inNumberTab.Padding = new System.Windows.Forms.Padding(3);
-            this.inNumberTab.Size = new System.Drawing.Size(783, 547);
-            this.inNumberTab.TabIndex = 0;
-            this.inNumberTab.Text = "Внутренние номера";
-            this.inNumberTab.UseVisualStyleBackColor = true;
-            // 
-            // inNumberGrid
-            // 
-            this.inNumberGrid.AllowUserToAddRows = false;
-            this.inNumberGrid.AllowUserToDeleteRows = false;
-            this.inNumberGrid.AllowUserToOrderColumns = true;
-            this.inNumberGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.inNumberGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.inNumberGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.inNumberGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.inNumberGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.inNumberGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.inNumberGrid.Location = new System.Drawing.Point(8, 6);
-            this.inNumberGrid.Name = "inNumberGrid";
-            this.inNumberGrid.ReadOnly = true;
-            this.inNumberGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.inNumberGrid.Size = new System.Drawing.Size(768, 504);
-            this.inNumberGrid.TabIndex = 0;
-            // 
-            // btnDeleteInNumber
-            // 
-            this.btnDeleteInNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteInNumber.Location = new System.Drawing.Point(701, 516);
-            this.btnDeleteInNumber.Name = "btnDeleteInNumber";
-            this.btnDeleteInNumber.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteInNumber.TabIndex = 3;
-            this.btnDeleteInNumber.Text = "Удалить";
-            this.btnDeleteInNumber.UseVisualStyleBackColor = true;
-            this.btnDeleteInNumber.Click += new System.EventHandler(this.btnDeleteInNumber_Click);
-            // 
-            // btnEditInNumber
-            // 
-            this.btnEditInNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditInNumber.Location = new System.Drawing.Point(620, 516);
-            this.btnEditInNumber.Name = "btnEditInNumber";
-            this.btnEditInNumber.Size = new System.Drawing.Size(75, 23);
-            this.btnEditInNumber.TabIndex = 2;
-            this.btnEditInNumber.Text = "Изменить";
-            this.btnEditInNumber.UseVisualStyleBackColor = true;
-            this.btnEditInNumber.Click += new System.EventHandler(this.btnEditInNumber_Click);
-            // 
-            // btnAddInNumber
-            // 
-            this.btnAddInNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddInNumber.Location = new System.Drawing.Point(539, 516);
-            this.btnAddInNumber.Name = "btnAddInNumber";
-            this.btnAddInNumber.Size = new System.Drawing.Size(75, 23);
-            this.btnAddInNumber.TabIndex = 1;
-            this.btnAddInNumber.Text = "Добавить";
-            this.btnAddInNumber.UseVisualStyleBackColor = true;
-            this.btnAddInNumber.Click += new System.EventHandler(this.btnAddInNumber_Click);
-            // 
-            // subdivisionTab
-            // 
-            this.subdivisionTab.Controls.Add(this.subdivisionGrid);
-            this.subdivisionTab.Controls.Add(this.btnDeleteSubdivision);
-            this.subdivisionTab.Controls.Add(this.btnEditSubdivision);
-            this.subdivisionTab.Controls.Add(this.btnAddSubdivision);
-            this.subdivisionTab.Location = new System.Drawing.Point(4, 22);
-            this.subdivisionTab.Name = "subdivisionTab";
-            this.subdivisionTab.Padding = new System.Windows.Forms.Padding(3);
-            this.subdivisionTab.Size = new System.Drawing.Size(783, 547);
-            this.subdivisionTab.TabIndex = 0;
-            this.subdivisionTab.Text = "Подразделения";
-            this.subdivisionTab.UseVisualStyleBackColor = true;
-            // 
-            // subdivisionGrid
-            // 
-            this.subdivisionGrid.AllowUserToAddRows = false;
-            this.subdivisionGrid.AllowUserToDeleteRows = false;
-            this.subdivisionGrid.AllowUserToOrderColumns = true;
-            this.subdivisionGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.subdivisionGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.subdivisionGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.subdivisionGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.subdivisionGrid.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.subdivisionGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.subdivisionGrid.Location = new System.Drawing.Point(8, 6);
-            this.subdivisionGrid.Name = "subdivisionGrid";
-            this.subdivisionGrid.ReadOnly = true;
-            this.subdivisionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.subdivisionGrid.Size = new System.Drawing.Size(768, 504);
-            this.subdivisionGrid.TabIndex = 0;
-            // 
-            // btnDeleteSubdivision
-            // 
-            this.btnDeleteSubdivision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteSubdivision.Location = new System.Drawing.Point(701, 516);
-            this.btnDeleteSubdivision.Name = "btnDeleteSubdivision";
-            this.btnDeleteSubdivision.Size = new System.Drawing.Size(75, 23);
-            this.btnDeleteSubdivision.TabIndex = 3;
-            this.btnDeleteSubdivision.Text = "Удалить";
-            this.btnDeleteSubdivision.UseVisualStyleBackColor = true;
-            this.btnDeleteSubdivision.Click += new System.EventHandler(this.btnDeleteSubdivision_Click);
-            // 
-            // btnEditSubdivision
-            // 
-            this.btnEditSubdivision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEditSubdivision.Location = new System.Drawing.Point(620, 516);
-            this.btnEditSubdivision.Name = "btnEditSubdivision";
-            this.btnEditSubdivision.Size = new System.Drawing.Size(75, 23);
-            this.btnEditSubdivision.TabIndex = 2;
-            this.btnEditSubdivision.Text = "Изменить";
-            this.btnEditSubdivision.UseVisualStyleBackColor = true;
-            this.btnEditSubdivision.Click += new System.EventHandler(this.btnEditSubdivision_Click);
-            // 
-            // btnAddSubdivision
-            // 
-            this.btnAddSubdivision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddSubdivision.Location = new System.Drawing.Point(539, 516);
-            this.btnAddSubdivision.Name = "btnAddSubdivision";
-            this.btnAddSubdivision.Size = new System.Drawing.Size(75, 23);
-            this.btnAddSubdivision.TabIndex = 1;
-            this.btnAddSubdivision.Text = "Добавить";
-            this.btnAddSubdivision.UseVisualStyleBackColor = true;
-            this.btnAddSubdivision.Click += new System.EventHandler(this.btnAddSubdivision_Click);
             // 
             // workerTab
             // 
@@ -493,6 +367,194 @@ namespace PhoneAnalyzer
             this.btnAddCall.UseVisualStyleBackColor = true;
             this.btnAddCall.Click += new System.EventHandler(this.btnAddCall_Click);
             // 
+            // atcCallTab
+            // 
+            this.atcCallTab.Controls.Add(this.atcCallGrid);
+            this.atcCallTab.Controls.Add(this.btnDeleteAtcCall);
+            this.atcCallTab.Controls.Add(this.btnEditAtcCall);
+            this.atcCallTab.Controls.Add(this.btnAddAtcCall);
+            this.atcCallTab.Location = new System.Drawing.Point(4, 22);
+            this.atcCallTab.Name = "atcCallTab";
+            this.atcCallTab.Padding = new System.Windows.Forms.Padding(3);
+            this.atcCallTab.Size = new System.Drawing.Size(783, 547);
+            this.atcCallTab.TabIndex = 0;
+            this.atcCallTab.Text = "Атс Звонки";
+            this.atcCallTab.UseVisualStyleBackColor = true;
+            // 
+            // atcCallGrid
+            // 
+            this.atcCallGrid.AllowUserToAddRows = false;
+            this.atcCallGrid.AllowUserToDeleteRows = false;
+            this.atcCallGrid.AllowUserToOrderColumns = true;
+            this.atcCallGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.atcCallGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.atcCallGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.atcCallGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.atcCallGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.atcCallGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.atcCallGrid.Location = new System.Drawing.Point(8, 6);
+            this.atcCallGrid.Name = "atcCallGrid";
+            this.atcCallGrid.ReadOnly = true;
+            this.atcCallGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.atcCallGrid.Size = new System.Drawing.Size(768, 504);
+            this.atcCallGrid.TabIndex = 0;
+            // 
+            // btnDeleteAtcCall
+            // 
+            this.btnDeleteAtcCall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteAtcCall.Location = new System.Drawing.Point(701, 516);
+            this.btnDeleteAtcCall.Name = "btnDeleteAtcCall";
+            this.btnDeleteAtcCall.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteAtcCall.TabIndex = 3;
+            this.btnDeleteAtcCall.Text = "Удалить";
+            this.btnDeleteAtcCall.UseVisualStyleBackColor = true;
+            this.btnDeleteAtcCall.Click += new System.EventHandler(this.btnDeleteAtcCall_Click);
+            // 
+            // btnEditAtcCall
+            // 
+            this.btnEditAtcCall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditAtcCall.Location = new System.Drawing.Point(620, 516);
+            this.btnEditAtcCall.Name = "btnEditAtcCall";
+            this.btnEditAtcCall.Size = new System.Drawing.Size(75, 23);
+            this.btnEditAtcCall.TabIndex = 2;
+            this.btnEditAtcCall.Text = "Изменить";
+            this.btnEditAtcCall.UseVisualStyleBackColor = true;
+            this.btnEditAtcCall.Click += new System.EventHandler(this.btnEditAtcCall_Click);
+            // 
+            // btnAddAtcCall
+            // 
+            this.btnAddAtcCall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddAtcCall.Location = new System.Drawing.Point(539, 516);
+            this.btnAddAtcCall.Name = "btnAddAtcCall";
+            this.btnAddAtcCall.Size = new System.Drawing.Size(75, 23);
+            this.btnAddAtcCall.TabIndex = 1;
+            this.btnAddAtcCall.Text = "Добавить";
+            this.btnAddAtcCall.UseVisualStyleBackColor = true;
+            this.btnAddAtcCall.Click += new System.EventHandler(this.btnAddAtcCall_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.groupBox1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(783, 547);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Настройки";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtFinEmail);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.btnSaveSettings);
+            this.groupBox1.Controls.Add(this.txtPassword);
+            this.groupBox1.Controls.Add(this.txtLogin);
+            this.groupBox1.Controls.Add(this.txtPort);
+            this.groupBox1.Controls.Add(this.txtHost);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(8, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(350, 180);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Настройки почты";
+            // 
+            // txtFinEmail
+            // 
+            this.txtFinEmail.Location = new System.Drawing.Point(135, 120);
+            this.txtFinEmail.Name = "txtFinEmail";
+            this.txtFinEmail.Size = new System.Drawing.Size(207, 20);
+            this.txtFinEmail.TabIndex = 11;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(123, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Email Фин. директора: ";
+            // 
+            // btnSaveSettings
+            // 
+            this.btnSaveSettings.Location = new System.Drawing.Point(205, 146);
+            this.btnSaveSettings.Name = "btnSaveSettings";
+            this.btnSaveSettings.Size = new System.Drawing.Size(137, 23);
+            this.btnSaveSettings.TabIndex = 9;
+            this.btnSaveSettings.Text = "Сохранить настройки";
+            this.btnSaveSettings.UseVisualStyleBackColor = true;
+            this.btnSaveSettings.Click += new System.EventHandler(this.btnSaveSettings_Click);
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(135, 94);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(207, 20);
+            this.txtPassword.TabIndex = 8;
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(135, 68);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(207, 20);
+            this.txtLogin.TabIndex = 7;
+            // 
+            // txtPort
+            // 
+            this.txtPort.Location = new System.Drawing.Point(135, 42);
+            this.txtPort.Name = "txtPort";
+            this.txtPort.Size = new System.Drawing.Size(207, 20);
+            this.txtPort.TabIndex = 6;
+            // 
+            // txtHost
+            // 
+            this.txtHost.Location = new System.Drawing.Point(135, 16);
+            this.txtHost.Name = "txtHost";
+            this.txtHost.Size = new System.Drawing.Size(207, 20);
+            this.txtHost.TabIndex = 5;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(78, 97);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(51, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Пароль: ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(85, 71);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Логин: ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(91, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Порт: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(53, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Smtp сервер: ";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,18 +565,19 @@ namespace PhoneAnalyzer
             this.Text = "Система учёта клиентов";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tabControl.ResumeLayout(false);
-            this.providerTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.providerGrid)).EndInit();
-            this.outNumberTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.outNumberGrid)).EndInit();
-            this.inNumberTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.inNumberGrid)).EndInit();
             this.subdivisionTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.subdivisionGrid)).EndInit();
+            this.numberTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.outNumberGrid)).EndInit();
             this.workerTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.workerGrid)).EndInit();
             this.callTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.callGrid)).EndInit();
+            this.atcCallTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).EndInit();
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -522,23 +585,17 @@ namespace PhoneAnalyzer
         #endregion
 
         private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage providerTab;
-        private System.Windows.Forms.DataGridView providerGrid;
-        private System.Windows.Forms.Button btnDeleteProvider;
-        private System.Windows.Forms.Button btnEditProvider;
-        private System.Windows.Forms.Button btnAddProvider;
+        private System.Windows.Forms.TabPage atcCallTab;
+        private System.Windows.Forms.DataGridView atcCallGrid;
+        private System.Windows.Forms.Button btnDeleteAtcCall;
+        private System.Windows.Forms.Button btnEditAtcCall;
+        private System.Windows.Forms.Button btnAddAtcCall;
         
-        private System.Windows.Forms.TabPage outNumberTab;
+        private System.Windows.Forms.TabPage numberTab;
         private System.Windows.Forms.DataGridView outNumberGrid;
         private System.Windows.Forms.Button btnDeleteOutNumber;
         private System.Windows.Forms.Button btnEditOutNumber;
         private System.Windows.Forms.Button btnAddOutNumber;
-        
-        private System.Windows.Forms.TabPage inNumberTab;
-        private System.Windows.Forms.DataGridView inNumberGrid;
-        private System.Windows.Forms.Button btnDeleteInNumber;
-        private System.Windows.Forms.Button btnEditInNumber;
-        private System.Windows.Forms.Button btnAddInNumber;
         
         private System.Windows.Forms.TabPage subdivisionTab;
         private System.Windows.Forms.DataGridView subdivisionGrid;
@@ -557,6 +614,19 @@ namespace PhoneAnalyzer
         private System.Windows.Forms.Button btnDeleteCall;
         private System.Windows.Forms.Button btnEditCall;
         private System.Windows.Forms.Button btnAddCall;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtFinEmail;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSaveSettings;
+        private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.TextBox txtPort;
+        private System.Windows.Forms.TextBox txtHost;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
         
 
     }

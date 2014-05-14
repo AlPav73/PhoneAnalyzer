@@ -6,16 +6,16 @@ using PhoneAnalyzer.Classes;
 
 namespace PhoneAnalyzer.Forms
 {
-    public partial class AddCallForm : ValidateForm
+    public partial class AddAtcCallForm : ValidateForm
     {
         private readonly int Id;
         private readonly PaDbDataContext db = DataBase.Context;
 
-        public AddCallForm(int _Id = 0)
+        public AddAtcCallForm(int _Id = 0)
         {
             InitializeComponent();
 
-            FillComboBox(ddlNumber, Numbers.ToArray());
+            FillComboBox(ddlSubdivision, Subdivisions.ToArray());
 
             Id = _Id;
 
@@ -32,21 +32,6 @@ namespace PhoneAnalyzer.Forms
             }
         }
 
-        private Number CurrentNumber
-        {
-            get
-            {
-                int index = ddlNumber.SelectedIndex;
-                return NumberByIndex(index);
-            }
-            set { ddlNumber.SelectedIndex = IndexByNumber(value); }
-        }
-
-        private List<Number> Numbers
-        {
-            get { return db.Numbers.ToList(); }
-        }
-
         private void FillComboBox(ComboBox ddl, object[] array)
         {
             ddl.Items.Clear();
@@ -61,10 +46,10 @@ namespace PhoneAnalyzer.Forms
         {
             if (ValidateControls())
             {
-                Call call = GetFromControls();
+                AtcCall atcCall = GetFromControls();
                 if (Id <= 0)
                 {
-                    db.Calls.InsertOnSubmit(call);
+                    db.AtcCalls.InsertOnSubmit(atcCall);
                 }
 
                 db.SubmitChanges(); 
@@ -75,27 +60,25 @@ namespace PhoneAnalyzer.Forms
         // Записываем объект в контролы
         private void SetToControls()
         {
-            Call call = db.Calls.SingleOrDefault(o => o.Id == Id);
+            AtcCall atcCall = db.AtcCalls.SingleOrDefault(o => o.Id == Id);
 
-            CurrentNumber = call.Number;
-            CurrentDate = call.Date;
-            txtNumber.Text = call.ToNumber;
-            txtDuration.Text = call.Duration.ToString();
-            txtPrice.Text = call.Price.ToString();
+            CurrentSubdivision = atcCall.Subdivision;
+            txtNumber.Text = atcCall.ToNumber;
+            CurrentDate = atcCall.Date;
+            txtDuration.Text = atcCall.Duration.ToString();
         }
 
         // Получаем объект из формы
-        private Call GetFromControls()
+        private AtcCall GetFromControls()
         {
-            Call call = db.Calls.SingleOrDefault(o => o.Id == Id) ?? new Call();
+            AtcCall atcCall = db.AtcCalls.SingleOrDefault(o => o.Id == Id) ?? new AtcCall();
 
-            call.Number = CurrentNumber;
-            call.ToNumber = txtNumber.Text;
-            call.Date = CurrentDate;
-            call.Duration = int.Parse(txtDuration.Text);
-            call.Price = int.Parse(txtPrice.Text);
+            atcCall.Subdivision = CurrentSubdivision;
+            atcCall.ToNumber = txtNumber.Text;
+            atcCall.Date = CurrentDate;
+            atcCall.Duration = int.Parse(txtDuration.Text);
 
-            return call;
+            return atcCall;
         }
 
         // Проверяем корректность введенных данных
@@ -103,18 +86,15 @@ namespace PhoneAnalyzer.Forms
         {
             bool isValid = true;
 
-            isValid &= ValidateControl(ddlNumber);
+            isValid &= ValidateControl(ddlSubdivision);
             isValid &= ValidateControl(txtNumber, false);
             isValid &= ValidateControl(txtDuration, true);
-            isValid &= ValidateControl(txtPrice, true);
             isValid &= ValidateControl(txtHours, true);
-            isValid &= ValidateControl(txtMinutes, true);
             isValid &= ValidateControl(txtSeconds, true);
+            isValid &= ValidateControl(txtMinutes, true);
 
             return isValid;
         }
-
-
 
         private DateTime CurrentDate
         {
@@ -135,17 +115,31 @@ namespace PhoneAnalyzer.Forms
             }
         }
 
-
-        private int IndexByNumber(Number number)
+        private Subdivision CurrentSubdivision
         {
-            return number != null ? Numbers.FindIndex(c => c.Id == number.Id) : -1;
+            get
+            {
+                int index = ddlSubdivision.SelectedIndex;
+                return SubdivisionByIndex(index);
+            }
+            set { ddlSubdivision.SelectedIndex = IndexBySubdivision(value); }
         }
 
-        private Number NumberByIndex(int index)
+        private List<Subdivision> Subdivisions
         {
-            if ((index >= 0) && (index < Numbers.Count))
+            get { return db.Subdivisions.ToList(); }
+        }
+
+        private int IndexBySubdivision(Subdivision subdivision)
+        {
+            return subdivision != null ? Subdivisions.FindIndex(c => c.Id == subdivision.Id) : -1;
+        }
+
+        private Subdivision SubdivisionByIndex(int index)
+        {
+            if ((index >= 0) && (index < Subdivisions.Count))
             {
-                return Numbers[index];
+                return Subdivisions[index];
             }
 
             return null;

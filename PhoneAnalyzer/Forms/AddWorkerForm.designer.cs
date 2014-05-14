@@ -61,10 +61,10 @@ namespace PhoneAnalyzer.Forms
             // labelSubdivisionId
             // 
             this.labelSubdivisionId.AutoSize = true;
-            this.labelSubdivisionId.Location = new System.Drawing.Point(13, 15);
+            this.labelSubdivisionId.Location = new System.Drawing.Point(14, 68);
             this.labelSubdivisionId.Name = "labelSubdivisionId";
             this.labelSubdivisionId.Size = new System.Drawing.Size(93, 13);
-            this.labelSubdivisionId.TabIndex = 6;
+            this.labelSubdivisionId.TabIndex = 4;
             this.labelSubdivisionId.Text = "Подразделение: ";
             // 
             // labelSalary
@@ -73,7 +73,7 @@ namespace PhoneAnalyzer.Forms
             this.labelSalary.Location = new System.Drawing.Point(61, 41);
             this.labelSalary.Name = "labelSalary";
             this.labelSalary.Size = new System.Drawing.Size(45, 13);
-            this.labelSalary.TabIndex = 6;
+            this.labelSalary.TabIndex = 2;
             this.labelSalary.Text = "Оклад: ";
             // 
             // txtSalary
@@ -82,32 +82,32 @@ namespace PhoneAnalyzer.Forms
             this.txtSalary.MaxLength = 255;
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(188, 20);
-            this.txtSalary.TabIndex = 2;
+            this.txtSalary.TabIndex = 3;
             // 
             // txtFio
             // 
-            this.txtFio.Location = new System.Drawing.Point(112, 64);
+            this.txtFio.Location = new System.Drawing.Point(111, 12);
             this.txtFio.MaxLength = 255;
             this.txtFio.Name = "txtFio";
             this.txtFio.Size = new System.Drawing.Size(188, 20);
-            this.txtFio.TabIndex = 8;
+            this.txtFio.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(70, 67);
+            this.label1.Location = new System.Drawing.Point(69, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 9;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Фио: ";
             // 
             // ddlSubdivision
             // 
             this.ddlSubdivision.FormattingEnabled = true;
-            this.ddlSubdivision.Location = new System.Drawing.Point(112, 11);
+            this.ddlSubdivision.Location = new System.Drawing.Point(113, 64);
             this.ddlSubdivision.Name = "ddlSubdivision";
             this.ddlSubdivision.Size = new System.Drawing.Size(187, 21);
-            this.ddlSubdivision.TabIndex = 10;
+            this.ddlSubdivision.TabIndex = 5;
             // 
             // AddWorkerForm
             // 

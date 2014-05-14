@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using PhoneAnalyzer.Classes;
+using PhoneAnalyzer.Helpers;
+using PhoneAnalyzer.Type;
 
 namespace PhoneAnalyzer.Forms
 {
-    public partial class AddInNumberForm : ValidateForm
+    public partial class AddNumberForm : ValidateForm
     {
         private readonly int Id;
         private readonly PaDbDataContext db = DataBase.Context;
 
-        public AddInNumberForm(int _Id = 0)
+        public AddNumberForm(int _Id = 0)
         {
             InitializeComponent();
             
-            FillComboBox(ddlOutNumber, OutNumbers.ToArray());
+            FillComboBox(ddlNumberTypes, NumberTypes);
             FillComboBox(ddlWorker, Workers.ToArray());
 
             Id = _Id;
@@ -33,20 +35,10 @@ namespace PhoneAnalyzer.Forms
             }
         }
 
-        private OutNumber CurrentOutNumber
+        private string[] NumberTypes
         {
-            get
-            {
-                int index = ddlOutNumber.SelectedIndex;
-                return OutNumberByIndex(index);
-            }
-            set { ddlOutNumber.SelectedIndex = IndexByOutNumber(value); }
-        }
-
-        private List<OutNumber> OutNumbers
-        {
-            get { return db.OutNumbers.ToList(); }
-        }
+            get { return (from NumberType p in Enum.GetValues(typeof(NumberType)) select EnumHelper.Huminize(p)).ToArray(); }
+        } 
 
         private Worker CurrentWorker
         {
@@ -63,7 +55,6 @@ namespace PhoneAnalyzer.Forms
             get { return db.Workers.ToList(); }
         }
 
-
         private void FillComboBox(ComboBox ddl, object[] array)
         {
             ddl.Items.Clear();
@@ -78,10 +69,10 @@ namespace PhoneAnalyzer.Forms
         {
             if (ValidateControls())
             {
-                InNumber inNumber = GetFromControls();
+                var inNumber = GetFromControls();
                 if (Id <= 0)
                 {
-                    db.InNumbers.InsertOnSubmit(inNumber);
+                    db.Numbers.InsertOnSubmit(inNumber);
                 }
 
                 db.SubmitChanges();
@@ -92,23 +83,23 @@ namespace PhoneAnalyzer.Forms
         // Записываем объект в контролы
         private void SetToControls()
         {
-            InNumber inNumber = db.InNumbers.SingleOrDefault(o => o.Id == Id);
+            var number = db.Numbers.SingleOrDefault(o => o.Id == Id);
 
-            CurrentOutNumber = inNumber.OutNumber;
-            CurrentWorker = inNumber.Worker;
-            txtNumber.Text = inNumber.Number;
+            CurrentWorker = number.Worker;
+            ddlNumberTypes.SelectedIndex = IndexByNumberType(number.NumberType);
+            txtNumber.Text = number.PhoneNumber;
         }
 
         // Получаем объект из формы
-        private InNumber GetFromControls()
+        private Number GetFromControls()
         {
-            InNumber inNumber = db.InNumbers.SingleOrDefault(o => o.Id == Id) ?? new InNumber();
+            var number = db.Numbers.SingleOrDefault(o => o.Id == Id) ?? new Number();
 
-            inNumber.OutNumber = CurrentOutNumber;
-            inNumber.Worker = CurrentWorker;
-            inNumber.Number = txtNumber.Text;
+            number.NumberType = NumberTypeByIndex(ddlNumberTypes.SelectedIndex);
+            number.Worker = CurrentWorker;
+            number.PhoneNumber = txtNumber.Text;
 
-            return inNumber;
+            return number;
         }
 
         // Проверяем корректность введенных данных
@@ -116,7 +107,7 @@ namespace PhoneAnalyzer.Forms
         {
             bool isValid = true;
 
-            isValid &= ValidateControl(ddlOutNumber);
+            isValid &= ValidateControl(ddlNumberTypes);
             isValid &= ValidateControl(ddlWorker);
             isValid &= ValidateControl(txtNumber, false);
 
@@ -124,21 +115,21 @@ namespace PhoneAnalyzer.Forms
         }
 
 
-        private int IndexByOutNumber(OutNumber outNumber)
+        private int IndexByNumberType(NumberType numberType)
         {
-            return outNumber != null ? OutNumbers.FindIndex(c => c.Id == outNumber.Id) : -1;
+            return Enum.GetValues(typeof(NumberType)).Cast<NumberType>().TakeWhile(r => r != numberType).Count();
         }
 
-        private OutNumber OutNumberByIndex(int index)
+        private NumberType NumberTypeByIndex(int index)
         {
-            if ((index >= 0) && (index < OutNumbers.Count))
+            Array numberTypes = Enum.GetValues(typeof(NumberType));
+            if ((index >= 0) && (index < numberTypes.Length))
             {
-                return OutNumbers[index];
+                return (NumberType)numberTypes.GetValue(index);
             }
 
-            return null;
-        }
-
+            return NumberType.In;
+        } 
 
         private int IndexByWorker(Worker worker)
         {

@@ -50,6 +50,7 @@ namespace PhoneAnalyzer.Forms
 
             txtName.Text = subdivision.Name;
             txtDirectorFio.Text = subdivision.DirectorFio;
+            txtEmail.Text = subdivision.Email;
         }
 
         // Получаем объект из формы
@@ -58,6 +59,7 @@ namespace PhoneAnalyzer.Forms
             Subdivision subdivision = db.Subdivisions.SingleOrDefault(o => o.Id == Id) ?? new Subdivision();
 
             subdivision.Name = txtName.Text;
+            subdivision.Email = txtEmail.Text;
             subdivision.DirectorFio = txtDirectorFio.Text;
 
             return subdivision;
@@ -69,6 +71,7 @@ namespace PhoneAnalyzer.Forms
             bool isValid = true;
 
             isValid &= ValidateControl(txtName, false);
+            isValid &= ValidateControl(txtEmail, false);
             isValid &= ValidateControl(txtDirectorFio, false);
 
             return isValid;

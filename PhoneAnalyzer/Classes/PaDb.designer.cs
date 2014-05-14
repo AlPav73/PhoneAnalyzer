@@ -30,24 +30,24 @@ namespace PhoneAnalyzer.Classes
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertCall(Call instance);
-    partial void UpdateCall(Call instance);
-    partial void DeleteCall(Call instance);
-    partial void InsertInNumber(InNumber instance);
-    partial void UpdateInNumber(InNumber instance);
-    partial void DeleteInNumber(InNumber instance);
-    partial void InsertOutNumber(OutNumber instance);
-    partial void UpdateOutNumber(OutNumber instance);
-    partial void DeleteOutNumber(OutNumber instance);
-    partial void InsertProvider(Provider instance);
-    partial void UpdateProvider(Provider instance);
-    partial void DeleteProvider(Provider instance);
-    partial void InsertSubdivision(Subdivision instance);
-    partial void UpdateSubdivision(Subdivision instance);
-    partial void DeleteSubdivision(Subdivision instance);
     partial void InsertWorker(Worker instance);
     partial void UpdateWorker(Worker instance);
     partial void DeleteWorker(Worker instance);
+    partial void InsertNumber(Number instance);
+    partial void UpdateNumber(Number instance);
+    partial void DeleteNumber(Number instance);
+    partial void InsertSubdivision(Subdivision instance);
+    partial void UpdateSubdivision(Subdivision instance);
+    partial void DeleteSubdivision(Subdivision instance);
+    partial void InsertAtcCall(AtcCall instance);
+    partial void UpdateAtcCall(AtcCall instance);
+    partial void DeleteAtcCall(AtcCall instance);
+    partial void InsertCall(Call instance);
+    partial void UpdateCall(Call instance);
+    partial void DeleteCall(Call instance);
+    partial void InsertSetting(Setting instance);
+    partial void UpdateSetting(Setting instance);
+    partial void DeleteSetting(Setting instance);
     #endregion
 		
 		public PaDbDataContext() : 
@@ -80,35 +80,19 @@ namespace PhoneAnalyzer.Classes
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Call> Calls
+		public System.Data.Linq.Table<Worker> Workers
 		{
 			get
 			{
-				return this.GetTable<Call>();
+				return this.GetTable<Worker>();
 			}
 		}
 		
-		public System.Data.Linq.Table<InNumber> InNumbers
+		public System.Data.Linq.Table<Number> Numbers
 		{
 			get
 			{
-				return this.GetTable<InNumber>();
-			}
-		}
-		
-		public System.Data.Linq.Table<OutNumber> OutNumbers
-		{
-			get
-			{
-				return this.GetTable<OutNumber>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Provider> Providers
-		{
-			get
-			{
-				return this.GetTable<Provider>();
+				return this.GetTable<Number>();
 			}
 		}
 		
@@ -120,910 +104,28 @@ namespace PhoneAnalyzer.Classes
 			}
 		}
 		
-		public System.Data.Linq.Table<Worker> Workers
+		public System.Data.Linq.Table<AtcCall> AtcCalls
 		{
 			get
 			{
-				return this.GetTable<Worker>();
+				return this.GetTable<AtcCall>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Call")]
-	public partial class Call : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _OutNumberId;
-		
-		private string _Number;
-		
-		private System.DateTime _Date;
-		
-		private int _Time;
-		
-		private EntityRef<OutNumber> _OutNumber;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnOutNumberIdChanging(int value);
-    partial void OnOutNumberIdChanged();
-    partial void OnNumberChanging(string value);
-    partial void OnNumberChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
-    partial void OnTimeChanging(int value);
-    partial void OnTimeChanged();
-    #endregion
-		
-		public Call()
-		{
-			this._OutNumber = default(EntityRef<OutNumber>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		public System.Data.Linq.Table<Call> Calls
 		{
 			get
 			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
+				return this.GetTable<Call>();
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutNumberId", DbType="Int NOT NULL")]
-		public int OutNumberId
+		public System.Data.Linq.Table<Setting> Settings
 		{
 			get
 			{
-				return this._OutNumberId;
+				return this.GetTable<Setting>();
 			}
-			set
-			{
-				if ((this._OutNumberId != value))
-				{
-					if (this._OutNumber.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOutNumberIdChanging(value);
-					this.SendPropertyChanging();
-					this._OutNumberId = value;
-					this.SendPropertyChanged("OutNumberId");
-					this.OnOutNumberIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Number
-		{
-			get
-			{
-				return this._Number;
-			}
-			set
-			{
-				if ((this._Number != value))
-				{
-					this.OnNumberChanging(value);
-					this.SendPropertyChanging();
-					this._Number = value;
-					this.SendPropertyChanged("Number");
-					this.OnNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
-		public System.DateTime Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Time", DbType="Int NOT NULL")]
-		public int Time
-		{
-			get
-			{
-				return this._Time;
-			}
-			set
-			{
-				if ((this._Time != value))
-				{
-					this.OnTimeChanging(value);
-					this.SendPropertyChanging();
-					this._Time = value;
-					this.SendPropertyChanged("Time");
-					this.OnTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OutNumber_Call", Storage="_OutNumber", ThisKey="OutNumberId", OtherKey="Id", IsForeignKey=true)]
-		public OutNumber OutNumber
-		{
-			get
-			{
-				return this._OutNumber.Entity;
-			}
-			set
-			{
-				OutNumber previousValue = this._OutNumber.Entity;
-				if (((previousValue != value) 
-							|| (this._OutNumber.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._OutNumber.Entity = null;
-						previousValue.Calls.Remove(this);
-					}
-					this._OutNumber.Entity = value;
-					if ((value != null))
-					{
-						value.Calls.Add(this);
-						this._OutNumberId = value.Id;
-					}
-					else
-					{
-						this._OutNumberId = default(int);
-					}
-					this.SendPropertyChanged("OutNumber");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.InNumber")]
-	public partial class InNumber : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _OutNumberId;
-		
-		private int _WorkerId;
-		
-		private string _Number;
-		
-		private EntityRef<OutNumber> _OutNumber;
-		
-		private EntityRef<Worker> _Worker;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnOutNumberIdChanging(int value);
-    partial void OnOutNumberIdChanged();
-    partial void OnWorkerIdChanging(int value);
-    partial void OnWorkerIdChanged();
-    partial void OnNumberChanging(string value);
-    partial void OnNumberChanged();
-    #endregion
-		
-		public InNumber()
-		{
-			this._OutNumber = default(EntityRef<OutNumber>);
-			this._Worker = default(EntityRef<Worker>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutNumberId", DbType="Int NOT NULL")]
-		public int OutNumberId
-		{
-			get
-			{
-				return this._OutNumberId;
-			}
-			set
-			{
-				if ((this._OutNumberId != value))
-				{
-					if (this._OutNumber.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOutNumberIdChanging(value);
-					this.SendPropertyChanging();
-					this._OutNumberId = value;
-					this.SendPropertyChanged("OutNumberId");
-					this.OnOutNumberIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkerId", DbType="Int NOT NULL")]
-		public int WorkerId
-		{
-			get
-			{
-				return this._WorkerId;
-			}
-			set
-			{
-				if ((this._WorkerId != value))
-				{
-					if (this._Worker.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnWorkerIdChanging(value);
-					this.SendPropertyChanging();
-					this._WorkerId = value;
-					this.SendPropertyChanged("WorkerId");
-					this.OnWorkerIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Number
-		{
-			get
-			{
-				return this._Number;
-			}
-			set
-			{
-				if ((this._Number != value))
-				{
-					this.OnNumberChanging(value);
-					this.SendPropertyChanging();
-					this._Number = value;
-					this.SendPropertyChanged("Number");
-					this.OnNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OutNumber_InNumber", Storage="_OutNumber", ThisKey="OutNumberId", OtherKey="Id", IsForeignKey=true)]
-		public OutNumber OutNumber
-		{
-			get
-			{
-				return this._OutNumber.Entity;
-			}
-			set
-			{
-				OutNumber previousValue = this._OutNumber.Entity;
-				if (((previousValue != value) 
-							|| (this._OutNumber.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._OutNumber.Entity = null;
-						previousValue.InNumbers.Remove(this);
-					}
-					this._OutNumber.Entity = value;
-					if ((value != null))
-					{
-						value.InNumbers.Add(this);
-						this._OutNumberId = value.Id;
-					}
-					else
-					{
-						this._OutNumberId = default(int);
-					}
-					this.SendPropertyChanged("OutNumber");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Worker_InNumber", Storage="_Worker", ThisKey="WorkerId", OtherKey="Id", IsForeignKey=true)]
-		public Worker Worker
-		{
-			get
-			{
-				return this._Worker.Entity;
-			}
-			set
-			{
-				Worker previousValue = this._Worker.Entity;
-				if (((previousValue != value) 
-							|| (this._Worker.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Worker.Entity = null;
-						previousValue.InNumbers.Remove(this);
-					}
-					this._Worker.Entity = value;
-					if ((value != null))
-					{
-						value.InNumbers.Add(this);
-						this._WorkerId = value.Id;
-					}
-					else
-					{
-						this._WorkerId = default(int);
-					}
-					this.SendPropertyChanged("Worker");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OutNumber")]
-	public partial class OutNumber : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _ProviderId;
-		
-		private string _Number;
-		
-		private EntitySet<Call> _Calls;
-		
-		private EntitySet<InNumber> _InNumbers;
-		
-		private EntityRef<Provider> _Provider;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnProviderIdChanging(int value);
-    partial void OnProviderIdChanged();
-    partial void OnNumberChanging(string value);
-    partial void OnNumberChanged();
-    #endregion
-		
-		public OutNumber()
-		{
-			this._Calls = new EntitySet<Call>(new Action<Call>(this.attach_Calls), new Action<Call>(this.detach_Calls));
-			this._InNumbers = new EntitySet<InNumber>(new Action<InNumber>(this.attach_InNumbers), new Action<InNumber>(this.detach_InNumbers));
-			this._Provider = default(EntityRef<Provider>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProviderId", DbType="Int NOT NULL")]
-		public int ProviderId
-		{
-			get
-			{
-				return this._ProviderId;
-			}
-			set
-			{
-				if ((this._ProviderId != value))
-				{
-					if (this._Provider.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProviderIdChanging(value);
-					this.SendPropertyChanging();
-					this._ProviderId = value;
-					this.SendPropertyChanged("ProviderId");
-					this.OnProviderIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Number", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Number
-		{
-			get
-			{
-				return this._Number;
-			}
-			set
-			{
-				if ((this._Number != value))
-				{
-					this.OnNumberChanging(value);
-					this.SendPropertyChanging();
-					this._Number = value;
-					this.SendPropertyChanged("Number");
-					this.OnNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OutNumber_Call", Storage="_Calls", ThisKey="Id", OtherKey="OutNumberId")]
-		public EntitySet<Call> Calls
-		{
-			get
-			{
-				return this._Calls;
-			}
-			set
-			{
-				this._Calls.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="OutNumber_InNumber", Storage="_InNumbers", ThisKey="Id", OtherKey="OutNumberId")]
-		public EntitySet<InNumber> InNumbers
-		{
-			get
-			{
-				return this._InNumbers;
-			}
-			set
-			{
-				this._InNumbers.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Provider_OutNumber", Storage="_Provider", ThisKey="ProviderId", OtherKey="Id", IsForeignKey=true)]
-		public Provider Provider
-		{
-			get
-			{
-				return this._Provider.Entity;
-			}
-			set
-			{
-				Provider previousValue = this._Provider.Entity;
-				if (((previousValue != value) 
-							|| (this._Provider.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Provider.Entity = null;
-						previousValue.OutNumbers.Remove(this);
-					}
-					this._Provider.Entity = value;
-					if ((value != null))
-					{
-						value.OutNumbers.Add(this);
-						this._ProviderId = value.Id;
-					}
-					else
-					{
-						this._ProviderId = default(int);
-					}
-					this.SendPropertyChanged("Provider");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Calls(Call entity)
-		{
-			this.SendPropertyChanging();
-			entity.OutNumber = this;
-		}
-		
-		private void detach_Calls(Call entity)
-		{
-			this.SendPropertyChanging();
-			entity.OutNumber = null;
-		}
-		
-		private void attach_InNumbers(InNumber entity)
-		{
-			this.SendPropertyChanging();
-			entity.OutNumber = this;
-		}
-		
-		private void detach_InNumbers(InNumber entity)
-		{
-			this.SendPropertyChanging();
-			entity.OutNumber = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Provider")]
-	public partial class Provider : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		private int _Tariff;
-		
-		private EntitySet<OutNumber> _OutNumbers;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnTariffChanging(int value);
-    partial void OnTariffChanged();
-    #endregion
-		
-		public Provider()
-		{
-			this._OutNumbers = new EntitySet<OutNumber>(new Action<OutNumber>(this.attach_OutNumbers), new Action<OutNumber>(this.detach_OutNumbers));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tariff", DbType="Int NOT NULL")]
-		public int Tariff
-		{
-			get
-			{
-				return this._Tariff;
-			}
-			set
-			{
-				if ((this._Tariff != value))
-				{
-					this.OnTariffChanging(value);
-					this.SendPropertyChanging();
-					this._Tariff = value;
-					this.SendPropertyChanged("Tariff");
-					this.OnTariffChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Provider_OutNumber", Storage="_OutNumbers", ThisKey="Id", OtherKey="ProviderId")]
-		public EntitySet<OutNumber> OutNumbers
-		{
-			get
-			{
-				return this._OutNumbers;
-			}
-			set
-			{
-				this._OutNumbers.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_OutNumbers(OutNumber entity)
-		{
-			this.SendPropertyChanging();
-			entity.Provider = this;
-		}
-		
-		private void detach_OutNumbers(OutNumber entity)
-		{
-			this.SendPropertyChanging();
-			entity.Provider = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Subdivision")]
-	public partial class Subdivision : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Name;
-		
-		private string _DirectorFio;
-		
-		private EntitySet<Worker> _Workers;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    partial void OnDirectorFioChanging(string value);
-    partial void OnDirectorFioChanged();
-    #endregion
-		
-		public Subdivision()
-		{
-			this._Workers = new EntitySet<Worker>(new Action<Worker>(this.attach_Workers), new Action<Worker>(this.detach_Workers));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectorFio", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string DirectorFio
-		{
-			get
-			{
-				return this._DirectorFio;
-			}
-			set
-			{
-				if ((this._DirectorFio != value))
-				{
-					this.OnDirectorFioChanging(value);
-					this.SendPropertyChanging();
-					this._DirectorFio = value;
-					this.SendPropertyChanged("DirectorFio");
-					this.OnDirectorFioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_Worker", Storage="_Workers", ThisKey="Id", OtherKey="SubdivisionId")]
-		public EntitySet<Worker> Workers
-		{
-			get
-			{
-				return this._Workers;
-			}
-			set
-			{
-				this._Workers.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Workers(Worker entity)
-		{
-			this.SendPropertyChanging();
-			entity.Subdivision = this;
-		}
-		
-		private void detach_Workers(Worker entity)
-		{
-			this.SendPropertyChanging();
-			entity.Subdivision = null;
 		}
 	}
 	
@@ -1041,7 +143,7 @@ namespace PhoneAnalyzer.Classes
 		
 		private int _Salary;
 		
-		private EntitySet<InNumber> _InNumbers;
+		private EntitySet<Number> _Numbers;
 		
 		private EntityRef<Subdivision> _Subdivision;
 		
@@ -1061,7 +163,7 @@ namespace PhoneAnalyzer.Classes
 		
 		public Worker()
 		{
-			this._InNumbers = new EntitySet<InNumber>(new Action<InNumber>(this.attach_InNumbers), new Action<InNumber>(this.detach_InNumbers));
+			this._Numbers = new EntitySet<Number>(new Action<Number>(this.attach_Numbers), new Action<Number>(this.detach_Numbers));
 			this._Subdivision = default(EntityRef<Subdivision>);
 			OnCreated();
 		}
@@ -1150,16 +252,16 @@ namespace PhoneAnalyzer.Classes
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Worker_InNumber", Storage="_InNumbers", ThisKey="Id", OtherKey="WorkerId")]
-		public EntitySet<InNumber> InNumbers
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Worker_Number", Storage="_Numbers", ThisKey="Id", OtherKey="WorkerId")]
+		public EntitySet<Number> Numbers
 		{
 			get
 			{
-				return this._InNumbers;
+				return this._Numbers;
 			}
 			set
 			{
-				this._InNumbers.Assign(value);
+				this._Numbers.Assign(value);
 			}
 		}
 		
@@ -1217,16 +319,917 @@ namespace PhoneAnalyzer.Classes
 			}
 		}
 		
-		private void attach_InNumbers(InNumber entity)
+		private void attach_Numbers(Number entity)
 		{
 			this.SendPropertyChanging();
 			entity.Worker = this;
 		}
 		
-		private void detach_InNumbers(InNumber entity)
+		private void detach_Numbers(Number entity)
 		{
 			this.SendPropertyChanging();
 			entity.Worker = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Number")]
+	public partial class Number : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _WorkerId;
+		
+		private string _PhoneNumber;
+		
+		private int _Type;
+		
+		private EntitySet<Call> _Calls;
+		
+		private EntityRef<Worker> _Worker;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnWorkerIdChanging(int value);
+    partial void OnWorkerIdChanged();
+    partial void OnPhoneNumberChanging(string value);
+    partial void OnPhoneNumberChanged();
+    partial void OnTypeChanging(int value);
+    partial void OnTypeChanged();
+    #endregion
+		
+		public Number()
+		{
+			this._Calls = new EntitySet<Call>(new Action<Call>(this.attach_Calls), new Action<Call>(this.detach_Calls));
+			this._Worker = default(EntityRef<Worker>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkerId", DbType="Int NOT NULL")]
+		public int WorkerId
+		{
+			get
+			{
+				return this._WorkerId;
+			}
+			set
+			{
+				if ((this._WorkerId != value))
+				{
+					if (this._Worker.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnWorkerIdChanging(value);
+					this.SendPropertyChanging();
+					this._WorkerId = value;
+					this.SendPropertyChanged("WorkerId");
+					this.OnWorkerIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PhoneNumber", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string PhoneNumber
+		{
+			get
+			{
+				return this._PhoneNumber;
+			}
+			set
+			{
+				if ((this._PhoneNumber != value))
+				{
+					this.OnPhoneNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PhoneNumber = value;
+					this.SendPropertyChanged("PhoneNumber");
+					this.OnPhoneNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Type", DbType="Int NOT NULL")]
+		public int Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Number_Call", Storage="_Calls", ThisKey="Id", OtherKey="NumberId")]
+		public EntitySet<Call> Calls
+		{
+			get
+			{
+				return this._Calls;
+			}
+			set
+			{
+				this._Calls.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Worker_Number", Storage="_Worker", ThisKey="WorkerId", OtherKey="Id", IsForeignKey=true)]
+		public Worker Worker
+		{
+			get
+			{
+				return this._Worker.Entity;
+			}
+			set
+			{
+				Worker previousValue = this._Worker.Entity;
+				if (((previousValue != value) 
+							|| (this._Worker.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Worker.Entity = null;
+						previousValue.Numbers.Remove(this);
+					}
+					this._Worker.Entity = value;
+					if ((value != null))
+					{
+						value.Numbers.Add(this);
+						this._WorkerId = value.Id;
+					}
+					else
+					{
+						this._WorkerId = default(int);
+					}
+					this.SendPropertyChanged("Worker");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Calls(Call entity)
+		{
+			this.SendPropertyChanging();
+			entity.Number = this;
+		}
+		
+		private void detach_Calls(Call entity)
+		{
+			this.SendPropertyChanging();
+			entity.Number = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Subdivision")]
+	public partial class Subdivision : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Name;
+		
+		private string _DirectorFio;
+		
+		private string _Email;
+		
+		private EntitySet<Worker> _Workers;
+		
+		private EntitySet<AtcCall> _AtcCalls;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnDirectorFioChanging(string value);
+    partial void OnDirectorFioChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    #endregion
+		
+		public Subdivision()
+		{
+			this._Workers = new EntitySet<Worker>(new Action<Worker>(this.attach_Workers), new Action<Worker>(this.detach_Workers));
+			this._AtcCalls = new EntitySet<AtcCall>(new Action<AtcCall>(this.attach_AtcCalls), new Action<AtcCall>(this.detach_AtcCalls));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DirectorFio", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string DirectorFio
+		{
+			get
+			{
+				return this._DirectorFio;
+			}
+			set
+			{
+				if ((this._DirectorFio != value))
+				{
+					this.OnDirectorFioChanging(value);
+					this.SendPropertyChanging();
+					this._DirectorFio = value;
+					this.SendPropertyChanged("DirectorFio");
+					this.OnDirectorFioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_Worker", Storage="_Workers", ThisKey="Id", OtherKey="SubdivisionId")]
+		public EntitySet<Worker> Workers
+		{
+			get
+			{
+				return this._Workers;
+			}
+			set
+			{
+				this._Workers.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_AtcCall", Storage="_AtcCalls", ThisKey="Id", OtherKey="SubdivisionId")]
+		public EntitySet<AtcCall> AtcCalls
+		{
+			get
+			{
+				return this._AtcCalls;
+			}
+			set
+			{
+				this._AtcCalls.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Workers(Worker entity)
+		{
+			this.SendPropertyChanging();
+			entity.Subdivision = this;
+		}
+		
+		private void detach_Workers(Worker entity)
+		{
+			this.SendPropertyChanging();
+			entity.Subdivision = null;
+		}
+		
+		private void attach_AtcCalls(AtcCall entity)
+		{
+			this.SendPropertyChanging();
+			entity.Subdivision = this;
+		}
+		
+		private void detach_AtcCalls(AtcCall entity)
+		{
+			this.SendPropertyChanging();
+			entity.Subdivision = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AtcCall")]
+	public partial class AtcCall : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _SubdivisionId;
+		
+		private string _ToNumber;
+		
+		private System.DateTime _Date;
+		
+		private int _Duration;
+		
+		private EntityRef<Subdivision> _Subdivision;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSubdivisionIdChanging(int value);
+    partial void OnSubdivisionIdChanged();
+    partial void OnToNumberChanging(string value);
+    partial void OnToNumberChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnDurationChanging(int value);
+    partial void OnDurationChanged();
+    #endregion
+		
+		public AtcCall()
+		{
+			this._Subdivision = default(EntityRef<Subdivision>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubdivisionId", DbType="Int NOT NULL")]
+		public int SubdivisionId
+		{
+			get
+			{
+				return this._SubdivisionId;
+			}
+			set
+			{
+				if ((this._SubdivisionId != value))
+				{
+					if (this._Subdivision.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSubdivisionIdChanging(value);
+					this.SendPropertyChanging();
+					this._SubdivisionId = value;
+					this.SendPropertyChanged("SubdivisionId");
+					this.OnSubdivisionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToNumber", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string ToNumber
+		{
+			get
+			{
+				return this._ToNumber;
+			}
+			set
+			{
+				if ((this._ToNumber != value))
+				{
+					this.OnToNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ToNumber = value;
+					this.SendPropertyChanged("ToNumber");
+					this.OnToNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Duration", DbType="Int NOT NULL")]
+		public int Duration
+		{
+			get
+			{
+				return this._Duration;
+			}
+			set
+			{
+				if ((this._Duration != value))
+				{
+					this.OnDurationChanging(value);
+					this.SendPropertyChanging();
+					this._Duration = value;
+					this.SendPropertyChanged("Duration");
+					this.OnDurationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_AtcCall", Storage="_Subdivision", ThisKey="SubdivisionId", OtherKey="Id", IsForeignKey=true)]
+		public Subdivision Subdivision
+		{
+			get
+			{
+				return this._Subdivision.Entity;
+			}
+			set
+			{
+				Subdivision previousValue = this._Subdivision.Entity;
+				if (((previousValue != value) 
+							|| (this._Subdivision.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Subdivision.Entity = null;
+						previousValue.AtcCalls.Remove(this);
+					}
+					this._Subdivision.Entity = value;
+					if ((value != null))
+					{
+						value.AtcCalls.Add(this);
+						this._SubdivisionId = value.Id;
+					}
+					else
+					{
+						this._SubdivisionId = default(int);
+					}
+					this.SendPropertyChanged("Subdivision");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Call")]
+	public partial class Call : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _NumberId;
+		
+		private string _ToNumber;
+		
+		private System.DateTime _Date;
+		
+		private int _Duration;
+		
+		private decimal _Price;
+		
+		private EntityRef<Number> _Number;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNumberIdChanging(int value);
+    partial void OnNumberIdChanged();
+    partial void OnToNumberChanging(string value);
+    partial void OnToNumberChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnDurationChanging(int value);
+    partial void OnDurationChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    #endregion
+		
+		public Call()
+		{
+			this._Number = default(EntityRef<Number>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberId", DbType="Int NOT NULL")]
+		public int NumberId
+		{
+			get
+			{
+				return this._NumberId;
+			}
+			set
+			{
+				if ((this._NumberId != value))
+				{
+					if (this._Number.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnNumberIdChanging(value);
+					this.SendPropertyChanging();
+					this._NumberId = value;
+					this.SendPropertyChanged("NumberId");
+					this.OnNumberIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToNumber", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string ToNumber
+		{
+			get
+			{
+				return this._ToNumber;
+			}
+			set
+			{
+				if ((this._ToNumber != value))
+				{
+					this.OnToNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ToNumber = value;
+					this.SendPropertyChanged("ToNumber");
+					this.OnToNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Duration", DbType="Int NOT NULL")]
+		public int Duration
+		{
+			get
+			{
+				return this._Duration;
+			}
+			set
+			{
+				if ((this._Duration != value))
+				{
+					this.OnDurationChanging(value);
+					this.SendPropertyChanging();
+					this._Duration = value;
+					this.SendPropertyChanged("Duration");
+					this.OnDurationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Number_Call", Storage="_Number", ThisKey="NumberId", OtherKey="Id", IsForeignKey=true)]
+		public Number Number
+		{
+			get
+			{
+				return this._Number.Entity;
+			}
+			set
+			{
+				Number previousValue = this._Number.Entity;
+				if (((previousValue != value) 
+							|| (this._Number.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Number.Entity = null;
+						previousValue.Calls.Remove(this);
+					}
+					this._Number.Entity = value;
+					if ((value != null))
+					{
+						value.Calls.Add(this);
+						this._NumberId = value.Id;
+					}
+					else
+					{
+						this._NumberId = default(int);
+					}
+					this.SendPropertyChanged("Number");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Settings")]
+	public partial class Setting : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Name;
+		
+		private string _Value;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnValueChanging(string value);
+    partial void OnValueChanged();
+    #endregion
+		
+		public Setting()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Value
+		{
+			get
+			{
+				return this._Value;
+			}
+			set
+			{
+				if ((this._Value != value))
+				{
+					this.OnValueChanging(value);
+					this.SendPropertyChanging();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
