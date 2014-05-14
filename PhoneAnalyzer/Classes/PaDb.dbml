@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PaDb" Class="PaDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\PaDb.mdf;Integrated Security=True" SettingsObjectName="PhoneAnalyzer.Properties.Settings" SettingsPropertyName="PaDbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Call" Member="Calls">
+    <Type Name="Call">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OutNumberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="OutNumber_Call" Member="OutNumber" ThisKey="OutNumberId" OtherKey="Id" Type="OutNumber" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InNumber" Member="InNumbers">
+    <Type Name="InNumber">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OutNumberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WorkerId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="OutNumber_InNumber" Member="OutNumber" ThisKey="OutNumberId" OtherKey="Id" Type="OutNumber" IsForeignKey="true" />
+      <Association Name="Worker_InNumber" Member="Worker" ThisKey="WorkerId" OtherKey="Id" Type="Worker" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OutNumber" Member="OutNumbers">
+    <Type Name="OutNumber">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProviderId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="OutNumber_Call" Member="Calls" ThisKey="Id" OtherKey="OutNumberId" Type="Call" />
+      <Association Name="OutNumber_InNumber" Member="InNumbers" ThisKey="Id" OtherKey="OutNumberId" Type="InNumber" />
+      <Association Name="Provider_OutNumber" Member="Provider" ThisKey="ProviderId" OtherKey="Id" Type="Provider" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Provider" Member="Providers">
+    <Type Name="Provider">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Tariff" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Provider_OutNumber" Member="OutNumbers" ThisKey="Id" OtherKey="ProviderId" Type="OutNumber" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Subdivision" Member="Subdivisions">
+    <Type Name="Subdivision">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DirectorFio" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Subdivision_Worker" Member="Workers" ThisKey="Id" OtherKey="SubdivisionId" Type="Worker" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Worker" Member="Workers">
+    <Type Name="Worker">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubdivisionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fio" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Salary" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Worker_InNumber" Member="InNumbers" ThisKey="Id" OtherKey="WorkerId" Type="InNumber" />
+      <Association Name="Subdivision_Worker" Member="Subdivision" ThisKey="SubdivisionId" OtherKey="Id" Type="Subdivision" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
