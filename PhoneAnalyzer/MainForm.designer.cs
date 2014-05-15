@@ -31,6 +31,11 @@ namespace PhoneAnalyzer
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.subdivisionTab = new System.Windows.Forms.TabPage();
+            this.btnMakeGraphExcel = new System.Windows.Forms.Button();
+            this.btnMakeGraph = new System.Windows.Forms.Button();
+            this.dtpSubReportTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpSubReportFrom = new System.Windows.Forms.DateTimePicker();
+            this.btnSubReport = new System.Windows.Forms.Button();
             this.subdivisionGrid = new System.Windows.Forms.DataGridView();
             this.btnDeleteSubdivision = new System.Windows.Forms.Button();
             this.btnEditSubdivision = new System.Windows.Forms.Button();
@@ -46,6 +51,10 @@ namespace PhoneAnalyzer
             this.btnEditWorker = new System.Windows.Forms.Button();
             this.btnAddWorker = new System.Windows.Forms.Button();
             this.callTab = new System.Windows.Forms.TabPage();
+            this.btnSendFinDir = new System.Windows.Forms.Button();
+            this.dtpReportTo = new System.Windows.Forms.DateTimePicker();
+            this.dtpReportFrom = new System.Windows.Forms.DateTimePicker();
+            this.btnCallReport = new System.Windows.Forms.Button();
             this.callGrid = new System.Windows.Forms.DataGridView();
             this.btnDeleteCall = new System.Windows.Forms.Button();
             this.btnEditCall = new System.Windows.Forms.Button();
@@ -100,6 +109,11 @@ namespace PhoneAnalyzer
             // 
             // subdivisionTab
             // 
+            this.subdivisionTab.Controls.Add(this.btnMakeGraphExcel);
+            this.subdivisionTab.Controls.Add(this.btnMakeGraph);
+            this.subdivisionTab.Controls.Add(this.dtpSubReportTo);
+            this.subdivisionTab.Controls.Add(this.dtpSubReportFrom);
+            this.subdivisionTab.Controls.Add(this.btnSubReport);
             this.subdivisionTab.Controls.Add(this.subdivisionGrid);
             this.subdivisionTab.Controls.Add(this.btnDeleteSubdivision);
             this.subdivisionTab.Controls.Add(this.btnEditSubdivision);
@@ -111,6 +125,55 @@ namespace PhoneAnalyzer
             this.subdivisionTab.TabIndex = 0;
             this.subdivisionTab.Text = "Подразделения";
             this.subdivisionTab.UseVisualStyleBackColor = true;
+            // 
+            // btnMakeGraphExcel
+            // 
+            this.btnMakeGraphExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMakeGraphExcel.Location = new System.Drawing.Point(143, 487);
+            this.btnMakeGraphExcel.Name = "btnMakeGraphExcel";
+            this.btnMakeGraphExcel.Size = new System.Drawing.Size(129, 23);
+            this.btnMakeGraphExcel.TabIndex = 11;
+            this.btnMakeGraphExcel.Text = "График в Excel";
+            this.btnMakeGraphExcel.UseVisualStyleBackColor = true;
+            this.btnMakeGraphExcel.Click += new System.EventHandler(this.btnMakeGraphExcel_Click);
+            // 
+            // btnMakeGraph
+            // 
+            this.btnMakeGraph.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnMakeGraph.Location = new System.Drawing.Point(8, 487);
+            this.btnMakeGraph.Name = "btnMakeGraph";
+            this.btnMakeGraph.Size = new System.Drawing.Size(129, 23);
+            this.btnMakeGraph.TabIndex = 10;
+            this.btnMakeGraph.Text = "Построить график";
+            this.btnMakeGraph.UseVisualStyleBackColor = true;
+            this.btnMakeGraph.Click += new System.EventHandler(this.btnMakeGraph_Click);
+            // 
+            // dtpSubReportTo
+            // 
+            this.dtpSubReportTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpSubReportTo.Location = new System.Drawing.Point(273, 517);
+            this.dtpSubReportTo.Name = "dtpSubReportTo";
+            this.dtpSubReportTo.Size = new System.Drawing.Size(124, 20);
+            this.dtpSubReportTo.TabIndex = 9;
+            // 
+            // dtpSubReportFrom
+            // 
+            this.dtpSubReportFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpSubReportFrom.Location = new System.Drawing.Point(143, 517);
+            this.dtpSubReportFrom.Name = "dtpSubReportFrom";
+            this.dtpSubReportFrom.Size = new System.Drawing.Size(124, 20);
+            this.dtpSubReportFrom.TabIndex = 8;
+            // 
+            // btnSubReport
+            // 
+            this.btnSubReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSubReport.Location = new System.Drawing.Point(8, 516);
+            this.btnSubReport.Name = "btnSubReport";
+            this.btnSubReport.Size = new System.Drawing.Size(129, 23);
+            this.btnSubReport.TabIndex = 7;
+            this.btnSubReport.Text = "Сформировать отчёт";
+            this.btnSubReport.UseVisualStyleBackColor = true;
+            this.btnSubReport.Click += new System.EventHandler(this.btnSubReport_Click);
             // 
             // subdivisionGrid
             // 
@@ -130,7 +193,7 @@ namespace PhoneAnalyzer
             this.subdivisionGrid.Name = "subdivisionGrid";
             this.subdivisionGrid.ReadOnly = true;
             this.subdivisionGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.subdivisionGrid.Size = new System.Drawing.Size(768, 504);
+            this.subdivisionGrid.Size = new System.Drawing.Size(768, 475);
             this.subdivisionGrid.TabIndex = 0;
             // 
             // btnDeleteSubdivision
@@ -302,6 +365,10 @@ namespace PhoneAnalyzer
             // 
             // callTab
             // 
+            this.callTab.Controls.Add(this.btnSendFinDir);
+            this.callTab.Controls.Add(this.dtpReportTo);
+            this.callTab.Controls.Add(this.dtpReportFrom);
+            this.callTab.Controls.Add(this.btnCallReport);
             this.callTab.Controls.Add(this.callGrid);
             this.callTab.Controls.Add(this.btnDeleteCall);
             this.callTab.Controls.Add(this.btnEditCall);
@@ -313,6 +380,43 @@ namespace PhoneAnalyzer
             this.callTab.TabIndex = 0;
             this.callTab.Text = "Звонки";
             this.callTab.UseVisualStyleBackColor = true;
+            // 
+            // btnSendFinDir
+            // 
+            this.btnSendFinDir.Location = new System.Drawing.Point(8, 487);
+            this.btnSendFinDir.Name = "btnSendFinDir";
+            this.btnSendFinDir.Size = new System.Drawing.Size(129, 23);
+            this.btnSendFinDir.TabIndex = 7;
+            this.btnSendFinDir.Text = "Отправить фин.дир.";
+            this.btnSendFinDir.UseVisualStyleBackColor = true;
+            this.btnSendFinDir.Click += new System.EventHandler(this.btnSendFinDir_Click);
+            // 
+            // dtpReportTo
+            // 
+            this.dtpReportTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpReportTo.Location = new System.Drawing.Point(273, 517);
+            this.dtpReportTo.Name = "dtpReportTo";
+            this.dtpReportTo.Size = new System.Drawing.Size(124, 20);
+            this.dtpReportTo.TabIndex = 6;
+            // 
+            // dtpReportFrom
+            // 
+            this.dtpReportFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.dtpReportFrom.Location = new System.Drawing.Point(143, 517);
+            this.dtpReportFrom.Name = "dtpReportFrom";
+            this.dtpReportFrom.Size = new System.Drawing.Size(124, 20);
+            this.dtpReportFrom.TabIndex = 5;
+            // 
+            // btnCallReport
+            // 
+            this.btnCallReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCallReport.Location = new System.Drawing.Point(8, 516);
+            this.btnCallReport.Name = "btnCallReport";
+            this.btnCallReport.Size = new System.Drawing.Size(129, 23);
+            this.btnCallReport.TabIndex = 4;
+            this.btnCallReport.Text = "Сформировать отчёт";
+            this.btnCallReport.UseVisualStyleBackColor = true;
+            this.btnCallReport.Click += new System.EventHandler(this.btnCallReport_Click);
             // 
             // callGrid
             // 
@@ -331,7 +435,7 @@ namespace PhoneAnalyzer
             this.callGrid.Name = "callGrid";
             this.callGrid.ReadOnly = true;
             this.callGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.callGrid.Size = new System.Drawing.Size(768, 504);
+            this.callGrid.Size = new System.Drawing.Size(768, 475);
             this.callGrid.TabIndex = 0;
             // 
             // btnDeleteCall
@@ -627,6 +731,15 @@ namespace PhoneAnalyzer
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnCallReport;
+        private System.Windows.Forms.DateTimePicker dtpReportTo;
+        private System.Windows.Forms.DateTimePicker dtpReportFrom;
+        private System.Windows.Forms.DateTimePicker dtpSubReportTo;
+        private System.Windows.Forms.DateTimePicker dtpSubReportFrom;
+        private System.Windows.Forms.Button btnSubReport;
+        private System.Windows.Forms.Button btnSendFinDir;
+        private System.Windows.Forms.Button btnMakeGraphExcel;
+        private System.Windows.Forms.Button btnMakeGraph;
         
 
     }

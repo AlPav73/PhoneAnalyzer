@@ -33,3 +33,14 @@ C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\PaDb.md
 C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\PaDb_log.ldf
 C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\PhoneAnalyzer.exe
 C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\PhoneAnalyzer.pdb
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\MigraDoc.DocumentObjectModel.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\MigraDoc.Rendering.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\MigraDoc.RtfRendering.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\PdfSharp.Charting.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\PdfSharp.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\de\MigraDoc.DocumentObjectModel.resources.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\de\MigraDoc.Rendering.resources.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\de\MigraDoc.RtfRendering.resources.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\obj\Debug\PhoneAnalyzer.Forms.ShowGraphicForm.resources

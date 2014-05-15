@@ -1,0 +1,216 @@
+\document
+[
+  Info
+  {
+    Title = "Отчёт по связи с 01.05.2014 по 01.06.2014"
+  }
+]
+{
+  \styles
+  {
+    Normal
+    {
+      Font
+      {
+        Name = "Times New Roman"
+      }
+    }
+
+    Heading1
+    {
+      Font
+      {
+        Name = "Tahoma"
+        Size = 20
+        Bold = true
+        Color = DarkBlue
+      }
+      ParagraphFormat
+      {
+        SpaceAfter = 6
+        PageBreakBefore = true
+        OutlineLevel = Level1
+      }
+    }
+
+    Heading2
+    {
+      Font
+      {
+        Size = 18
+      }
+      ParagraphFormat
+      {
+        SpaceBefore = 6
+        PageBreakBefore = false
+        OutlineLevel = Level2
+      }
+    }
+
+    Heading3
+    {
+      Font
+      {
+        Size = 16
+        Italic = true
+      }
+      ParagraphFormat
+      {
+        SpaceAfter = 3
+        OutlineLevel = Level3
+      }
+    }
+
+    Heading4
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level4
+      }
+    }
+
+    Heading5
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level5
+      }
+    }
+
+    Heading6
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level6
+      }
+    }
+
+    Heading7
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level7
+      }
+    }
+
+    Heading8
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level8
+      }
+    }
+
+    Heading9
+    {
+      ParagraphFormat
+      {
+        OutlineLevel = Level9
+      }
+    }
+
+    Header
+    {
+      ParagraphFormat
+      {
+        TabStops +=
+        {
+          Position = "16cm"
+          Alignment = Right
+        }
+      }
+    }
+
+    Footer
+    {
+      ParagraphFormat
+      {
+        TabStops +=
+        {
+          Position = "8cm"
+          Alignment = Center
+        }
+      }
+    }
+
+    InvalidStyleName
+    {
+      Font
+      {
+        Bold = true
+        Underline = Dash
+        Color = Lime
+      }
+    }
+
+    TextBox : Normal
+    {
+      Font
+      {
+        Size = 14
+      }
+      ParagraphFormat
+      {
+        Alignment = Justify
+        Borders
+        {
+          Width = 2.5
+          DistanceFromTop = 3
+          DistanceFromBottom = 3
+          DistanceFromLeft = 3
+          DistanceFromRight = 3
+        }
+        Shading
+        {
+          Color = SkyBlue
+        }
+      }
+    }
+
+    TOC : Normal
+    {
+      Font
+      {
+        Color = Blue
+      }
+      ParagraphFormat
+      {
+        TabStops +=
+        {
+          Position = "16cm"
+          Alignment = Right
+          Leader = Dots
+        }
+      }
+    }
+  }
+  \section
+  [
+    PageSetup
+    {
+      OddAndEvenPagesHeaderFooter = true
+      StartingNumber = 1
+    }
+  ]
+  {
+    \primaryfooter
+    {
+      \tab \field(Page)[]
+    }
+    \evenpagefooter
+    {
+      \tab \field(Page)[]
+    }
+    \paragraph
+    [
+      Style = "Heading3"
+      Format
+      {
+        Alignment = Center
+      }
+    ]
+    {
+      Отчёт по связи с 01.05.2014 по 01.06.2014
+    }
+  }
+}

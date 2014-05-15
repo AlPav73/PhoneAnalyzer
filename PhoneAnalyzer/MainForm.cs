@@ -1,7 +1,10 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using CursProject.Doc;
 using PhoneAnalyzer.Classes;
+using PhoneAnalyzer.Docs;
 using PhoneAnalyzer.Forms;
 using PhoneAnalyzer.Helpers;
 
@@ -14,6 +17,14 @@ namespace PhoneAnalyzer
         public MainForm()
         {
             InitializeComponent();
+
+            var dtn = DateTime.Now.Date;
+            dtpReportFrom.Value = DateTime.Now.Date.AddDays(1 - dtn.Day);
+            dtpReportTo.Value  = DateTime.Now.Date.AddDays(DateTime.DaysInMonth(dtn.Year, dtn.Month) - dtn.Day + 1);
+
+            dtpSubReportFrom.Value = DateTime.Now.Date.AddDays(1 - dtn.Day);
+            dtpSubReportTo.Value = DateTime.Now.Date.AddDays(DateTime.DaysInMonth(dtn.Year, dtn.Month) - dtn.Day + 1);
+
             LoadSettings();
             RefreshAllGrids();
         }
@@ -70,47 +81,77 @@ namespace PhoneAnalyzer
 
 
         //
-        //**********   AtcCall   **********
+        //**********   Subdivision   **********
         //
 
-        private void btnAddAtcCall_Click(object sender, EventArgs e)
+        private void btnAddSubdivision_Click(object sender, EventArgs e)
         {
-            var form = new AddAtcCallForm();
+            var form = new AddSubdivisionForm();
             form.ShowDialog();
-            RefreshAtcCall();
+            RefreshSubdivision();
         }
 
-        private void btnEditAtcCall_Click(object sender, EventArgs e)
+        private void btnEditSubdivision_Click(object sender, EventArgs e)
         {
-            if (atcCallGrid.SelectedRows.Count == 0)
+            if (subdivisionGrid.SelectedRows.Count == 0)
             {
                 return;
             }
 
-            int id = GridHelper.GetIntFromRow(atcCallGrid.SelectedRows[0], 0);
-            EditAtcCall(id);
+            int id = GridHelper.GetIntFromRow(subdivisionGrid.SelectedRows[0], 0);
+            EditSubdivision(id);
         }
 
-        private void EditAtcCall(int id)
+        private void EditSubdivision(int id)
         {
-            var form = new AddAtcCallForm(id);
+            var form = new AddSubdivisionForm(id);
             form.ShowDialog();
-            RefreshAtcCall();
+            RefreshSubdivision();
         }
 
-        private void btnDeleteAtcCall_Click(object sender, EventArgs e)
+        private void btnDeleteSubdivision_Click(object sender, EventArgs e)
         {
-            if (atcCallGrid.SelectedRows.Count == 0)
+            if (subdivisionGrid.SelectedRows.Count == 0)
             {
                 return;
             }
 
-            int id = GridHelper.GetIntFromRow(atcCallGrid.SelectedRows[0], 0);
+            int id = GridHelper.GetIntFromRow(subdivisionGrid.SelectedRows[0], 0);
 
-            db.AtcCalls.DeleteAllOnSubmit(db.AtcCalls.Where(t => t.Id == id));
+            db.Subdivisions.DeleteAllOnSubmit(db.Subdivisions.Where(t => t.Id == id));
             db.SubmitChanges();
 
-            RefreshAtcCall();
+            RefreshSubdivision();
+        }
+
+        private void btnSubReport_Click(object sender, EventArgs e)
+        {
+            var numbers = db.Numbers;
+            var dateFrom = dtpReportFrom.Value.Date;
+            var dateTo = dtpReportTo.Value.Date;
+
+            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber))
+                                .Where(p => dateFrom <= p.Date.Date && p.Date.Date <= dateTo);
+
+            foreach (var sub in db.Subdivisions)
+            {
+                var fileName = PdfGenerator.MakeReport(calls.Where(p => p.Number.Worker.Subdivision.Id == sub.Id), dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
+
+                MailSender.SendReport(sub, dateFrom, dateTo, fileName);
+            }
+        }
+
+        private void btnMakeGraph_Click(object sender, EventArgs e)
+        {
+            var form = new ShowGraphicForm(dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
+            form.ShowDialog();
+        }
+
+        private void btnMakeGraphExcel_Click(object sender, EventArgs e)
+        {
+            var dateFrom = dtpReportFrom.Value.Date;
+            var dateTo = dtpReportTo.Value.Date;
+            ExcelGenerator.ExportTrips(dateFrom, dateTo);
         }
 
         //
@@ -155,50 +196,6 @@ namespace PhoneAnalyzer
             db.SubmitChanges();
 
             RefreshNumber();
-        }
-
-        //
-        //**********   Subdivision   **********
-        //
-
-        private void btnAddSubdivision_Click(object sender, EventArgs e)
-        {
-            var form = new AddSubdivisionForm();
-            form.ShowDialog();
-            RefreshSubdivision();
-        }
-
-        private void btnEditSubdivision_Click(object sender, EventArgs e)
-        {
-            if (subdivisionGrid.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            int id = GridHelper.GetIntFromRow(subdivisionGrid.SelectedRows[0], 0);
-            EditSubdivision(id);
-        }
-
-        private void EditSubdivision(int id)
-        {
-            var form = new AddSubdivisionForm(id);
-            form.ShowDialog();
-            RefreshSubdivision();
-        }
-
-        private void btnDeleteSubdivision_Click(object sender, EventArgs e)
-        {
-            if (subdivisionGrid.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            int id = GridHelper.GetIntFromRow(subdivisionGrid.SelectedRows[0], 0);
-
-            db.Subdivisions.DeleteAllOnSubmit(db.Subdivisions.Where(t => t.Id == id));
-            db.SubmitChanges();
-
-            RefreshSubdivision();
         }
 
         //
@@ -288,6 +285,74 @@ namespace PhoneAnalyzer
 
             RefreshCall();
         }
+
+        private void btnCallReport_Click(object sender, EventArgs e)
+        {
+            var numbers = db.Numbers;
+            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber))
+                                .Where(p => dtpReportFrom.Value.Date <= p.Date.Date && p.Date.Date <= dtpReportTo.Value.Date);
+
+            var fileName = PdfGenerator.MakeReport(calls, dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
+            Process.Start(fileName);
+        }
+
+        private void btnSendFinDir_Click(object sender, EventArgs e)
+        {
+            var numbers = db.Numbers;
+            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber))
+                                .Where(p => dtpReportFrom.Value.Date <= p.Date.Date && p.Date.Date <= dtpReportTo.Value.Date);
+
+            var fileName = PdfGenerator.MakeReport(calls, dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
+            MailSender.SendReport(Setting.FinEmail, dtpReportFrom.Value.Date, dtpReportTo.Value.Date, fileName);
+        }
+
+        //
+        //**********   AtcCall   **********
+        //
+
+        private void btnAddAtcCall_Click(object sender, EventArgs e)
+        {
+            var form = new AddAtcCallForm();
+            form.ShowDialog();
+            RefreshAtcCall();
+        }
+
+        private void btnEditAtcCall_Click(object sender, EventArgs e)
+        {
+            if (atcCallGrid.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            int id = GridHelper.GetIntFromRow(atcCallGrid.SelectedRows[0], 0);
+            EditAtcCall(id);
+        }
+
+        private void EditAtcCall(int id)
+        {
+            var form = new AddAtcCallForm(id);
+            form.ShowDialog();
+            RefreshAtcCall();
+        }
+
+        private void btnDeleteAtcCall_Click(object sender, EventArgs e)
+        {
+            if (atcCallGrid.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            int id = GridHelper.GetIntFromRow(atcCallGrid.SelectedRows[0], 0);
+
+            db.AtcCalls.DeleteAllOnSubmit(db.AtcCalls.Where(t => t.Id == id));
+            db.SubmitChanges();
+
+            RefreshAtcCall();
+        }
+
+        //
+        //**********   Settings   **********
+        //
 
         private void LoadSettings()
         {

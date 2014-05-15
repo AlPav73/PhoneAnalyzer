@@ -53,7 +53,7 @@ namespace PhoneAnalyzer.Classes
 
             if (setting == null)
             {
-                setting = new Settings { Name = name, Value = value };
+                setting = new Setting { Name = name, Value = value };
                 Db.Settings.InsertOnSubmit(setting);
             }
             else
@@ -63,6 +63,5 @@ namespace PhoneAnalyzer.Classes
 
             Db.SubmitChanges();
         }
-
     }
 }
