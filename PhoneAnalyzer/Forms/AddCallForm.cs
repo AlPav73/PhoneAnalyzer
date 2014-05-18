@@ -32,21 +32,6 @@ namespace PhoneAnalyzer.Forms
             }
         }
 
-        private Number CurrentNumber
-        {
-            get
-            {
-                int index = ddlNumber.SelectedIndex;
-                return NumberByIndex(index);
-            }
-            set { ddlNumber.SelectedIndex = IndexByNumber(value); }
-        }
-
-        private List<Number> Numbers
-        {
-            get { return db.Numbers.ToList(); }
-        }
-
         private void FillComboBox(ComboBox ddl, object[] array)
         {
             ddl.Items.Clear();
@@ -135,6 +120,24 @@ namespace PhoneAnalyzer.Forms
             }
         }
 
+
+
+
+
+        private Number CurrentNumber
+        {
+            get
+            {
+                int index = ddlNumber.SelectedIndex;
+                return NumberByIndex(index);
+            }
+            set { ddlNumber.SelectedIndex = IndexByNumber(value); }
+        }
+
+        private List<Number> Numbers
+        {
+            get { return db.Numbers.ToList(); }
+        }
 
         private int IndexByNumber(Number number)
         {

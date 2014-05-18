@@ -1,4 +1,6 @@
 using System;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
@@ -143,14 +145,14 @@ namespace PhoneAnalyzer
 
         private void btnMakeGraph_Click(object sender, EventArgs e)
         {
-            var form = new ShowGraphicForm(dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
+            var form = new ShowGraphicForm(dtpSubReportFrom.Value.Date, dtpSubReportTo.Value.Date);
             form.ShowDialog();
         }
 
         private void btnMakeGraphExcel_Click(object sender, EventArgs e)
         {
-            var dateFrom = dtpReportFrom.Value.Date;
-            var dateTo = dtpReportTo.Value.Date;
+            var dateFrom = dtpSubReportFrom.Value.Date;
+            var dateTo = dtpSubReportTo.Value.Date;
             ExcelGenerator.ExportTrips(dateFrom, dateTo);
         }
 
@@ -181,6 +183,8 @@ namespace PhoneAnalyzer
             var form = new AddNumberForm(id);
             form.ShowDialog();
             RefreshNumber();
+            RefreshCall();
+            RefreshAtcCall();
         }
 
         private void btnDeleteOutNumber_Click(object sender, EventArgs e)
@@ -374,22 +378,19 @@ namespace PhoneAnalyzer
             Setting.Password = txtPassword.Text;
             Setting.FinEmail = txtFinEmail.Text;
         }
-    }
 
-    public class ComboBoxItem
-    {
-        public ComboBoxItem(string text, string value)
+        private void btnMakeTest_Click(object sender, EventArgs e)
         {
-            Text = text;
-            Value = value;
-        }
+            if (rbtnGenerateDb.Checked)
+            {
+                Generator.GenerateDb();
+                RefreshAllGrids();
+            }
 
-        public string Text { get; set; }
-        public string Value { get; set; }
-
-        public override string ToString()
-        {
-            return Text;
+            if (rbtnGenerateCalls.Checked)
+            {
+                var calls = Generator.GenerateCalls();
+            }
         }
     }
 }

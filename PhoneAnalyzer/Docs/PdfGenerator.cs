@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.IO;
-using MigraDoc.DocumentObjectModel.Shapes;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using PdfSharp.Pdf;
 using PhoneAnalyzer.Classes;
-using PhoneAnalyzer.Helpers;
 using BorderStyle = MigraDoc.DocumentObjectModel.BorderStyle;
 using TabAlignment = MigraDoc.DocumentObjectModel.TabAlignment;
 
@@ -24,7 +20,11 @@ namespace PhoneAnalyzer.Docs
 
         public static string MakeReport(IQueryable<Call> calls, DateTime dateFrom, DateTime dateTo)
         {
-            FileHelper.CreateDirectory(Dir);
+            if (!Directory.Exists(Dir))
+            {
+                Directory.CreateDirectory(Dir);
+            }
+
             string fileName = Dir + "\\" + Guid.NewGuid() + ".pdf";
             if (File.Exists(fileName))
             {
@@ -85,7 +85,6 @@ namespace PhoneAnalyzer.Docs
                     "Heading3");
             paragraph.Format.Alignment = ParagraphAlignment.Center;
 
-
             foreach (var sub in db.Subdivisions)
             {
                 var subCalls = calls.Where(p => p.Number.Worker.SubdivisionId == sub.Id);
@@ -118,7 +117,7 @@ namespace PhoneAnalyzer.Docs
             table.AddColumn(Unit.FromCentimeter(3));
 
             Row row = table.AddRow();
-            row.Shading.Color = Colors.PaleGoldenrod;
+            row.Shading.Color = Colors.Coral;
             row.Cells[0].AddParagraph("Подразделение");
             row.Cells[1].AddParagraph("Номер");
             row.Cells[2].AddParagraph("Куда звонили");
@@ -126,7 +125,9 @@ namespace PhoneAnalyzer.Docs
             row.Cells[4].AddParagraph("Длительность");
             row.Cells[5].AddParagraph("Стоимость");
 
+            int totalDuration = 0;
             decimal totalPrice = 0;
+            
             foreach (var call in calls)
             {
                 row = table.AddRow();
@@ -134,17 +135,19 @@ namespace PhoneAnalyzer.Docs
                 row.Cells[1].AddParagraph(call.Number.PhoneNumber);
                 row.Cells[2].AddParagraph(call.ToNumber);
                 row.Cells[3].AddParagraph(call.Date.ToString());
-                row.Cells[4].AddParagraph(call.Duration.ToString());
-                row.Cells[5].AddParagraph(call.Price.ToString());
+                row.Cells[4].AddParagraph(call.Duration + " сек.");
+                row.Cells[5].AddParagraph(call.Price + " руб.");
 
                 totalPrice += call.Price;
+                totalDuration += call.Duration;
             }
 
             row = table.AddRow();
             Paragraph paragraf = row.Cells[0].AddParagraph("Итого:");
             paragraf.Format.Alignment = ParagraphAlignment.Right;
-            row.Cells[0].MergeRight = 4;
-            row.Cells[5].AddParagraph(totalPrice.ToString());
+            row.Cells[0].MergeRight = 3;
+            row.Cells[4].AddParagraph(totalDuration + " сек.");
+            row.Cells[5].AddParagraph(totalPrice + " руб.");
 
             table.SetEdge(0, 0, 6, calls.Count + 2, Edge.Box, BorderStyle.Single, 1.5, Colors.Black);
 

@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using DocumentFormat.OpenXml.Spreadsheet;
 using PhoneAnalyzer;
 using PhoneAnalyzer.Classes;
 using PhoneAnalyzer.Helpers;
@@ -43,7 +43,7 @@ namespace CursProject.Doc
             Excel.ChartObjects chartObjs = (Excel.ChartObjects)ws.ChartObjects();
             Excel.ChartObject chartObj = chartObjs.Add(512, 80, 300, 300);
             Excel.Chart xlChart = chartObj.Chart;
-            xlChart.ChartType = Excel.XlChartType.xlLine;
+            xlChart.ChartType = Excel.XlChartType.xlColumnClustered;
 
             // generate some random data
             from = from.Date.AddDays(1 - from.Day);
@@ -85,10 +85,55 @@ namespace CursProject.Doc
             foreach (var sub in db.Subdivisions)
             {
                 Excel.Series series = seriesCollection.NewSeries();
-                series.XValues = ws.Range[GetRange(5, 3), GetRange(4 + rows, 3)];
-                series.Values = ws.Range[GetRange(5, 3 + cell), GetRange(6, 3 + cell)];
+                series.XValues = ws.Range[GetRange(5, 2), GetRange(4 + rows, 2)];
+                series.Values = ws.Range[GetRange(5, 2 + cell), GetRange(4 + rows, 2 + cell)];
                 series.Name = sub.Name;
                 cell++;
+            }
+        }
+
+        public static void SaveCalls(List<Call> calls)
+        {
+            string fileName = Dir + "\\" + GetFileName();
+            if (File.Exists(fileName))
+            {
+                try
+                {
+                    File.Delete(fileName);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(string.Format("В настоящий момент используется файл:\r\n{0}\r\nДля создания договора закройте пожалуйста файл.", fileName),
+                        "Невозможно создать договор", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            Excel.Application xla = new Excel.Application();
+            xla.Visible = true;
+            Excel.Workbook wb = xla.Workbooks.Add(Excel.XlSheetType.xlWorksheet);
+
+            Excel.Worksheet ws = (Excel.Worksheet)xla.ActiveSheet;
+
+            // Now create the chart.
+            Excel.ChartObjects chartObjs = (Excel.ChartObjects)ws.ChartObjects();
+            Excel.ChartObject chartObj = chartObjs.Add(512, 80, 300, 300);
+            Excel.Chart xlChart = chartObj.Chart;
+            xlChart.ChartType = Excel.XlChartType.xlColumnClustered;
+            
+            ws.Cells[1, 1] = "Номер";
+            ws.Cells[1, 2] = "Куда звонили";
+            ws.Cells[1, 3] = "Дата";
+            ws.Cells[1, 4] = "Длительность";
+            ws.Cells[1, 5] = "Сумма";
+
+            for (int i = 0; i < calls.Count; i++)
+            {
+                ws.Cells[i + 2, 1] = calls[i].Number.ToString();
+                ws.Cells[i + 2, 2] = calls[i].ToNumber;
+                ws.Cells[i + 2, 3] = calls[i].Date;
+                ws.Cells[i + 2, 4] = calls[i].Duration;
+                ws.Cells[i + 2, 5] = calls[i].Price;
             }
         }
 

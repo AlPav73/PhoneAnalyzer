@@ -77,6 +77,11 @@ namespace PhoneAnalyzer
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbtnGenerateDb = new System.Windows.Forms.RadioButton();
+            this.rbtnGenerateCalls = new System.Windows.Forms.RadioButton();
+            this.rbtnGenerateAtcCalls = new System.Windows.Forms.RadioButton();
+            this.btnMakeTest = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.subdivisionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subdivisionGrid)).BeginInit();
@@ -90,6 +95,7 @@ namespace PhoneAnalyzer
             ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -120,7 +126,7 @@ namespace PhoneAnalyzer
             this.subdivisionTab.Controls.Add(this.btnAddSubdivision);
             this.subdivisionTab.Location = new System.Drawing.Point(4, 22);
             this.subdivisionTab.Name = "subdivisionTab";
-            this.subdivisionTab.Padding = new System.Windows.Forms.Padding(3);
+            this.subdivisionTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.subdivisionTab.Size = new System.Drawing.Size(783, 547);
             this.subdivisionTab.TabIndex = 0;
             this.subdivisionTab.Text = "Подразделения";
@@ -237,7 +243,7 @@ namespace PhoneAnalyzer
             this.numberTab.Controls.Add(this.btnAddOutNumber);
             this.numberTab.Location = new System.Drawing.Point(4, 22);
             this.numberTab.Name = "numberTab";
-            this.numberTab.Padding = new System.Windows.Forms.Padding(3);
+            this.numberTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.numberTab.Size = new System.Drawing.Size(783, 547);
             this.numberTab.TabIndex = 0;
             this.numberTab.Text = "Номера";
@@ -304,7 +310,7 @@ namespace PhoneAnalyzer
             this.workerTab.Controls.Add(this.btnAddWorker);
             this.workerTab.Location = new System.Drawing.Point(4, 22);
             this.workerTab.Name = "workerTab";
-            this.workerTab.Padding = new System.Windows.Forms.Padding(3);
+            this.workerTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.workerTab.Size = new System.Drawing.Size(783, 547);
             this.workerTab.TabIndex = 0;
             this.workerTab.Text = "Сотрудники";
@@ -375,7 +381,7 @@ namespace PhoneAnalyzer
             this.callTab.Controls.Add(this.btnAddCall);
             this.callTab.Location = new System.Drawing.Point(4, 22);
             this.callTab.Name = "callTab";
-            this.callTab.Padding = new System.Windows.Forms.Padding(3);
+            this.callTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.callTab.Size = new System.Drawing.Size(783, 547);
             this.callTab.TabIndex = 0;
             this.callTab.Text = "Звонки";
@@ -383,6 +389,7 @@ namespace PhoneAnalyzer
             // 
             // btnSendFinDir
             // 
+            this.btnSendFinDir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSendFinDir.Location = new System.Drawing.Point(8, 487);
             this.btnSendFinDir.Name = "btnSendFinDir";
             this.btnSendFinDir.Size = new System.Drawing.Size(129, 23);
@@ -479,7 +486,7 @@ namespace PhoneAnalyzer
             this.atcCallTab.Controls.Add(this.btnAddAtcCall);
             this.atcCallTab.Location = new System.Drawing.Point(4, 22);
             this.atcCallTab.Name = "atcCallTab";
-            this.atcCallTab.Padding = new System.Windows.Forms.Padding(3);
+            this.atcCallTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.atcCallTab.Size = new System.Drawing.Size(783, 547);
             this.atcCallTab.TabIndex = 0;
             this.atcCallTab.Text = "Атс Звонки";
@@ -540,10 +547,11 @@ namespace PhoneAnalyzer
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.tabPage1.Size = new System.Drawing.Size(783, 547);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Настройки";
@@ -571,7 +579,7 @@ namespace PhoneAnalyzer
             // 
             // txtFinEmail
             // 
-            this.txtFinEmail.Location = new System.Drawing.Point(135, 120);
+            this.txtFinEmail.Location = new System.Drawing.Point(137, 123);
             this.txtFinEmail.Name = "txtFinEmail";
             this.txtFinEmail.Size = new System.Drawing.Size(207, 20);
             this.txtFinEmail.TabIndex = 11;
@@ -579,7 +587,7 @@ namespace PhoneAnalyzer
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 123);
+            this.label1.Location = new System.Drawing.Point(8, 126);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(123, 13);
             this.label1.TabIndex = 10;
@@ -587,7 +595,7 @@ namespace PhoneAnalyzer
             // 
             // btnSaveSettings
             // 
-            this.btnSaveSettings.Location = new System.Drawing.Point(205, 146);
+            this.btnSaveSettings.Location = new System.Drawing.Point(207, 149);
             this.btnSaveSettings.Name = "btnSaveSettings";
             this.btnSaveSettings.Size = new System.Drawing.Size(137, 23);
             this.btnSaveSettings.TabIndex = 9;
@@ -597,28 +605,28 @@ namespace PhoneAnalyzer
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(135, 94);
+            this.txtPassword.Location = new System.Drawing.Point(137, 97);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(207, 20);
             this.txtPassword.TabIndex = 8;
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(135, 68);
+            this.txtLogin.Location = new System.Drawing.Point(137, 71);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(207, 20);
             this.txtLogin.TabIndex = 7;
             // 
             // txtPort
             // 
-            this.txtPort.Location = new System.Drawing.Point(135, 42);
+            this.txtPort.Location = new System.Drawing.Point(137, 45);
             this.txtPort.Name = "txtPort";
             this.txtPort.Size = new System.Drawing.Size(207, 20);
             this.txtPort.TabIndex = 6;
             // 
             // txtHost
             // 
-            this.txtHost.Location = new System.Drawing.Point(135, 16);
+            this.txtHost.Location = new System.Drawing.Point(137, 19);
             this.txtHost.Name = "txtHost";
             this.txtHost.Size = new System.Drawing.Size(207, 20);
             this.txtHost.TabIndex = 5;
@@ -626,7 +634,7 @@ namespace PhoneAnalyzer
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(78, 97);
+            this.label6.Location = new System.Drawing.Point(80, 100);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 4;
@@ -635,7 +643,7 @@ namespace PhoneAnalyzer
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(85, 71);
+            this.label5.Location = new System.Drawing.Point(87, 74);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 13);
             this.label5.TabIndex = 3;
@@ -644,7 +652,7 @@ namespace PhoneAnalyzer
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(91, 45);
+            this.label4.Location = new System.Drawing.Point(93, 48);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(38, 13);
             this.label4.TabIndex = 2;
@@ -653,11 +661,68 @@ namespace PhoneAnalyzer
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(53, 19);
+            this.label3.Location = new System.Drawing.Point(55, 22);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Smtp сервер: ";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnMakeTest);
+            this.groupBox2.Controls.Add(this.rbtnGenerateAtcCalls);
+            this.groupBox2.Controls.Add(this.rbtnGenerateCalls);
+            this.groupBox2.Controls.Add(this.rbtnGenerateDb);
+            this.groupBox2.Location = new System.Drawing.Point(8, 192);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(350, 143);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Тестирование системы";
+            // 
+            // rbtnGenerateDb
+            // 
+            this.rbtnGenerateDb.AutoSize = true;
+            this.rbtnGenerateDb.Checked = true;
+            this.rbtnGenerateDb.Location = new System.Drawing.Point(63, 22);
+            this.rbtnGenerateDb.Name = "rbtnGenerateDb";
+            this.rbtnGenerateDb.Size = new System.Drawing.Size(121, 17);
+            this.rbtnGenerateDb.TabIndex = 2;
+            this.rbtnGenerateDb.TabStop = true;
+            this.rbtnGenerateDb.Text = "Сгенерировать БД";
+            this.rbtnGenerateDb.UseVisualStyleBackColor = true;
+            // 
+            // rbtnGenerateCalls
+            // 
+            this.rbtnGenerateCalls.AutoSize = true;
+            this.rbtnGenerateCalls.Location = new System.Drawing.Point(63, 45);
+            this.rbtnGenerateCalls.Name = "rbtnGenerateCalls";
+            this.rbtnGenerateCalls.Size = new System.Drawing.Size(257, 17);
+            this.rbtnGenerateCalls.TabIndex = 3;
+            this.rbtnGenerateCalls.TabStop = true;
+            this.rbtnGenerateCalls.Text = "Сгенерировать звонки и сохранить их в Excel";
+            this.rbtnGenerateCalls.UseVisualStyleBackColor = true;
+            // 
+            // rbtnGenerateAtcCalls
+            // 
+            this.rbtnGenerateAtcCalls.AutoSize = true;
+            this.rbtnGenerateAtcCalls.Location = new System.Drawing.Point(63, 68);
+            this.rbtnGenerateAtcCalls.Name = "rbtnGenerateAtcCalls";
+            this.rbtnGenerateAtcCalls.Size = new System.Drawing.Size(281, 17);
+            this.rbtnGenerateAtcCalls.TabIndex = 4;
+            this.rbtnGenerateAtcCalls.TabStop = true;
+            this.rbtnGenerateAtcCalls.Text = "Сгенерировать АТС звонки и сохранить их в Excel";
+            this.rbtnGenerateAtcCalls.UseVisualStyleBackColor = true;
+            // 
+            // btnMakeTest
+            // 
+            this.btnMakeTest.Location = new System.Drawing.Point(269, 91);
+            this.btnMakeTest.Name = "btnMakeTest";
+            this.btnMakeTest.Size = new System.Drawing.Size(75, 23);
+            this.btnMakeTest.TabIndex = 6;
+            this.btnMakeTest.Text = "Выполнить";
+            this.btnMakeTest.UseVisualStyleBackColor = true;
+            this.btnMakeTest.Click += new System.EventHandler(this.btnMakeTest_Click);
             // 
             // MainForm
             // 
@@ -682,6 +747,8 @@ namespace PhoneAnalyzer
             this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -740,6 +807,11 @@ namespace PhoneAnalyzer
         private System.Windows.Forms.Button btnSendFinDir;
         private System.Windows.Forms.Button btnMakeGraphExcel;
         private System.Windows.Forms.Button btnMakeGraph;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnMakeTest;
+        private System.Windows.Forms.RadioButton rbtnGenerateAtcCalls;
+        private System.Windows.Forms.RadioButton rbtnGenerateCalls;
+        private System.Windows.Forms.RadioButton rbtnGenerateDb;
         
 
     }
