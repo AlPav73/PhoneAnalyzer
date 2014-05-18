@@ -75,7 +75,7 @@ namespace PhoneAnalyzer.Forms
         // Записываем объект в контролы
         private void SetToControls()
         {
-            Worker worker = db.Workers.SingleOrDefault(o => o.Id == Id);
+            Worker worker = db.Workers.FirstOrDefault(o => o.Id == Id);
 
             CurrentSubdivision = worker.Subdivision;
             txtSalary.Text = worker.Salary.ToString();
@@ -85,7 +85,7 @@ namespace PhoneAnalyzer.Forms
         // Получаем объект из формы
         private Worker GetFromControls()
         {
-            Worker worker = db.Workers.SingleOrDefault(o => o.Id == Id) ?? new Worker();
+            Worker worker = db.Workers.FirstOrDefault(o => o.Id == Id) ?? new Worker();
 
             worker.Subdivision = CurrentSubdivision;
             worker.Salary = int.Parse(txtSalary.Text);

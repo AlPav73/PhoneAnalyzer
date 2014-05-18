@@ -102,7 +102,7 @@ namespace CursProject.Doc
             }
         }
 
-        public static void SaveCalls(List<Call> calls)
+        public static string SaveCalls(List<Call> calls)
         {
             string fileName = Dir + "\\" + GetFileName();
             if (!Directory.Exists(Dir))
@@ -110,22 +110,7 @@ namespace CursProject.Doc
                 Directory.CreateDirectory(Dir);
             }
 
-            if (File.Exists(fileName))
-            {
-                try
-                {
-                    File.Delete(fileName);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show(string.Format("В настоящий момент используется файл:\r\n{0}\r\nДля создания договора закройте пожалуйста файл.", fileName),
-                        "Невозможно создать договор", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
-
-            var xla = new Microsoft.Office.Interop.Excel.Application();
-            xla.Visible = false;
+            var xla = new Microsoft.Office.Interop.Excel.Application { Visible = false };
             Workbook wb = xla.Workbooks.Add(XlSheetType.xlWorksheet);
             var ws = (Worksheet) xla.ActiveSheet;
 
@@ -146,9 +131,12 @@ namespace CursProject.Doc
 
             wb.SaveAs(fileName, _, _, _, _, _, XlSaveAsAccessMode.xlNoChange, _, _, _, _, _);
             wb.Close();
+            xla.Quit();
+
+            return fileName;
         }
 
-        public static void SaveAtcCalls(List<AtcCall> calls)
+        public static string SaveAtcCalls(List<AtcCall> calls)
         {
             string fileName = Dir + "\\" + GetFileName();
             if (!Directory.Exists(Dir))
@@ -156,22 +144,7 @@ namespace CursProject.Doc
                 Directory.CreateDirectory(Dir);
             }
 
-            if (File.Exists(fileName))
-            {
-                try
-                {
-                    File.Delete(fileName);
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show(string.Format("В настоящий момент используется файл:\r\n{0}\r\nДля создания договора закройте пожалуйста файл.", fileName),
-                        "Невозможно создать договор", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-            }
-
-            var xla = new Microsoft.Office.Interop.Excel.Application();
-            xla.Visible = false;
+            var xla = new Microsoft.Office.Interop.Excel.Application { Visible = false };
             Workbook wb = xla.Workbooks.Add(XlSheetType.xlWorksheet);
             var ws = (Worksheet)xla.ActiveSheet;
 
@@ -190,6 +163,9 @@ namespace CursProject.Doc
 
             wb.SaveAs(fileName, _, _, _, _, _, XlSaveAsAccessMode.xlNoChange, _, _, _, _, _);
             wb.Close();
+            xla.Quit();
+
+            return fileName;
         }
 
         private static string GetRange(int row, int col)

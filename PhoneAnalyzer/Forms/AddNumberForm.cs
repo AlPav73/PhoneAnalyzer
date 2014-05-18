@@ -83,7 +83,7 @@ namespace PhoneAnalyzer.Forms
         // Записываем объект в контролы
         private void SetToControls()
         {
-            var number = db.Numbers.SingleOrDefault(o => o.Id == Id);
+            var number = db.Numbers.FirstOrDefault(o => o.Id == Id);
 
             CurrentWorker = number.Worker;
             ddlNumberTypes.SelectedIndex = IndexByNumberType(number.NumberType);
@@ -93,7 +93,7 @@ namespace PhoneAnalyzer.Forms
         // Получаем объект из формы
         private Number GetFromControls()
         {
-            var number = db.Numbers.SingleOrDefault(o => o.Id == Id) ?? new Number();
+            var number = db.Numbers.FirstOrDefault(o => o.Id == Id) ?? new Number();
 
             number.NumberType = NumberTypeByIndex(ddlNumberTypes.SelectedIndex);
             number.Worker = CurrentWorker;

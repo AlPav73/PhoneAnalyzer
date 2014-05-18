@@ -60,7 +60,7 @@ namespace PhoneAnalyzer.Forms
         // Записываем объект в контролы
         private void SetToControls()
         {
-            AtcCall atcCall = db.AtcCalls.SingleOrDefault(o => o.Id == Id);
+            AtcCall atcCall = db.AtcCalls.FirstOrDefault(o => o.Id == Id);
 
             CurrentSubdivision = atcCall.Subdivision;
             txtNumber.Text = atcCall.ToNumber;
@@ -71,7 +71,7 @@ namespace PhoneAnalyzer.Forms
         // Получаем объект из формы
         private AtcCall GetFromControls()
         {
-            AtcCall atcCall = db.AtcCalls.SingleOrDefault(o => o.Id == Id) ?? new AtcCall();
+            AtcCall atcCall = db.AtcCalls.FirstOrDefault(o => o.Id == Id) ?? new AtcCall();
 
             atcCall.Subdivision = CurrentSubdivision;
             atcCall.ToNumber = txtNumber.Text;

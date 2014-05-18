@@ -12,6 +12,34 @@ namespace PhoneAnalyzer.Classes
             set { SetValue("Host", value); }
         }
 
+        public static int Port
+        {
+            get
+            {
+                int value = 0;
+                Int32.TryParse(GetValue("Port"), out value);
+                return value;
+            }
+            set { SetValue("Port", value.ToString()); }
+        }
+
+        public static string PopHost
+        {
+            get { return GetValue("PopHost"); }
+            set { SetValue("PopHost", value); }
+        }
+
+        public static int PopPort
+        {
+            get
+            {
+                int value = 0;
+                Int32.TryParse(GetValue("PopPort"), out value);
+                return value;
+            }
+            set { SetValue("PopPort", value.ToString()); }
+        }
+
         public static string Login
         {
             get { return GetValue("Login"); }
@@ -24,16 +52,7 @@ namespace PhoneAnalyzer.Classes
             set { SetValue("Password", value); }
         }
 
-        public static int Port
-        {
-            get
-            {
-                int value = 0;
-                Int32.TryParse(GetValue("Port"), out value);
-                return value;
-            }
-            set { SetValue("Port", value.ToString()); }
-        }
+       
         
         public static string FinEmail
         {
@@ -43,13 +62,13 @@ namespace PhoneAnalyzer.Classes
         
         private static string GetValue(string name)
         {
-            var setting = Db.Settings.SingleOrDefault(p => p.Name == name);
+            var setting = Db.Settings.FirstOrDefault(p => p.Name == name);
             return (setting == null) ? "" : setting.Value;
         }
 
         private static void SetValue(string name, string value)
         {
-            var setting = Db.Settings.SingleOrDefault(p => p.Name == name);
+            var setting = Db.Settings.FirstOrDefault(p => p.Name == name);
 
             if (setting == null)
             {

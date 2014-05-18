@@ -48,6 +48,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="D.Net.EmailClient">
+      <HintPath>dll\D.Net.EmailClient.dll</HintPath>
+    </Reference>
+    <Reference Include="D.Net.EmailInterfaces">
+      <HintPath>dll\D.Net.EmailInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="LumiSoft.Net">
+      <HintPath>dll\LumiSoft.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Mail">
+      <HintPath>dll\Mail.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -135,7 +147,7 @@
     <Compile Include="Grids\GridNumber.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\GridHelper.cs" />
-    <Compile Include="Helpers\MailSender.cs" />
+    <Compile Include="Helpers\Mailer.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Classes\Number.cs" />
     <Compile Include="MainForm.cs">
@@ -209,6 +221,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="dll\D.Net.EmailClient.dll" />
+    <Content Include="dll\D.Net.EmailInterfaces.dll" />
+    <Content Include="dll\de\MigraDoc.DocumentObjectModel.resources.dll" />
+    <Content Include="dll\de\MigraDoc.Rendering.resources.dll" />
+    <Content Include="dll\de\MigraDoc.RtfRendering.resources.dll" />
+    <Content Include="dll\de\PdfSharp.Charting.resources.dll" />
+    <Content Include="dll\de\PdfSharp.resources.dll" />
+    <Content Include="dll\LumiSoft.Net.dll" />
+    <Content Include="dll\Mail.dll" />
+    <Content Include="dll\MigraDoc.DocumentObjectModel.dll" />
+    <Content Include="dll\MigraDoc.Rendering.dll" />
+    <Content Include="dll\MigraDoc.RtfRendering.dll" />
+    <Content Include="dll\PdfSharp.Charting.dll" />
+    <Content Include="dll\PdfSharp.dll" />
     <Content Include="PaDb.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

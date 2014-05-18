@@ -71,3 +71,7 @@ E:\Downloads\PhoneAnalyzer-master(1)\PhoneAnalyzer-master\PhoneAnalyzer\obj\Debu
 E:\Downloads\PhoneAnalyzer-master(1)\PhoneAnalyzer-master\PhoneAnalyzer\obj\Debug\PhoneAnalyzer.MainForm.resources
 E:\Downloads\PhoneAnalyzer-master(1)\PhoneAnalyzer-master\PhoneAnalyzer\obj\Debug\PhoneAnalyzer.Properties.Resources.resources
 E:\Downloads\PhoneAnalyzer-master(1)\PhoneAnalyzer-master\PhoneAnalyzer\obj\Debug\PhoneAnalyzer.csproj.GenerateResource.Cache
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\Mail.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\D.Net.EmailClient.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\D.Net.EmailInterfaces.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\LumiSoft.Net.dll

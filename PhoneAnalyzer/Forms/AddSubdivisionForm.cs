@@ -46,7 +46,7 @@ namespace PhoneAnalyzer.Forms
         // Записываем объект в контролы
         private void SetToControls()
         {
-            Subdivision subdivision = db.Subdivisions.SingleOrDefault(o => o.Id == Id);
+            Subdivision subdivision = db.Subdivisions.FirstOrDefault(o => o.Id == Id);
 
             txtName.Text = subdivision.Name;
             txtDirectorFio.Text = subdivision.DirectorFio;
@@ -56,7 +56,7 @@ namespace PhoneAnalyzer.Forms
         // Получаем объект из формы
         private Subdivision GetFromControls()
         {
-            Subdivision subdivision = db.Subdivisions.SingleOrDefault(o => o.Id == Id) ?? new Subdivision();
+            Subdivision subdivision = db.Subdivisions.FirstOrDefault(o => o.Id == Id) ?? new Subdivision();
 
             subdivision.Name = txtName.Text;
             subdivision.Email = txtEmail.Text;

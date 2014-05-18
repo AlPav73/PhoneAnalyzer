@@ -9,6 +9,7 @@ using PhoneAnalyzer.Classes;
 using PhoneAnalyzer.Docs;
 using PhoneAnalyzer.Forms;
 using PhoneAnalyzer.Helpers;
+using PhoneAnalyzer.Properties;
 
 namespace PhoneAnalyzer
 {
@@ -22,7 +23,7 @@ namespace PhoneAnalyzer
 
             var dtn = DateTime.Now.Date;
             dtpReportFrom.Value = DateTime.Now.Date.AddDays(1 - dtn.Day);
-            dtpReportTo.Value  = DateTime.Now.Date.AddDays(DateTime.DaysInMonth(dtn.Year, dtn.Month) - dtn.Day + 1);
+            dtpReportTo.Value = DateTime.Now.Date.AddDays(DateTime.DaysInMonth(dtn.Year, dtn.Month) - dtn.Day + 1);
 
             dtpSubReportFrom.Value = DateTime.Now.Date.AddDays(1 - dtn.Day);
             dtpSubReportTo.Value = DateTime.Now.Date.AddDays(DateTime.DaysInMonth(dtn.Year, dtn.Month) - dtn.Day + 1);
@@ -132,14 +133,14 @@ namespace PhoneAnalyzer
             var dateFrom = dtpReportFrom.Value.Date;
             var dateTo = dtpReportTo.Value.Date;
 
-            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber))
-                                .Where(p => dateFrom <= p.Date.Date && p.Date.Date <= dateTo);
+            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber)).Where(p => dateFrom <= p.Date.Date && p.Date.Date <= dateTo);
 
             foreach (var sub in db.Subdivisions)
             {
-                var fileName = PdfGenerator.MakeReport(calls.Where(p => p.Number.Worker.Subdivision.Id == sub.Id), dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
+                var fileName = PdfGenerator.MakeReport(calls.Where(p => p.Number.Worker.Subdivision.Id == sub.Id), dtpReportFrom.Value.Date,
+                    dtpReportTo.Value.Date);
 
-                MailSender.SendReport(sub, dateFrom, dateTo, fileName);
+                Mailer.SendReport(sub, dateFrom, dateTo, fileName);
             }
         }
 
@@ -293,8 +294,11 @@ namespace PhoneAnalyzer
         private void btnCallReport_Click(object sender, EventArgs e)
         {
             var numbers = db.Numbers;
-            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber))
-                                .Where(p => dtpReportFrom.Value.Date <= p.Date.Date && p.Date.Date <= dtpReportTo.Value.Date);
+            var calls =
+                db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber)).Where(
+                                                                                         p =>
+                                                                                             dtpReportFrom.Value.Date <= p.Date.Date &&
+                                                                                             p.Date.Date <= dtpReportTo.Value.Date);
 
             var fileName = PdfGenerator.MakeReport(calls, dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
             Process.Start(fileName);
@@ -303,11 +307,14 @@ namespace PhoneAnalyzer
         private void btnSendFinDir_Click(object sender, EventArgs e)
         {
             var numbers = db.Numbers;
-            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber))
-                                .Where(p => dtpReportFrom.Value.Date <= p.Date.Date && p.Date.Date <= dtpReportTo.Value.Date);
+            var calls =
+                db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber)).Where(
+                                                                                         p =>
+                                                                                             dtpReportFrom.Value.Date <= p.Date.Date &&
+                                                                                             p.Date.Date <= dtpReportTo.Value.Date);
 
             var fileName = PdfGenerator.MakeReport(calls, dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
-            MailSender.SendReport(Setting.FinEmail, dtpReportFrom.Value.Date, dtpReportTo.Value.Date, fileName);
+            Mailer.SendReport(Setting.FinEmail, dtpReportFrom.Value.Date, dtpReportTo.Value.Date, fileName);
         }
 
         private void btnLoadCallsFromFile_Click(object sender, EventArgs e)
@@ -388,6 +395,8 @@ namespace PhoneAnalyzer
         {
             txtHost.Text = Setting.Host;
             txtPort.Text = Setting.Port.ToString();
+            txtPopHost.Text = Setting.PopHost;
+            txtPopPort.Text = Setting.PopPort.ToString();
             txtLogin.Text = Setting.Login;
             txtPassword.Text = Setting.Password;
             txtFinEmail.Text = Setting.FinEmail;
@@ -398,8 +407,13 @@ namespace PhoneAnalyzer
             var port = 0;
             Int32.TryParse(txtPort.Text, out port);
 
+            var popPort = 0;
+            Int32.TryParse(txtPopPort.Text, out popPort);
+
             Setting.Host = txtHost.Text;
             Setting.Port = port;
+            Setting.PopHost = txtPopHost.Text;
+            Setting.PopPort = popPort;
             Setting.Login = txtLogin.Text;
             Setting.Password = txtPassword.Text;
             Setting.FinEmail = txtFinEmail.Text;
@@ -416,17 +430,27 @@ namespace PhoneAnalyzer
             if (rbtnGenerateCalls.Checked)
             {
                 var calls = Generator.GenerateCalls().ToList();
-                ExcelGenerator.SaveCalls(calls);
+                var fileName = ExcelGenerator.SaveCalls(calls);
+                Mailer.SendMail(Setting.Login, "Calls", "Отчёт о звонках", fileName);
 
-                MessageBox.Show("Генерация завершена", "Генерация");
+                MessageBox.Show("Файл сгенерирован и отправлен на почту", "Генерация");
             }
 
             if (rbtnGenerateAtcCalls.Checked)
             {
                 var atcCalls = Generator.GenerateAtcCalls().ToList();
-                ExcelGenerator.SaveAtcCalls(atcCalls);
+                var fileName = ExcelGenerator.SaveAtcCalls(atcCalls);
+                Mailer.SendMail(Setting.Login, "AtcCalls", "Отчёт о звонках", fileName);
 
-                MessageBox.Show("Генерация завершена", "Генерация");
+                MessageBox.Show("Файл сгенерирован и отправлен на почту", "Генерация");
+            }
+
+            if (rbtnGetMails.Checked)
+            {
+                Mailer.GetMails();
+
+                MessageBox.Show("Загрузка завершена", "Загрузка");
+                RefreshAllGrids();
             }
         }
     }
