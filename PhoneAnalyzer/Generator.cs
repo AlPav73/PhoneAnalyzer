@@ -38,7 +38,7 @@ namespace PhoneAnalyzer
             db.Calls.InsertAllOnSubmit(calls);
             db.SubmitChanges();
 
-            MessageBox.Show("Генерация", "Генерация завершена");
+            MessageBox.Show("Генерация завершена", "Генерация");
         }
 
         public static IEnumerable<Call> GenerateCalls()
@@ -138,7 +138,7 @@ namespace PhoneAnalyzer
 
         private static string GenerateInNumber()
         {
-            return string.Format("{0}-{1}", R.Next(10, 100), R.Next(10, 100));
+            return string.Format("{0}-{1}", R.Next(0, 10), R.Next(100, 999));
         }
 
         private static string GenerateFio()

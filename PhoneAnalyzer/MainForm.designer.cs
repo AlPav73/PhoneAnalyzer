@@ -51,6 +51,7 @@ namespace PhoneAnalyzer
             this.btnEditWorker = new System.Windows.Forms.Button();
             this.btnAddWorker = new System.Windows.Forms.Button();
             this.callTab = new System.Windows.Forms.TabPage();
+            this.btnLoadCallsFromFile = new System.Windows.Forms.Button();
             this.btnSendFinDir = new System.Windows.Forms.Button();
             this.dtpReportTo = new System.Windows.Forms.DateTimePicker();
             this.dtpReportFrom = new System.Windows.Forms.DateTimePicker();
@@ -60,11 +61,17 @@ namespace PhoneAnalyzer
             this.btnEditCall = new System.Windows.Forms.Button();
             this.btnAddCall = new System.Windows.Forms.Button();
             this.atcCallTab = new System.Windows.Forms.TabPage();
+            this.btnLoadAtcCallsFromFile = new System.Windows.Forms.Button();
             this.atcCallGrid = new System.Windows.Forms.DataGridView();
             this.btnDeleteAtcCall = new System.Windows.Forms.Button();
             this.btnEditAtcCall = new System.Windows.Forms.Button();
             this.btnAddAtcCall = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnMakeTest = new System.Windows.Forms.Button();
+            this.rbtnGenerateAtcCalls = new System.Windows.Forms.RadioButton();
+            this.rbtnGenerateCalls = new System.Windows.Forms.RadioButton();
+            this.rbtnGenerateDb = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtFinEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -77,11 +84,6 @@ namespace PhoneAnalyzer
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rbtnGenerateDb = new System.Windows.Forms.RadioButton();
-            this.rbtnGenerateCalls = new System.Windows.Forms.RadioButton();
-            this.rbtnGenerateAtcCalls = new System.Windows.Forms.RadioButton();
-            this.btnMakeTest = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.subdivisionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subdivisionGrid)).BeginInit();
@@ -94,8 +96,8 @@ namespace PhoneAnalyzer
             this.atcCallTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).BeginInit();
             this.tabPage1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl
@@ -126,7 +128,7 @@ namespace PhoneAnalyzer
             this.subdivisionTab.Controls.Add(this.btnAddSubdivision);
             this.subdivisionTab.Location = new System.Drawing.Point(4, 22);
             this.subdivisionTab.Name = "subdivisionTab";
-            this.subdivisionTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.subdivisionTab.Padding = new System.Windows.Forms.Padding(3);
             this.subdivisionTab.Size = new System.Drawing.Size(783, 547);
             this.subdivisionTab.TabIndex = 0;
             this.subdivisionTab.Text = "Подразделения";
@@ -243,7 +245,7 @@ namespace PhoneAnalyzer
             this.numberTab.Controls.Add(this.btnAddOutNumber);
             this.numberTab.Location = new System.Drawing.Point(4, 22);
             this.numberTab.Name = "numberTab";
-            this.numberTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.numberTab.Padding = new System.Windows.Forms.Padding(3);
             this.numberTab.Size = new System.Drawing.Size(783, 547);
             this.numberTab.TabIndex = 0;
             this.numberTab.Text = "Номера";
@@ -310,7 +312,7 @@ namespace PhoneAnalyzer
             this.workerTab.Controls.Add(this.btnAddWorker);
             this.workerTab.Location = new System.Drawing.Point(4, 22);
             this.workerTab.Name = "workerTab";
-            this.workerTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.workerTab.Padding = new System.Windows.Forms.Padding(3);
             this.workerTab.Size = new System.Drawing.Size(783, 547);
             this.workerTab.TabIndex = 0;
             this.workerTab.Text = "Сотрудники";
@@ -371,6 +373,7 @@ namespace PhoneAnalyzer
             // 
             // callTab
             // 
+            this.callTab.Controls.Add(this.btnLoadCallsFromFile);
             this.callTab.Controls.Add(this.btnSendFinDir);
             this.callTab.Controls.Add(this.dtpReportTo);
             this.callTab.Controls.Add(this.dtpReportFrom);
@@ -381,11 +384,22 @@ namespace PhoneAnalyzer
             this.callTab.Controls.Add(this.btnAddCall);
             this.callTab.Location = new System.Drawing.Point(4, 22);
             this.callTab.Name = "callTab";
-            this.callTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.callTab.Padding = new System.Windows.Forms.Padding(3);
             this.callTab.Size = new System.Drawing.Size(783, 547);
             this.callTab.TabIndex = 0;
             this.callTab.Text = "Звонки";
             this.callTab.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadCallsFromFile
+            // 
+            this.btnLoadCallsFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadCallsFromFile.Location = new System.Drawing.Point(539, 487);
+            this.btnLoadCallsFromFile.Name = "btnLoadCallsFromFile";
+            this.btnLoadCallsFromFile.Size = new System.Drawing.Size(122, 23);
+            this.btnLoadCallsFromFile.TabIndex = 8;
+            this.btnLoadCallsFromFile.Text = "Загрузить из файла";
+            this.btnLoadCallsFromFile.UseVisualStyleBackColor = true;
+            this.btnLoadCallsFromFile.Click += new System.EventHandler(this.btnLoadCallsFromFile_Click);
             // 
             // btnSendFinDir
             // 
@@ -480,17 +494,29 @@ namespace PhoneAnalyzer
             // 
             // atcCallTab
             // 
+            this.atcCallTab.Controls.Add(this.btnLoadAtcCallsFromFile);
             this.atcCallTab.Controls.Add(this.atcCallGrid);
             this.atcCallTab.Controls.Add(this.btnDeleteAtcCall);
             this.atcCallTab.Controls.Add(this.btnEditAtcCall);
             this.atcCallTab.Controls.Add(this.btnAddAtcCall);
             this.atcCallTab.Location = new System.Drawing.Point(4, 22);
             this.atcCallTab.Name = "atcCallTab";
-            this.atcCallTab.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.atcCallTab.Padding = new System.Windows.Forms.Padding(3);
             this.atcCallTab.Size = new System.Drawing.Size(783, 547);
             this.atcCallTab.TabIndex = 0;
             this.atcCallTab.Text = "Атс Звонки";
             this.atcCallTab.UseVisualStyleBackColor = true;
+            // 
+            // btnLoadAtcCallsFromFile
+            // 
+            this.btnLoadAtcCallsFromFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLoadAtcCallsFromFile.Location = new System.Drawing.Point(539, 487);
+            this.btnLoadAtcCallsFromFile.Name = "btnLoadAtcCallsFromFile";
+            this.btnLoadAtcCallsFromFile.Size = new System.Drawing.Size(123, 23);
+            this.btnLoadAtcCallsFromFile.TabIndex = 4;
+            this.btnLoadAtcCallsFromFile.Text = "Загрузить из файла";
+            this.btnLoadAtcCallsFromFile.UseVisualStyleBackColor = true;
+            this.btnLoadAtcCallsFromFile.Click += new System.EventHandler(this.btnLoadAtcCallsFromFile_Click);
             // 
             // atcCallGrid
             // 
@@ -509,7 +535,7 @@ namespace PhoneAnalyzer
             this.atcCallGrid.Name = "atcCallGrid";
             this.atcCallGrid.ReadOnly = true;
             this.atcCallGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.atcCallGrid.Size = new System.Drawing.Size(768, 504);
+            this.atcCallGrid.Size = new System.Drawing.Size(768, 475);
             this.atcCallGrid.TabIndex = 0;
             // 
             // btnDeleteAtcCall
@@ -551,11 +577,68 @@ namespace PhoneAnalyzer
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(783, 547);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Настройки";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnMakeTest);
+            this.groupBox2.Controls.Add(this.rbtnGenerateAtcCalls);
+            this.groupBox2.Controls.Add(this.rbtnGenerateCalls);
+            this.groupBox2.Controls.Add(this.rbtnGenerateDb);
+            this.groupBox2.Location = new System.Drawing.Point(8, 192);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(350, 143);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Тестирование системы";
+            // 
+            // btnMakeTest
+            // 
+            this.btnMakeTest.Location = new System.Drawing.Point(269, 91);
+            this.btnMakeTest.Name = "btnMakeTest";
+            this.btnMakeTest.Size = new System.Drawing.Size(75, 23);
+            this.btnMakeTest.TabIndex = 6;
+            this.btnMakeTest.Text = "Выполнить";
+            this.btnMakeTest.UseVisualStyleBackColor = true;
+            this.btnMakeTest.Click += new System.EventHandler(this.btnMakeTest_Click);
+            // 
+            // rbtnGenerateAtcCalls
+            // 
+            this.rbtnGenerateAtcCalls.AutoSize = true;
+            this.rbtnGenerateAtcCalls.Location = new System.Drawing.Point(63, 68);
+            this.rbtnGenerateAtcCalls.Name = "rbtnGenerateAtcCalls";
+            this.rbtnGenerateAtcCalls.Size = new System.Drawing.Size(281, 17);
+            this.rbtnGenerateAtcCalls.TabIndex = 4;
+            this.rbtnGenerateAtcCalls.TabStop = true;
+            this.rbtnGenerateAtcCalls.Text = "Сгенерировать АТС звонки и сохранить их в Excel";
+            this.rbtnGenerateAtcCalls.UseVisualStyleBackColor = true;
+            // 
+            // rbtnGenerateCalls
+            // 
+            this.rbtnGenerateCalls.AutoSize = true;
+            this.rbtnGenerateCalls.Location = new System.Drawing.Point(63, 45);
+            this.rbtnGenerateCalls.Name = "rbtnGenerateCalls";
+            this.rbtnGenerateCalls.Size = new System.Drawing.Size(257, 17);
+            this.rbtnGenerateCalls.TabIndex = 3;
+            this.rbtnGenerateCalls.TabStop = true;
+            this.rbtnGenerateCalls.Text = "Сгенерировать звонки и сохранить их в Excel";
+            this.rbtnGenerateCalls.UseVisualStyleBackColor = true;
+            // 
+            // rbtnGenerateDb
+            // 
+            this.rbtnGenerateDb.AutoSize = true;
+            this.rbtnGenerateDb.Checked = true;
+            this.rbtnGenerateDb.Location = new System.Drawing.Point(63, 22);
+            this.rbtnGenerateDb.Name = "rbtnGenerateDb";
+            this.rbtnGenerateDb.Size = new System.Drawing.Size(121, 17);
+            this.rbtnGenerateDb.TabIndex = 2;
+            this.rbtnGenerateDb.TabStop = true;
+            this.rbtnGenerateDb.Text = "Сгенерировать БД";
+            this.rbtnGenerateDb.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -667,63 +750,6 @@ namespace PhoneAnalyzer
             this.label3.TabIndex = 1;
             this.label3.Text = "Smtp сервер: ";
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnMakeTest);
-            this.groupBox2.Controls.Add(this.rbtnGenerateAtcCalls);
-            this.groupBox2.Controls.Add(this.rbtnGenerateCalls);
-            this.groupBox2.Controls.Add(this.rbtnGenerateDb);
-            this.groupBox2.Location = new System.Drawing.Point(8, 192);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(350, 143);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Тестирование системы";
-            // 
-            // rbtnGenerateDb
-            // 
-            this.rbtnGenerateDb.AutoSize = true;
-            this.rbtnGenerateDb.Checked = true;
-            this.rbtnGenerateDb.Location = new System.Drawing.Point(63, 22);
-            this.rbtnGenerateDb.Name = "rbtnGenerateDb";
-            this.rbtnGenerateDb.Size = new System.Drawing.Size(121, 17);
-            this.rbtnGenerateDb.TabIndex = 2;
-            this.rbtnGenerateDb.TabStop = true;
-            this.rbtnGenerateDb.Text = "Сгенерировать БД";
-            this.rbtnGenerateDb.UseVisualStyleBackColor = true;
-            // 
-            // rbtnGenerateCalls
-            // 
-            this.rbtnGenerateCalls.AutoSize = true;
-            this.rbtnGenerateCalls.Location = new System.Drawing.Point(63, 45);
-            this.rbtnGenerateCalls.Name = "rbtnGenerateCalls";
-            this.rbtnGenerateCalls.Size = new System.Drawing.Size(257, 17);
-            this.rbtnGenerateCalls.TabIndex = 3;
-            this.rbtnGenerateCalls.TabStop = true;
-            this.rbtnGenerateCalls.Text = "Сгенерировать звонки и сохранить их в Excel";
-            this.rbtnGenerateCalls.UseVisualStyleBackColor = true;
-            // 
-            // rbtnGenerateAtcCalls
-            // 
-            this.rbtnGenerateAtcCalls.AutoSize = true;
-            this.rbtnGenerateAtcCalls.Location = new System.Drawing.Point(63, 68);
-            this.rbtnGenerateAtcCalls.Name = "rbtnGenerateAtcCalls";
-            this.rbtnGenerateAtcCalls.Size = new System.Drawing.Size(281, 17);
-            this.rbtnGenerateAtcCalls.TabIndex = 4;
-            this.rbtnGenerateAtcCalls.TabStop = true;
-            this.rbtnGenerateAtcCalls.Text = "Сгенерировать АТС звонки и сохранить их в Excel";
-            this.rbtnGenerateAtcCalls.UseVisualStyleBackColor = true;
-            // 
-            // btnMakeTest
-            // 
-            this.btnMakeTest.Location = new System.Drawing.Point(269, 91);
-            this.btnMakeTest.Name = "btnMakeTest";
-            this.btnMakeTest.Size = new System.Drawing.Size(75, 23);
-            this.btnMakeTest.TabIndex = 6;
-            this.btnMakeTest.Text = "Выполнить";
-            this.btnMakeTest.UseVisualStyleBackColor = true;
-            this.btnMakeTest.Click += new System.EventHandler(this.btnMakeTest_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -745,10 +771,10 @@ namespace PhoneAnalyzer
             this.atcCallTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -812,6 +838,8 @@ namespace PhoneAnalyzer
         private System.Windows.Forms.RadioButton rbtnGenerateAtcCalls;
         private System.Windows.Forms.RadioButton rbtnGenerateCalls;
         private System.Windows.Forms.RadioButton rbtnGenerateDb;
+        private System.Windows.Forms.Button btnLoadCallsFromFile;
+        private System.Windows.Forms.Button btnLoadAtcCallsFromFile;
         
 
     }

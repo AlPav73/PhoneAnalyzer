@@ -310,6 +310,19 @@ namespace PhoneAnalyzer
             MailSender.SendReport(Setting.FinEmail, dtpReportFrom.Value.Date, dtpReportTo.Value.Date, fileName);
         }
 
+        private void btnLoadCallsFromFile_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = ".xls|*.xls";
+            if (dialog.ShowDialog() != DialogResult.Cancel)
+            {
+                ExcelLoader.LoadCalls(dialog.FileName);
+                MessageBox.Show("Загрузка завершена", "Загрузка");
+
+                RefreshCall();
+            }
+        }
+
         //
         //**********   AtcCall   **********
         //
@@ -354,6 +367,19 @@ namespace PhoneAnalyzer
             RefreshAtcCall();
         }
 
+        private void btnLoadAtcCallsFromFile_Click(object sender, EventArgs e)
+        {
+            var dialog = new OpenFileDialog();
+            dialog.Filter = ".xls|*.xls";
+            if (dialog.ShowDialog() != DialogResult.Cancel)
+            {
+                ExcelLoader.LoadAtcCalls(dialog.FileName);
+                MessageBox.Show("Загрузка завершена", "Загрузка");
+
+                RefreshAtcCall();
+            }
+        }
+
         //
         //**********   Settings   **********
         //
@@ -389,7 +415,18 @@ namespace PhoneAnalyzer
 
             if (rbtnGenerateCalls.Checked)
             {
-                var calls = Generator.GenerateCalls();
+                var calls = Generator.GenerateCalls().ToList();
+                ExcelGenerator.SaveCalls(calls);
+
+                MessageBox.Show("Генерация завершена", "Генерация");
+            }
+
+            if (rbtnGenerateAtcCalls.Checked)
+            {
+                var atcCalls = Generator.GenerateAtcCalls().ToList();
+                ExcelGenerator.SaveAtcCalls(atcCalls);
+
+                MessageBox.Show("Генерация завершена", "Генерация");
             }
         }
     }

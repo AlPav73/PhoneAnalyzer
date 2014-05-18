@@ -85,6 +85,7 @@
     <Compile Include="Classes\Settings.cs" />
     <Compile Include="Classes\Subdivision.cs" />
     <Compile Include="DataBase.cs" />
+    <Compile Include="Docs\ExcelLoader.cs" />
     <Compile Include="Docs\ExcelGenerator.cs" />
     <Compile Include="Docs\PdfGenerator.cs" />
     <Compile Include="Forms\AddAtcCallForm.cs">
