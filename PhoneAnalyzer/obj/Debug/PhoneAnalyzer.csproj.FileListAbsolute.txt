@@ -75,3 +75,6 @@ C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\Mail.dl
 C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\D.Net.EmailClient.dll
 C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\D.Net.EmailInterfaces.dll
 C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\LumiSoft.Net.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\System.Data.SQLite.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\bin\Debug\System.Data.SQLite.Linq.dll
+C:\Users\maxigrom\Documents\GitHub\PhoneAnalyzer\PhoneAnalyzer\obj\Debug\PhoneAnalyzer.csprojResolveAssemblyReference.cache

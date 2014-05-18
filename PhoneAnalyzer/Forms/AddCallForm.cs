@@ -60,7 +60,7 @@ namespace PhoneAnalyzer.Forms
         // Записываем объект в контролы
         private void SetToControls()
         {
-            Call call = db.Calls.SingleOrDefault(o => o.Id == Id);
+            Call call = db.Calls.FirstOrDefault(o => o.Id == Id);
 
             CurrentNumber = call.Number;
             CurrentDate = call.Date;
@@ -72,7 +72,7 @@ namespace PhoneAnalyzer.Forms
         // Получаем объект из формы
         private Call GetFromControls()
         {
-            Call call = db.Calls.SingleOrDefault(o => o.Id == Id) ?? new Call();
+            Call call = db.Calls.FirstOrDefault(o => o.Id == Id) ?? new Call();
 
             call.Number = CurrentNumber;
             call.ToNumber = txtNumber.Text;

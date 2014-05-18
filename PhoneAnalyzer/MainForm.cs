@@ -45,6 +45,7 @@ namespace PhoneAnalyzer
             RefreshSubdivision();
             RefreshWorker();
             RefreshCall();
+            RefreshSites();
         }
 
         private void RefreshAtcCall()
@@ -80,6 +81,13 @@ namespace PhoneAnalyzer
             callGrid.DataSource = db.Calls.OrderBy(p => p.Date).Select(p => p.ToGrid()).ToList();
             GridHelper.SetHeaders(callGrid, new[] { "ID", "Номер", "Куда звонили", "Дата", "Длительность", "Сумма" });
             GridHelper.SetInvisible(callGrid, new[] { 0 });
+        }
+
+
+        private void RefreshSites()
+        {
+            listSite.Items.Clear();
+            listSite.Items.AddRange(db.CloseSites.OrderBy(p => p.Url).Select(p => p.Url).ToArray());
         }
 
 
@@ -247,6 +255,21 @@ namespace PhoneAnalyzer
             RefreshWorker();
         }
 
+
+        private void btnGenerateWorkerReport_Click(object sender, EventArgs e)
+        {
+            if (workerGrid.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            int id = GridHelper.GetIntFromRow(workerGrid.SelectedRows[0], 0);
+
+            var worker = db.Workers.FirstOrDefault(t => t.Id == id);
+
+            CalcGenerator.MakeReport(worker);
+        }
+
         //
         //**********   Call   **********
         //
@@ -384,6 +407,37 @@ namespace PhoneAnalyzer
                 MessageBox.Show("Загрузка завершена", "Загрузка");
 
                 RefreshAtcCall();
+            }
+        }
+
+        //
+        //**********   Site   **********
+        //
+
+        private void btnAddSite_Click(object sender, EventArgs e)
+        {
+            var site = new CloseSite { Url = txtSite.Text.ToLower().Trim() };
+            db.CloseSites.InsertOnSubmit(site);
+            db.SubmitChanges();
+
+            txtSite.Clear();
+            RefreshSites();
+        }
+
+
+        private void btnDeleteSite_Click(object sender, EventArgs e)
+        {
+            if (listSite.SelectedIndex != -1)
+            {
+                var site = db.CloseSites.FirstOrDefault(p => p.Url == listSite.SelectedItem);
+
+                if (site != null)
+                {
+                    db.CloseSites.DeleteOnSubmit(site);
+                    db.SubmitChanges();
+
+                    RefreshSites();
+                }
             }
         }
 

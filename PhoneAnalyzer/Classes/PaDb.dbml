@@ -57,4 +57,10 @@
       <Association Name="Subdivision_AtcCall" Member="Subdivision" ThisKey="SubdivisionId" OtherKey="Id" Type="Subdivision" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.CloseSite" Member="CloseSites">
+    <Type Name="CloseSite">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Url" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

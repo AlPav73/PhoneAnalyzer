@@ -46,6 +46,7 @@ namespace PhoneAnalyzer
             this.btnEditOutNumber = new System.Windows.Forms.Button();
             this.btnAddOutNumber = new System.Windows.Forms.Button();
             this.workerTab = new System.Windows.Forms.TabPage();
+            this.btnGenerateWorkerReport = new System.Windows.Forms.Button();
             this.workerGrid = new System.Windows.Forms.DataGridView();
             this.btnDeleteWorker = new System.Windows.Forms.Button();
             this.btnEditWorker = new System.Windows.Forms.Button();
@@ -67,12 +68,22 @@ namespace PhoneAnalyzer
             this.btnEditAtcCall = new System.Windows.Forms.Button();
             this.btnAddAtcCall = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtSite = new System.Windows.Forms.TextBox();
+            this.btnAddSite = new System.Windows.Forms.Button();
+            this.btnDeleteSite = new System.Windows.Forms.Button();
+            this.listSite = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbtnGetMails = new System.Windows.Forms.RadioButton();
             this.btnMakeTest = new System.Windows.Forms.Button();
             this.rbtnGenerateAtcCalls = new System.Windows.Forms.RadioButton();
             this.rbtnGenerateCalls = new System.Windows.Forms.RadioButton();
             this.rbtnGenerateDb = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtPopPort = new System.Windows.Forms.TextBox();
+            this.txtPopHost = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtFinEmail = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSaveSettings = new System.Windows.Forms.Button();
@@ -84,11 +95,6 @@ namespace PhoneAnalyzer
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtPopPort = new System.Windows.Forms.TextBox();
-            this.txtPopHost = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.rbtnGetMails = new System.Windows.Forms.RadioButton();
             this.tabControl.SuspendLayout();
             this.subdivisionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subdivisionGrid)).BeginInit();
@@ -101,6 +107,7 @@ namespace PhoneAnalyzer
             this.atcCallTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -311,6 +318,7 @@ namespace PhoneAnalyzer
             // 
             // workerTab
             // 
+            this.workerTab.Controls.Add(this.btnGenerateWorkerReport);
             this.workerTab.Controls.Add(this.workerGrid);
             this.workerTab.Controls.Add(this.btnDeleteWorker);
             this.workerTab.Controls.Add(this.btnEditWorker);
@@ -322,6 +330,17 @@ namespace PhoneAnalyzer
             this.workerTab.TabIndex = 0;
             this.workerTab.Text = "Сотрудники";
             this.workerTab.UseVisualStyleBackColor = true;
+            // 
+            // btnGenerateWorkerReport
+            // 
+            this.btnGenerateWorkerReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGenerateWorkerReport.Location = new System.Drawing.Point(8, 516);
+            this.btnGenerateWorkerReport.Name = "btnGenerateWorkerReport";
+            this.btnGenerateWorkerReport.Size = new System.Drawing.Size(129, 23);
+            this.btnGenerateWorkerReport.TabIndex = 4;
+            this.btnGenerateWorkerReport.Text = "Посчитать зарплату";
+            this.btnGenerateWorkerReport.UseVisualStyleBackColor = true;
+            this.btnGenerateWorkerReport.Click += new System.EventHandler(this.btnGenerateWorkerReport_Click);
             // 
             // workerGrid
             // 
@@ -578,6 +597,7 @@ namespace PhoneAnalyzer
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -588,6 +608,54 @@ namespace PhoneAnalyzer
             this.tabPage1.Text = "Настройки";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtSite);
+            this.groupBox3.Controls.Add(this.btnAddSite);
+            this.groupBox3.Controls.Add(this.btnDeleteSite);
+            this.groupBox3.Controls.Add(this.listSite);
+            this.groupBox3.Location = new System.Drawing.Point(364, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(411, 385);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "запрещённые сайты";
+            // 
+            // txtSite
+            // 
+            this.txtSite.Location = new System.Drawing.Point(6, 356);
+            this.txtSite.Name = "txtSite";
+            this.txtSite.Size = new System.Drawing.Size(237, 20);
+            this.txtSite.TabIndex = 3;
+            // 
+            // btnAddSite
+            // 
+            this.btnAddSite.Location = new System.Drawing.Point(249, 354);
+            this.btnAddSite.Name = "btnAddSite";
+            this.btnAddSite.Size = new System.Drawing.Size(75, 23);
+            this.btnAddSite.TabIndex = 2;
+            this.btnAddSite.Text = "Добавить";
+            this.btnAddSite.UseVisualStyleBackColor = true;
+            this.btnAddSite.Click += new System.EventHandler(this.btnAddSite_Click);
+            // 
+            // btnDeleteSite
+            // 
+            this.btnDeleteSite.Location = new System.Drawing.Point(330, 354);
+            this.btnDeleteSite.Name = "btnDeleteSite";
+            this.btnDeleteSite.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteSite.TabIndex = 1;
+            this.btnDeleteSite.Text = "Удалить";
+            this.btnDeleteSite.UseVisualStyleBackColor = true;
+            this.btnDeleteSite.Click += new System.EventHandler(this.btnDeleteSite_Click);
+            // 
+            // listSite
+            // 
+            this.listSite.FormattingEnabled = true;
+            this.listSite.Location = new System.Drawing.Point(6, 19);
+            this.listSite.Name = "listSite";
+            this.listSite.Size = new System.Drawing.Size(399, 329);
+            this.listSite.TabIndex = 0;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.rbtnGetMails);
@@ -597,14 +665,25 @@ namespace PhoneAnalyzer
             this.groupBox2.Controls.Add(this.rbtnGenerateDb);
             this.groupBox2.Location = new System.Drawing.Point(8, 243);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(350, 143);
+            this.groupBox2.Size = new System.Drawing.Size(350, 148);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Тестирование системы";
             // 
+            // rbtnGetMails
+            // 
+            this.rbtnGetMails.AutoSize = true;
+            this.rbtnGetMails.Location = new System.Drawing.Point(63, 91);
+            this.rbtnGetMails.Name = "rbtnGetMails";
+            this.rbtnGetMails.Size = new System.Drawing.Size(199, 17);
+            this.rbtnGetMails.TabIndex = 7;
+            this.rbtnGetMails.TabStop = true;
+            this.rbtnGetMails.Text = "Получить журнал звонков с почты";
+            this.rbtnGetMails.UseVisualStyleBackColor = true;
+            // 
             // btnMakeTest
             // 
-            this.btnMakeTest.Location = new System.Drawing.Point(269, 114);
+            this.btnMakeTest.Location = new System.Drawing.Point(260, 114);
             this.btnMakeTest.Name = "btnMakeTest";
             this.btnMakeTest.Size = new System.Drawing.Size(75, 23);
             this.btnMakeTest.TabIndex = 6;
@@ -669,6 +748,38 @@ namespace PhoneAnalyzer
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Настройки почты";
+            // 
+            // txtPopPort
+            // 
+            this.txtPopPort.Location = new System.Drawing.Point(137, 97);
+            this.txtPopPort.Name = "txtPopPort";
+            this.txtPopPort.Size = new System.Drawing.Size(207, 20);
+            this.txtPopPort.TabIndex = 15;
+            // 
+            // txtPopHost
+            // 
+            this.txtPopHost.Location = new System.Drawing.Point(137, 71);
+            this.txtPopHost.Name = "txtPopHost";
+            this.txtPopHost.Size = new System.Drawing.Size(207, 20);
+            this.txtPopHost.TabIndex = 14;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(62, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(69, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "POP3 Порт: ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(51, 74);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(80, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "POP3 сервер: ";
             // 
             // txtFinEmail
             // 
@@ -760,49 +871,6 @@ namespace PhoneAnalyzer
             this.label3.TabIndex = 1;
             this.label3.Text = "Smtp сервер: ";
             // 
-            // txtPopPort
-            // 
-            this.txtPopPort.Location = new System.Drawing.Point(137, 97);
-            this.txtPopPort.Name = "txtPopPort";
-            this.txtPopPort.Size = new System.Drawing.Size(207, 20);
-            this.txtPopPort.TabIndex = 15;
-            // 
-            // txtPopHost
-            // 
-            this.txtPopHost.Location = new System.Drawing.Point(137, 71);
-            this.txtPopHost.Name = "txtPopHost";
-            this.txtPopHost.Size = new System.Drawing.Size(207, 20);
-            this.txtPopHost.TabIndex = 14;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(62, 100);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "POP3 Порт: ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(51, 74);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(80, 13);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "POP3 сервер: ";
-            // 
-            // rbtnGetMails
-            // 
-            this.rbtnGetMails.AutoSize = true;
-            this.rbtnGetMails.Location = new System.Drawing.Point(63, 91);
-            this.rbtnGetMails.Name = "rbtnGetMails";
-            this.rbtnGetMails.Size = new System.Drawing.Size(199, 17);
-            this.rbtnGetMails.TabIndex = 7;
-            this.rbtnGetMails.TabStop = true;
-            this.rbtnGetMails.Text = "Получить журнал звонков с почты";
-            this.rbtnGetMails.UseVisualStyleBackColor = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -824,6 +892,8 @@ namespace PhoneAnalyzer
             this.atcCallTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -898,6 +968,12 @@ namespace PhoneAnalyzer
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RadioButton rbtnGetMails;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtSite;
+        private System.Windows.Forms.Button btnAddSite;
+        private System.Windows.Forms.Button btnDeleteSite;
+        private System.Windows.Forms.ListBox listSite;
+        private System.Windows.Forms.Button btnGenerateWorkerReport;
         
 
     }

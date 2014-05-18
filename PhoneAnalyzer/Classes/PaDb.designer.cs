@@ -48,6 +48,9 @@ namespace PhoneAnalyzer.Classes
     partial void InsertAtcCall(AtcCall instance);
     partial void UpdateAtcCall(AtcCall instance);
     partial void DeleteAtcCall(AtcCall instance);
+    partial void InsertCloseSite(CloseSite instance);
+    partial void UpdateCloseSite(CloseSite instance);
+    partial void DeleteCloseSite(CloseSite instance);
     #endregion
 		
 		public PaDbDataContext() : 
@@ -125,6 +128,14 @@ namespace PhoneAnalyzer.Classes
 			get
 			{
 				return this.GetTable<AtcCall>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CloseSite> CloseSites
+		{
+			get
+			{
+				return this.GetTable<CloseSite>();
 			}
 		}
 	}
@@ -1208,6 +1219,92 @@ namespace PhoneAnalyzer.Classes
 						this._SubdivisionId = default(int);
 					}
 					this.SendPropertyChanged("Subdivision");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CloseSite")]
+	public partial class CloseSite : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Url;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnUrlChanging(string value);
+    partial void OnUrlChanged();
+    #endregion
+		
+		public CloseSite()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Url", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Url
+		{
+			get
+			{
+				return this._Url;
+			}
+			set
+			{
+				if ((this._Url != value))
+				{
+					this.OnUrlChanging(value);
+					this.SendPropertyChanging();
+					this._Url = value;
+					this.SendPropertyChanged("Url");
+					this.OnUrlChanged();
 				}
 			}
 		}

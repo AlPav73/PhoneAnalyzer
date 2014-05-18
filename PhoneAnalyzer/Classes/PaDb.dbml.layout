@@ -40,7 +40,7 @@
         <elementListCompartment Id="6172166e-1f43-44d8-b062-e9bbfb63bc6e" absoluteBounds="6.14, 3.335, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 3.58742390950521); (6.125 : 3.58742390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(5.5 : 3.58742390950521); (6.125 : 3.58742390950521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/PaDbDataContext/Number/Number_Call" />
       <nodes>
         <classShapeMoniker Id="1022d515-e0e2-46a1-ba9c-443273f9d447" />
@@ -59,12 +59,18 @@
         <elementListCompartment Id="ba1b1bc1-bc34-4302-9155-4c63b25ad32a" absoluteBounds="0.89000000000000012, 3.335, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.875 : 5.125); (1.875 : 4.46419514973958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.875 : 5.125); (1.875 : 4.46419514973958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PaDbDataContext/Subdivision/Subdivision_AtcCall" />
       <nodes>
         <classShapeMoniker Id="e36b4b84-5bef-4730-ab62-7bc2e459bfdb" />
         <classShapeMoniker Id="22c3d08a-14e6-44b6-89ce-1b21c7d82ec1" />
       </nodes>
     </associationConnector>
+    <classShape Id="2384a78f-bc16-4815-8354-c299d0ce693d" absoluteBounds="3.5, 1.125, 2, 1.0961531575520833">
+      <DataClassMoniker Name="/PaDbDataContext/CloseSite" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0ee1c299-a93b-4b4e-998d-7a37a433633d" absoluteBounds="3.5149999999999997, 1.585, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

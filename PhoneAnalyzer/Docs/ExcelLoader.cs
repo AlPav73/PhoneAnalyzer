@@ -29,7 +29,7 @@ namespace CursProject.Doc
                     break;
                 }
 
-                Number number = db.Numbers.SingleOrDefault(p => p.PhoneNumber == phoneNumber && p.Type == (int) NumberType.Out);
+                Number number = db.Numbers.FirstOrDefault(p => p.PhoneNumber == phoneNumber && p.Type == (int) NumberType.Out);
                 if (number == null) continue;
 
                 var date = new DateTime();
@@ -63,7 +63,7 @@ namespace CursProject.Doc
                     break;
                 }
 
-                Subdivision sub = db.Subdivisions.SingleOrDefault(p => p.Name == subName);
+                Subdivision sub = db.Subdivisions.FirstOrDefault(p => p.Name == subName);
                 if (sub == null) continue;
 
                 var date = new DateTime();
