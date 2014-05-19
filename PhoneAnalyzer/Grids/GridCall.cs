@@ -12,6 +12,7 @@ namespace PhoneAnalyzer.Grids
         public string Number { get; set; }
         public string ToNumber { get; set; }
         public string Date { get; set; }
+        public string Tariff { get; set; }
         public string Duration { get; set; }
         public string Price { get; set; }
     }

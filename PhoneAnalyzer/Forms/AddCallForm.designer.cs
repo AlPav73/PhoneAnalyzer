@@ -46,12 +46,14 @@ namespace PhoneAnalyzer.Forms
             this.label4 = new System.Windows.Forms.Label();
             this.txtDuration = new System.Windows.Forms.TextBox();
             this.labelTime = new System.Windows.Forms.Label();
+            this.ddlTariff = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(207, 164);
+            this.btnCancel.Location = new System.Drawing.Point(207, 191);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
@@ -60,7 +62,7 @@ namespace PhoneAnalyzer.Forms
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(126, 164);
+            this.btnAdd.Location = new System.Drawing.Point(126, 191);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 16;
@@ -120,7 +122,7 @@ namespace PhoneAnalyzer.Forms
             // 
             // txtPrice
             // 
-            this.txtPrice.Location = new System.Drawing.Point(94, 138);
+            this.txtPrice.Location = new System.Drawing.Point(94, 165);
             this.txtPrice.MaxLength = 255;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(188, 20);
@@ -129,7 +131,7 @@ namespace PhoneAnalyzer.Forms
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 141);
+            this.label1.Location = new System.Drawing.Point(41, 168);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 14;
@@ -193,6 +195,7 @@ namespace PhoneAnalyzer.Forms
             this.txtDuration.Name = "txtDuration";
             this.txtDuration.Size = new System.Drawing.Size(188, 20);
             this.txtDuration.TabIndex = 13;
+            this.txtDuration.TextChanged += new System.EventHandler(this.txtDuration_TextChanged);
             // 
             // labelTime
             // 
@@ -203,11 +206,31 @@ namespace PhoneAnalyzer.Forms
             this.labelTime.TabIndex = 12;
             this.labelTime.Text = "Длительность: ";
             // 
+            // ddlTariff
+            // 
+            this.ddlTariff.FormattingEnabled = true;
+            this.ddlTariff.Location = new System.Drawing.Point(94, 138);
+            this.ddlTariff.Name = "ddlTariff";
+            this.ddlTariff.Size = new System.Drawing.Size(188, 21);
+            this.ddlTariff.TabIndex = 18;
+            this.ddlTariff.SelectedIndexChanged += new System.EventHandler(this.ddlTariff_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(26, 141);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Оператор: ";
+            // 
             // AddCallForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(290, 195);
+            this.ClientSize = new System.Drawing.Size(290, 222);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.ddlTariff);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSeconds);
@@ -257,6 +280,8 @@ namespace PhoneAnalyzer.Forms
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtDuration;
         private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.ComboBox ddlTariff;
+        private System.Windows.Forms.Label label5;
 
     }
 }

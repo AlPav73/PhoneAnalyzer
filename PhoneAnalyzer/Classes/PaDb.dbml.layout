@@ -34,19 +34,6 @@
         <classShapeMoniker Id="433eb07e-27cc-4a69-b90f-c6f7ebcba25a" />
       </nodes>
     </associationConnector>
-    <classShape Id="d028c691-28e1-4eac-8c6d-6eb58ae12197" absoluteBounds="6.125, 2.875, 2, 1.7535424804687496">
-      <DataClassMoniker Name="/PaDbDataContext/Call" />
-      <nestedChildShapes>
-        <elementListCompartment Id="6172166e-1f43-44d8-b062-e9bbfb63bc6e" absoluteBounds="6.14, 3.335, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <associationConnector edgePoints="[(5.5 : 3.58742390950521); (6.125 : 3.58742390950521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/PaDbDataContext/Number/Number_Call" />
-      <nodes>
-        <classShapeMoniker Id="1022d515-e0e2-46a1-ba9c-443273f9d447" />
-        <classShapeMoniker Id="d028c691-28e1-4eac-8c6d-6eb58ae12197" />
-      </nodes>
-    </associationConnector>
     <classShape Id="6671a6b3-b578-4449-ad3b-2fdca39db8fd" absoluteBounds="6.125, 5.125, 2, 1.0961531575520827">
       <DataClassMoniker Name="/PaDbDataContext/Setting" />
       <nestedChildShapes>
@@ -72,5 +59,18 @@
         <elementListCompartment Id="0ee1c299-a93b-4b4e-998d-7a37a433633d" absoluteBounds="3.5149999999999997, 1.585, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="599e4cdc-3d06-42cb-9e9d-49fab76b3af9" absoluteBounds="6.125, 2.875, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/PaDbDataContext/Call" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d14cf5a0-15dc-4928-8f96-18e50bbcaefb" absoluteBounds="6.14, 3.335, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 3.58742390950521); (6.125 : 3.58742390950521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PaDbDataContext/Number/Number_Call" />
+      <nodes>
+        <classShapeMoniker Id="1022d515-e0e2-46a1-ba9c-443273f9d447" />
+        <classShapeMoniker Id="599e4cdc-3d06-42cb-9e9d-49fab76b3af9" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

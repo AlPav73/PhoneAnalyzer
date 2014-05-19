@@ -86,7 +86,7 @@ namespace PhoneAnalyzer
         {
             var db = DataBase.Context;
             callGrid.DataSource = db.Calls.OrderBy(p => p.Date).Select(p => p.ToGrid()).ToList();
-            GridHelper.SetHeaders(callGrid, new[] { "ID", "Номер", "Куда звонили", "Дата", "Длительность", "Сумма" });
+            GridHelper.SetHeaders(callGrid, new[] { "ID", "Номер", "Куда звонили", "Дата", "Оператор", "Длительность", "Сумма" });
             GridHelper.SetInvisible(callGrid, new[] { 0 });
             db.Dispose();
         }
@@ -496,6 +496,11 @@ namespace PhoneAnalyzer
             txtLogin.Text = Setting.Login;
             txtPassword.Text = Setting.Password;
             txtFinEmail.Text = Setting.FinEmail;
+
+
+            txtTariffOne.Text = Setting.TariffOne.ToString();
+            txtTariffTwo.Text = Setting.TariffTwo.ToString();
+            txtTariffThree.Text = Setting.TariffThree.ToString();
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
@@ -521,13 +526,14 @@ namespace PhoneAnalyzer
             {
                 Generator.GenerateDb();
                 RefreshAllGrids();
+                LoadSettings();
             }
 
             if (rbtnGenerateCalls.Checked)
             {
                 var calls = Generator.GenerateCalls().ToList();
                 var fileName = ExcelGenerator.SaveCalls(calls);
-                Mailer.SendMail(Setting.Login, "Calls", "Отчёт о звонках", fileName);
+                Mailer.SendMail(Setting.Login, "CallsNew", "Отчёт о звонках", fileName);
 
                 MessageBox.Show("Файл сгенерирован и отправлен на почту", "Генерация");
             }
@@ -551,6 +557,27 @@ namespace PhoneAnalyzer
         }
 
         private void workerTab_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSaveTariff_Click(object sender, EventArgs e)
+        {
+            decimal TariffOne = 0;
+            decimal.TryParse(txtTariffOne.Text, out TariffOne);
+
+            decimal TariffTwo = 0;
+            decimal.TryParse(txtTariffTwo.Text, out TariffTwo);
+
+            decimal TariffThree = 0;
+            decimal.TryParse(txtTariffThree.Text, out TariffThree);
+
+            Setting.TariffOne = TariffOne;
+            Setting.TariffTwo = TariffTwo;
+            Setting.TariffThree = TariffThree;
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
         {
 
         }

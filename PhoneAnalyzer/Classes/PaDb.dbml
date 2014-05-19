@@ -30,17 +30,6 @@
       <Association Name="Subdivision_AtcCall" Member="AtcCalls" ThisKey="Id" OtherKey="SubdivisionId" Type="AtcCall" />
     </Type>
   </Table>
-  <Table Name="dbo.Call" Member="Calls">
-    <Type Name="Call">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="NumberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ToNumber" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Duration" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
-      <Association Name="Number_Call" Member="Number" ThisKey="NumberId" OtherKey="Id" Type="Number" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Settings" Member="Settings">
     <Type Name="Setting">
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -61,6 +50,18 @@
     <Type Name="CloseSite">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Url" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Call" Member="Calls">
+    <Type Name="Call">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NumberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ToNumber" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Duration" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="Tariff" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Number_Call" Member="Number" ThisKey="NumberId" OtherKey="Id" Type="Number" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

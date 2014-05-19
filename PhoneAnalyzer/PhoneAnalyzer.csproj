@@ -193,6 +193,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Worker.cs" />
+    <Compile Include="Type\TariffType.cs" />
     <Compile Include="Type\NumberType.cs" />
     <EmbeddedResource Include="Forms\AddAtcCallForm.resx">
       <DependentUpon>AddAtcCallForm.cs</DependentUpon>

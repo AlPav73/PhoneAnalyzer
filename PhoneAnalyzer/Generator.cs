@@ -4,6 +4,7 @@ using System.Data.Linq;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using PhoneAnalyzer.Classes;
 using PhoneAnalyzer.Type;
 
@@ -18,6 +19,10 @@ namespace PhoneAnalyzer
 
         public static void GenerateDb()
         {
+            Setting.TariffOne = (decimal)R.Next(1000, 5000) / 100;
+            Setting.TariffTwo = (decimal)R.Next(300, 1000) / 100;
+            Setting.TariffThree = (decimal)R.Next(100, 300) / 100;
+
             var subs = GenerateSub();
             db.Subdivisions.InsertAllOnSubmit(subs);
             db.SubmitChanges();
@@ -55,9 +60,24 @@ namespace PhoneAnalyzer
                     var date = new DateTime(2014, R.Next(1, 6), R.Next(1, 29));
                     var phoneNumber = outNumbes[R.Next(0, outNumbes.Count)].PhoneNumber;
                     int duration = R.Next(30, 300);
-                    decimal price = duration * (decimal)R.Next(10, 150) / 100;
+                    int tariff = R.Next(0, 3);
+                    decimal price = 0;
+                    switch (tariff)
+                    {
+                        case 0 :
+                            price = decimal.Round(duration * Setting.TariffOne / 60, 2);
+                            break;
 
-                    list.Add(new Call { Number = number, ToNumber = phoneNumber, Date = date, Duration = duration, Price = price });
+                        case 1:
+                            price = decimal.Round(duration * Setting.TariffTwo / 60, 2);
+                            break;
+
+                        case 2:
+                            price = decimal.Round(duration * Setting.TariffThree / 60, 2);
+                            break;
+                    }
+
+                    list.Add(new Call { Number = number, ToNumber = phoneNumber, Date = date, Duration = duration, Price = price, Tariff = tariff});
                 }
             }
 

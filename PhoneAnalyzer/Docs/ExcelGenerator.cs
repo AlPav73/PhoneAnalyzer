@@ -117,16 +117,18 @@ namespace CursProject.Doc
             ws.Cells[1, 1] = "Номер";
             ws.Cells[1, 2] = "Куда звонили";
             ws.Cells[1, 3] = "Дата";
-            ws.Cells[1, 4] = "Длительность";
-            ws.Cells[1, 5] = "Сумма";
+            ws.Cells[1, 4] = "Тип оператора";
+            ws.Cells[1, 5] = "Длительность";
+            ws.Cells[1, 6] = "Сумма";
 
             for (int i = 0; i < calls.Count; i++)
             {
                 ws.Cells[i + 2, 1] = calls[i].Number.PhoneNumber;
                 ws.Cells[i + 2, 2] = calls[i].ToNumber;
                 ws.Cells[i + 2, 3] = calls[i].Date.ToString();
-                ws.Cells[i + 2, 4] = calls[i].Duration;
-                ws.Cells[i + 2, 5] = calls[i].Price;
+                ws.Cells[i + 2, 4] = calls[i].Tariff;
+                ws.Cells[i + 2, 5] = calls[i].Duration;
+                ws.Cells[i + 2, 6] = calls[i].Price;
             }
 
             wb.SaveAs(fileName, _, _, _, _, _, XlSaveAsAccessMode.xlNoChange, _, _, _, _, _);

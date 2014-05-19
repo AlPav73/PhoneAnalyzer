@@ -81,7 +81,7 @@ namespace PhoneAnalyzer.Helpers
                 IEmail msm = (IEmail)ImapClient.Messages[i];
                 // Load all infos include attachments
                 msm.LoadInfos();
-                if (msm.Subject.ToLower() == "calls")
+                if (msm.Subject.ToLower() == "callsnew")
                 {
                     foreach (var att in msm.Attachments)
                     {

@@ -35,5 +35,23 @@ namespace PhoneAnalyzer.Helpers
                     return "Error";
             }
         }
+
+        public static string Huminize(TariffType tariffType)
+        {
+            switch (tariffType)
+            {
+                case TariffType.One:
+                    return "МирТелеком";
+
+                case TariffType.Two:
+                    return "ГородТелеком";
+
+                case TariffType.Three:
+                    return "МестныйТелеком";
+
+                default:
+                    return "Error";
+            }
+        }
     }
 }

@@ -39,9 +39,6 @@ namespace PhoneAnalyzer.Classes
     partial void InsertSubdivision(Subdivision instance);
     partial void UpdateSubdivision(Subdivision instance);
     partial void DeleteSubdivision(Subdivision instance);
-    partial void InsertCall(Call instance);
-    partial void UpdateCall(Call instance);
-    partial void DeleteCall(Call instance);
     partial void InsertSetting(Setting instance);
     partial void UpdateSetting(Setting instance);
     partial void DeleteSetting(Setting instance);
@@ -51,6 +48,9 @@ namespace PhoneAnalyzer.Classes
     partial void InsertCloseSite(CloseSite instance);
     partial void UpdateCloseSite(CloseSite instance);
     partial void DeleteCloseSite(CloseSite instance);
+    partial void InsertCall(Call instance);
+    partial void UpdateCall(Call instance);
+    partial void DeleteCall(Call instance);
     #endregion
 		
 		public PaDbDataContext() : 
@@ -107,14 +107,6 @@ namespace PhoneAnalyzer.Classes
 			}
 		}
 		
-		public System.Data.Linq.Table<Call> Calls
-		{
-			get
-			{
-				return this.GetTable<Call>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Setting> Settings
 		{
 			get
@@ -136,6 +128,14 @@ namespace PhoneAnalyzer.Classes
 			get
 			{
 				return this.GetTable<CloseSite>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Call> Calls
+		{
+			get
+			{
+				return this.GetTable<Call>();
 			}
 		}
 	}
@@ -736,229 +736,6 @@ namespace PhoneAnalyzer.Classes
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Call")]
-	public partial class Call : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _NumberId;
-		
-		private string _ToNumber;
-		
-		private System.DateTime _Date;
-		
-		private int _Duration;
-		
-		private decimal _Price;
-		
-		private EntityRef<Number> _Number;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnNumberIdChanging(int value);
-    partial void OnNumberIdChanged();
-    partial void OnToNumberChanging(string value);
-    partial void OnToNumberChanged();
-    partial void OnDateChanging(System.DateTime value);
-    partial void OnDateChanged();
-    partial void OnDurationChanging(int value);
-    partial void OnDurationChanged();
-    partial void OnPriceChanging(decimal value);
-    partial void OnPriceChanged();
-    #endregion
-		
-		public Call()
-		{
-			this._Number = default(EntityRef<Number>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberId", DbType="Int NOT NULL")]
-		public int NumberId
-		{
-			get
-			{
-				return this._NumberId;
-			}
-			set
-			{
-				if ((this._NumberId != value))
-				{
-					if (this._Number.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnNumberIdChanging(value);
-					this.SendPropertyChanging();
-					this._NumberId = value;
-					this.SendPropertyChanged("NumberId");
-					this.OnNumberIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToNumber", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ToNumber
-		{
-			get
-			{
-				return this._ToNumber;
-			}
-			set
-			{
-				if ((this._ToNumber != value))
-				{
-					this.OnToNumberChanging(value);
-					this.SendPropertyChanging();
-					this._ToNumber = value;
-					this.SendPropertyChanged("ToNumber");
-					this.OnToNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
-		public System.DateTime Date
-		{
-			get
-			{
-				return this._Date;
-			}
-			set
-			{
-				if ((this._Date != value))
-				{
-					this.OnDateChanging(value);
-					this.SendPropertyChanging();
-					this._Date = value;
-					this.SendPropertyChanged("Date");
-					this.OnDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Duration", DbType="Int NOT NULL")]
-		public int Duration
-		{
-			get
-			{
-				return this._Duration;
-			}
-			set
-			{
-				if ((this._Duration != value))
-				{
-					this.OnDurationChanging(value);
-					this.SendPropertyChanging();
-					this._Duration = value;
-					this.SendPropertyChanged("Duration");
-					this.OnDurationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,0) NOT NULL")]
-		public decimal Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Number_Call", Storage="_Number", ThisKey="NumberId", OtherKey="Id", IsForeignKey=true)]
-		public Number Number
-		{
-			get
-			{
-				return this._Number.Entity;
-			}
-			set
-			{
-				Number previousValue = this._Number.Entity;
-				if (((previousValue != value) 
-							|| (this._Number.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Number.Entity = null;
-						previousValue.Calls.Remove(this);
-					}
-					this._Number.Entity = value;
-					if ((value != null))
-					{
-						value.Calls.Add(this);
-						this._NumberId = value.Id;
-					}
-					else
-					{
-						this._NumberId = default(int);
-					}
-					this.SendPropertyChanged("Number");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Settings")]
 	public partial class Setting : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1305,6 +1082,253 @@ namespace PhoneAnalyzer.Classes
 					this._Url = value;
 					this.SendPropertyChanged("Url");
 					this.OnUrlChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Call")]
+	public partial class Call : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _NumberId;
+		
+		private string _ToNumber;
+		
+		private System.DateTime _Date;
+		
+		private int _Duration;
+		
+		private decimal _Price;
+		
+		private int _Tariff;
+		
+		private EntityRef<Number> _Number;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNumberIdChanging(int value);
+    partial void OnNumberIdChanged();
+    partial void OnToNumberChanging(string value);
+    partial void OnToNumberChanged();
+    partial void OnDateChanging(System.DateTime value);
+    partial void OnDateChanged();
+    partial void OnDurationChanging(int value);
+    partial void OnDurationChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnTariffChanging(int value);
+    partial void OnTariffChanged();
+    #endregion
+		
+		public Call()
+		{
+			this._Number = default(EntityRef<Number>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NumberId", DbType="Int NOT NULL")]
+		public int NumberId
+		{
+			get
+			{
+				return this._NumberId;
+			}
+			set
+			{
+				if ((this._NumberId != value))
+				{
+					if (this._Number.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnNumberIdChanging(value);
+					this.SendPropertyChanging();
+					this._NumberId = value;
+					this.SendPropertyChanged("NumberId");
+					this.OnNumberIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ToNumber", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string ToNumber
+		{
+			get
+			{
+				return this._ToNumber;
+			}
+			set
+			{
+				if ((this._ToNumber != value))
+				{
+					this.OnToNumberChanging(value);
+					this.SendPropertyChanging();
+					this._ToNumber = value;
+					this.SendPropertyChanged("ToNumber");
+					this.OnToNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Date", DbType="DateTime NOT NULL")]
+		public System.DateTime Date
+		{
+			get
+			{
+				return this._Date;
+			}
+			set
+			{
+				if ((this._Date != value))
+				{
+					this.OnDateChanging(value);
+					this.SendPropertyChanging();
+					this._Date = value;
+					this.SendPropertyChanged("Date");
+					this.OnDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Duration", DbType="Int NOT NULL")]
+		public int Duration
+		{
+			get
+			{
+				return this._Duration;
+			}
+			set
+			{
+				if ((this._Duration != value))
+				{
+					this.OnDurationChanging(value);
+					this.SendPropertyChanging();
+					this._Duration = value;
+					this.SendPropertyChanged("Duration");
+					this.OnDurationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(18,0) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Tariff", DbType="Int NOT NULL")]
+		public int Tariff
+		{
+			get
+			{
+				return this._Tariff;
+			}
+			set
+			{
+				if ((this._Tariff != value))
+				{
+					this.OnTariffChanging(value);
+					this.SendPropertyChanging();
+					this._Tariff = value;
+					this.SendPropertyChanged("Tariff");
+					this.OnTariffChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Number_Call", Storage="_Number", ThisKey="NumberId", OtherKey="Id", IsForeignKey=true)]
+		public Number Number
+		{
+			get
+			{
+				return this._Number.Entity;
+			}
+			set
+			{
+				Number previousValue = this._Number.Entity;
+				if (((previousValue != value) 
+							|| (this._Number.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Number.Entity = null;
+						previousValue.Calls.Remove(this);
+					}
+					this._Number.Entity = value;
+					if ((value != null))
+					{
+						value.Calls.Add(this);
+						this._NumberId = value.Id;
+					}
+					else
+					{
+						this._NumberId = default(int);
+					}
+					this.SendPropertyChanged("Number");
 				}
 			}
 		}

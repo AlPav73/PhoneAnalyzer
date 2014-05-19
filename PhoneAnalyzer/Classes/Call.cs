@@ -1,5 +1,8 @@
 ﻿using PhoneAnalyzer.Grids
 ;
+using PhoneAnalyzer.Helpers;
+using PhoneAnalyzer.Type;
+
 namespace PhoneAnalyzer.Classes
 {
     partial class Call
@@ -12,6 +15,7 @@ namespace PhoneAnalyzer.Classes
                 Number = Number.PhoneNumber,
                 ToNumber = ToNumber,
                 Date = Date.ToString(),
+                Tariff = EnumHelper.Huminize((TariffType)Tariff),
                 Duration = Duration + " сек",
                 Price = Price + " руб."
             };

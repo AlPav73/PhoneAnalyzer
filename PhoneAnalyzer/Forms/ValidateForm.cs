@@ -17,6 +17,14 @@ namespace PhoneAnalyzer.Forms
             return IsValidComboBox(comboBox);
         }
 
+        public bool ValidateDecimalControl(Control control)
+        {
+            string strNumber = control.Text;
+            control.BackColor = IsValidDecimal(strNumber) ? Color.White : Color.Salmon;
+            return IsValidDecimal(strNumber);
+        }
+
+
         private bool ValidateStringControl(Control control)
         {
             string text = control.Text;
@@ -40,6 +48,12 @@ namespace PhoneAnalyzer.Forms
         {
             int number = 0;
             return IsValidString(strNumber) && Int32.TryParse(strNumber, out number);
+        }
+
+        private bool IsValidDecimal(string strNumber)
+        {
+            decimal number = 0;
+            return IsValidString(strNumber) && decimal.TryParse(strNumber, out number);
         }
 
         private bool IsValidComboBox(ComboBox comboBox)

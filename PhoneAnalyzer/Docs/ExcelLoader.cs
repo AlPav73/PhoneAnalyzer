@@ -35,8 +35,9 @@ namespace CursProject.Doc
                 var date = new DateTime();
                 if (!DateTime.TryParse((string)(ws.Cells[i + 2, 3] as Range).Value, out date)) continue;
 
-                double duration = (ws.Cells[i + 2, 4] as Range).Value;
-                decimal price = (decimal)(ws.Cells[i + 2, 5] as Range).Value;
+                int tariff = (int)(ws.Cells[i + 2, 4] as Range).Value;
+                double duration = (ws.Cells[i + 2, 5] as Range).Value;
+                decimal price = (decimal)(ws.Cells[i + 2, 6] as Range).Value;
 
                 calls.Add(new Call { Number = number, ToNumber = (string)(ws.Cells[i + 2, 2] as Range).Value, Date = date, Duration = (int)duration, Price = price });
             }

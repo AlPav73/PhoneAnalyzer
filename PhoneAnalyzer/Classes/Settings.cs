@@ -59,7 +59,53 @@ namespace PhoneAnalyzer.Classes
             get { return GetValue("FinEmail"); }
             set { SetValue("FinEmail", value); }
         }
-        
+
+
+
+
+        public static decimal TariffOne
+        {
+            get
+            {
+                decimal value = 0;
+                decimal.TryParse(GetValue("TariffOne"), out value);
+                return value;
+            }
+            set { SetValue("TariffOne", value.ToString()); }
+        }
+
+
+        public static decimal TariffTwo
+        {
+            get
+            {
+                decimal value = 0;
+                decimal.TryParse(GetValue("TariffTwo"), out value);
+                return value;
+            }
+            set { SetValue("TariffTwo", value.ToString()); }
+        }
+
+
+        public static decimal TariffThree
+        {
+            get
+            {
+                decimal value = 0;
+                decimal.TryParse(GetValue("TariffThree"), out value);
+                return value;
+            }
+            set { SetValue("TariffThree", value.ToString()); }
+        }
+
+
+
+
+
+
+
+
+
         private static string GetValue(string name)
         {
             var setting = Db.Settings.FirstOrDefault(p => p.Name == name);
