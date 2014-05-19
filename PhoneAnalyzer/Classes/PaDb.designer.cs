@@ -30,9 +30,6 @@ namespace PhoneAnalyzer.Classes
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertWorker(Worker instance);
-    partial void UpdateWorker(Worker instance);
-    partial void DeleteWorker(Worker instance);
     partial void InsertNumber(Number instance);
     partial void UpdateNumber(Number instance);
     partial void DeleteNumber(Number instance);
@@ -51,6 +48,9 @@ namespace PhoneAnalyzer.Classes
     partial void InsertCall(Call instance);
     partial void UpdateCall(Call instance);
     partial void DeleteCall(Call instance);
+    partial void InsertWorker(Worker instance);
+    partial void UpdateWorker(Worker instance);
+    partial void DeleteWorker(Worker instance);
     #endregion
 		
 		public PaDbDataContext() : 
@@ -81,14 +81,6 @@ namespace PhoneAnalyzer.Classes
 				base(connection, mappingSource)
 		{
 			OnCreated();
-		}
-		
-		public System.Data.Linq.Table<Worker> Workers
-		{
-			get
-			{
-				return this.GetTable<Worker>();
-			}
 		}
 		
 		public System.Data.Linq.Table<Number> Numbers
@@ -138,208 +130,13 @@ namespace PhoneAnalyzer.Classes
 				return this.GetTable<Call>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Worker")]
-	public partial class Worker : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private int _SubdivisionId;
-		
-		private string _Fio;
-		
-		private int _Salary;
-		
-		private EntitySet<Number> _Numbers;
-		
-		private EntityRef<Subdivision> _Subdivision;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnSubdivisionIdChanging(int value);
-    partial void OnSubdivisionIdChanged();
-    partial void OnFioChanging(string value);
-    partial void OnFioChanged();
-    partial void OnSalaryChanging(int value);
-    partial void OnSalaryChanged();
-    #endregion
-		
-		public Worker()
-		{
-			this._Numbers = new EntitySet<Number>(new Action<Number>(this.attach_Numbers), new Action<Number>(this.detach_Numbers));
-			this._Subdivision = default(EntityRef<Subdivision>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		public System.Data.Linq.Table<Worker> Workers
 		{
 			get
 			{
-				return this._Id;
+				return this.GetTable<Worker>();
 			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubdivisionId", DbType="Int NOT NULL")]
-		public int SubdivisionId
-		{
-			get
-			{
-				return this._SubdivisionId;
-			}
-			set
-			{
-				if ((this._SubdivisionId != value))
-				{
-					if (this._Subdivision.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSubdivisionIdChanging(value);
-					this.SendPropertyChanging();
-					this._SubdivisionId = value;
-					this.SendPropertyChanged("SubdivisionId");
-					this.OnSubdivisionIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fio", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string Fio
-		{
-			get
-			{
-				return this._Fio;
-			}
-			set
-			{
-				if ((this._Fio != value))
-				{
-					this.OnFioChanging(value);
-					this.SendPropertyChanging();
-					this._Fio = value;
-					this.SendPropertyChanged("Fio");
-					this.OnFioChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Salary", DbType="Int NOT NULL")]
-		public int Salary
-		{
-			get
-			{
-				return this._Salary;
-			}
-			set
-			{
-				if ((this._Salary != value))
-				{
-					this.OnSalaryChanging(value);
-					this.SendPropertyChanging();
-					this._Salary = value;
-					this.SendPropertyChanged("Salary");
-					this.OnSalaryChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Worker_Number", Storage="_Numbers", ThisKey="Id", OtherKey="WorkerId")]
-		public EntitySet<Number> Numbers
-		{
-			get
-			{
-				return this._Numbers;
-			}
-			set
-			{
-				this._Numbers.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_Worker", Storage="_Subdivision", ThisKey="SubdivisionId", OtherKey="Id", IsForeignKey=true)]
-		public Subdivision Subdivision
-		{
-			get
-			{
-				return this._Subdivision.Entity;
-			}
-			set
-			{
-				Subdivision previousValue = this._Subdivision.Entity;
-				if (((previousValue != value) 
-							|| (this._Subdivision.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Subdivision.Entity = null;
-						previousValue.Workers.Remove(this);
-					}
-					this._Subdivision.Entity = value;
-					if ((value != null))
-					{
-						value.Workers.Add(this);
-						this._SubdivisionId = value.Id;
-					}
-					else
-					{
-						this._SubdivisionId = default(int);
-					}
-					this.SendPropertyChanged("Subdivision");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Numbers(Number entity)
-		{
-			this.SendPropertyChanging();
-			entity.Worker = this;
-		}
-		
-		private void detach_Numbers(Number entity)
-		{
-			this.SendPropertyChanging();
-			entity.Worker = null;
 		}
 	}
 	
@@ -560,9 +357,9 @@ namespace PhoneAnalyzer.Classes
 		
 		private string _Email;
 		
-		private EntitySet<Worker> _Workers;
-		
 		private EntitySet<AtcCall> _AtcCalls;
+		
+		private EntitySet<Worker> _Workers;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -580,8 +377,8 @@ namespace PhoneAnalyzer.Classes
 		
 		public Subdivision()
 		{
-			this._Workers = new EntitySet<Worker>(new Action<Worker>(this.attach_Workers), new Action<Worker>(this.detach_Workers));
 			this._AtcCalls = new EntitySet<AtcCall>(new Action<AtcCall>(this.attach_AtcCalls), new Action<AtcCall>(this.detach_AtcCalls));
+			this._Workers = new EntitySet<Worker>(new Action<Worker>(this.attach_Workers), new Action<Worker>(this.detach_Workers));
 			OnCreated();
 		}
 		
@@ -665,19 +462,6 @@ namespace PhoneAnalyzer.Classes
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_Worker", Storage="_Workers", ThisKey="Id", OtherKey="SubdivisionId")]
-		public EntitySet<Worker> Workers
-		{
-			get
-			{
-				return this._Workers;
-			}
-			set
-			{
-				this._Workers.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_AtcCall", Storage="_AtcCalls", ThisKey="Id", OtherKey="SubdivisionId")]
 		public EntitySet<AtcCall> AtcCalls
 		{
@@ -688,6 +472,19 @@ namespace PhoneAnalyzer.Classes
 			set
 			{
 				this._AtcCalls.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_Worker", Storage="_Workers", ThisKey="Id", OtherKey="SubdivisionId")]
+		public EntitySet<Worker> Workers
+		{
+			get
+			{
+				return this._Workers;
+			}
+			set
+			{
+				this._Workers.Assign(value);
 			}
 		}
 		
@@ -711,18 +508,6 @@ namespace PhoneAnalyzer.Classes
 			}
 		}
 		
-		private void attach_Workers(Worker entity)
-		{
-			this.SendPropertyChanging();
-			entity.Subdivision = this;
-		}
-		
-		private void detach_Workers(Worker entity)
-		{
-			this.SendPropertyChanging();
-			entity.Subdivision = null;
-		}
-		
 		private void attach_AtcCalls(AtcCall entity)
 		{
 			this.SendPropertyChanging();
@@ -730,6 +515,18 @@ namespace PhoneAnalyzer.Classes
 		}
 		
 		private void detach_AtcCalls(AtcCall entity)
+		{
+			this.SendPropertyChanging();
+			entity.Subdivision = null;
+		}
+		
+		private void attach_Workers(Worker entity)
+		{
+			this.SendPropertyChanging();
+			entity.Subdivision = this;
+		}
+		
+		private void detach_Workers(Worker entity)
 		{
 			this.SendPropertyChanging();
 			entity.Subdivision = null;
@@ -1351,6 +1148,305 @@ namespace PhoneAnalyzer.Classes
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Worker")]
+	public partial class Worker : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _SubdivisionId;
+		
+		private string _Fio;
+		
+		private int _Salary;
+		
+		private int _LimitIn;
+		
+		private int _LimitOne;
+		
+		private int _LimitTwo;
+		
+		private int _LimitThree;
+		
+		private EntitySet<Number> _Numbers;
+		
+		private EntityRef<Subdivision> _Subdivision;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSubdivisionIdChanging(int value);
+    partial void OnSubdivisionIdChanged();
+    partial void OnFioChanging(string value);
+    partial void OnFioChanged();
+    partial void OnSalaryChanging(int value);
+    partial void OnSalaryChanged();
+    partial void OnLimitInChanging(int value);
+    partial void OnLimitInChanged();
+    partial void OnLimitOneChanging(int value);
+    partial void OnLimitOneChanged();
+    partial void OnLimitTwoChanging(int value);
+    partial void OnLimitTwoChanged();
+    partial void OnLimitThreeChanging(int value);
+    partial void OnLimitThreeChanged();
+    #endregion
+		
+		public Worker()
+		{
+			this._Numbers = new EntitySet<Number>(new Action<Number>(this.attach_Numbers), new Action<Number>(this.detach_Numbers));
+			this._Subdivision = default(EntityRef<Subdivision>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SubdivisionId", DbType="Int NOT NULL")]
+		public int SubdivisionId
+		{
+			get
+			{
+				return this._SubdivisionId;
+			}
+			set
+			{
+				if ((this._SubdivisionId != value))
+				{
+					if (this._Subdivision.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSubdivisionIdChanging(value);
+					this.SendPropertyChanging();
+					this._SubdivisionId = value;
+					this.SendPropertyChanged("SubdivisionId");
+					this.OnSubdivisionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fio", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Fio
+		{
+			get
+			{
+				return this._Fio;
+			}
+			set
+			{
+				if ((this._Fio != value))
+				{
+					this.OnFioChanging(value);
+					this.SendPropertyChanging();
+					this._Fio = value;
+					this.SendPropertyChanged("Fio");
+					this.OnFioChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Salary", DbType="Int NOT NULL")]
+		public int Salary
+		{
+			get
+			{
+				return this._Salary;
+			}
+			set
+			{
+				if ((this._Salary != value))
+				{
+					this.OnSalaryChanging(value);
+					this.SendPropertyChanging();
+					this._Salary = value;
+					this.SendPropertyChanged("Salary");
+					this.OnSalaryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LimitIn", DbType="Int NOT NULL")]
+		public int LimitIn
+		{
+			get
+			{
+				return this._LimitIn;
+			}
+			set
+			{
+				if ((this._LimitIn != value))
+				{
+					this.OnLimitInChanging(value);
+					this.SendPropertyChanging();
+					this._LimitIn = value;
+					this.SendPropertyChanged("LimitIn");
+					this.OnLimitInChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LimitOne", DbType="Int NOT NULL")]
+		public int LimitOne
+		{
+			get
+			{
+				return this._LimitOne;
+			}
+			set
+			{
+				if ((this._LimitOne != value))
+				{
+					this.OnLimitOneChanging(value);
+					this.SendPropertyChanging();
+					this._LimitOne = value;
+					this.SendPropertyChanged("LimitOne");
+					this.OnLimitOneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LimitTwo", DbType="Int NOT NULL")]
+		public int LimitTwo
+		{
+			get
+			{
+				return this._LimitTwo;
+			}
+			set
+			{
+				if ((this._LimitTwo != value))
+				{
+					this.OnLimitTwoChanging(value);
+					this.SendPropertyChanging();
+					this._LimitTwo = value;
+					this.SendPropertyChanged("LimitTwo");
+					this.OnLimitTwoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LimitThree", DbType="Int NOT NULL")]
+		public int LimitThree
+		{
+			get
+			{
+				return this._LimitThree;
+			}
+			set
+			{
+				if ((this._LimitThree != value))
+				{
+					this.OnLimitThreeChanging(value);
+					this.SendPropertyChanging();
+					this._LimitThree = value;
+					this.SendPropertyChanged("LimitThree");
+					this.OnLimitThreeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Worker_Number", Storage="_Numbers", ThisKey="Id", OtherKey="WorkerId")]
+		public EntitySet<Number> Numbers
+		{
+			get
+			{
+				return this._Numbers;
+			}
+			set
+			{
+				this._Numbers.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Subdivision_Worker", Storage="_Subdivision", ThisKey="SubdivisionId", OtherKey="Id", IsForeignKey=true)]
+		public Subdivision Subdivision
+		{
+			get
+			{
+				return this._Subdivision.Entity;
+			}
+			set
+			{
+				Subdivision previousValue = this._Subdivision.Entity;
+				if (((previousValue != value) 
+							|| (this._Subdivision.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Subdivision.Entity = null;
+						previousValue.Workers.Remove(this);
+					}
+					this._Subdivision.Entity = value;
+					if ((value != null))
+					{
+						value.Workers.Add(this);
+						this._SubdivisionId = value.Id;
+					}
+					else
+					{
+						this._SubdivisionId = default(int);
+					}
+					this.SendPropertyChanged("Subdivision");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Numbers(Number entity)
+		{
+			this.SendPropertyChanging();
+			entity.Worker = this;
+		}
+		
+		private void detach_Numbers(Number entity)
+		{
+			this.SendPropertyChanging();
+			entity.Worker = null;
 		}
 	}
 }

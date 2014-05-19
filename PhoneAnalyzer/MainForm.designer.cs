@@ -28,7 +28,7 @@ namespace PhoneAnalyzer
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.subdivisionTab = new System.Windows.Forms.TabPage();
             this.btnMakeGraphExcel = new System.Windows.Forms.Button();
@@ -68,6 +68,16 @@ namespace PhoneAnalyzer
             this.btnEditAtcCall = new System.Windows.Forms.Button();
             this.btnAddAtcCall = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtTaxSite = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnSaveTaxSettings = new System.Windows.Forms.Button();
+            this.txtTaxOne = new System.Windows.Forms.TextBox();
+            this.txtTaxThree = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtTaxTwo = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.btnSaveTariff = new System.Windows.Forms.Button();
             this.txtTariffThree = new System.Windows.Forms.TextBox();
@@ -103,6 +113,7 @@ namespace PhoneAnalyzer
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnSendReport = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.subdivisionTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.subdivisionGrid)).BeginInit();
@@ -115,6 +126,7 @@ namespace PhoneAnalyzer
             this.atcCallTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -138,6 +150,7 @@ namespace PhoneAnalyzer
             // 
             // subdivisionTab
             // 
+            this.subdivisionTab.Controls.Add(this.btnSendReport);
             this.subdivisionTab.Controls.Add(this.btnMakeGraphExcel);
             this.subdivisionTab.Controls.Add(this.btnMakeGraph);
             this.subdivisionTab.Controls.Add(this.dtpSubReportTo);
@@ -180,7 +193,7 @@ namespace PhoneAnalyzer
             // dtpSubReportTo
             // 
             this.dtpSubReportTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dtpSubReportTo.Location = new System.Drawing.Point(273, 517);
+            this.dtpSubReportTo.Location = new System.Drawing.Point(409, 518);
             this.dtpSubReportTo.Name = "dtpSubReportTo";
             this.dtpSubReportTo.Size = new System.Drawing.Size(124, 20);
             this.dtpSubReportTo.TabIndex = 9;
@@ -188,7 +201,7 @@ namespace PhoneAnalyzer
             // dtpSubReportFrom
             // 
             this.dtpSubReportFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.dtpSubReportFrom.Location = new System.Drawing.Point(143, 517);
+            this.dtpSubReportFrom.Location = new System.Drawing.Point(279, 518);
             this.dtpSubReportFrom.Name = "dtpSubReportFrom";
             this.dtpSubReportFrom.Size = new System.Drawing.Size(124, 20);
             this.dtpSubReportFrom.TabIndex = 8;
@@ -209,8 +222,8 @@ namespace PhoneAnalyzer
             this.subdivisionGrid.AllowUserToAddRows = false;
             this.subdivisionGrid.AllowUserToDeleteRows = false;
             this.subdivisionGrid.AllowUserToOrderColumns = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.subdivisionGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.subdivisionGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.subdivisionGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -607,6 +620,7 @@ namespace PhoneAnalyzer
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
@@ -619,6 +633,98 @@ namespace PhoneAnalyzer
             this.tabPage1.Text = "Настройки";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.txtTaxSite);
+            this.groupBox5.Controls.Add(this.label14);
+            this.groupBox5.Controls.Add(this.btnSaveTaxSettings);
+            this.groupBox5.Controls.Add(this.txtTaxOne);
+            this.groupBox5.Controls.Add(this.txtTaxThree);
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.txtTaxTwo);
+            this.groupBox5.Controls.Add(this.label11);
+            this.groupBox5.Controls.Add(this.label12);
+            this.groupBox5.Location = new System.Drawing.Point(8, 393);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(350, 146);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Штрафные санкции";
+            // 
+            // txtTaxSite
+            // 
+            this.txtTaxSite.Location = new System.Drawing.Point(235, 14);
+            this.txtTaxSite.Name = "txtTaxSite";
+            this.txtTaxSite.Size = new System.Drawing.Size(109, 20);
+            this.txtTaxSite.TabIndex = 28;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(52, 17);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(177, 13);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "За посещение закрытых сайтов: ";
+            // 
+            // btnSaveTaxSettings
+            // 
+            this.btnSaveTaxSettings.Location = new System.Drawing.Point(207, 118);
+            this.btnSaveTaxSettings.Name = "btnSaveTaxSettings";
+            this.btnSaveTaxSettings.Size = new System.Drawing.Size(137, 23);
+            this.btnSaveTaxSettings.TabIndex = 24;
+            this.btnSaveTaxSettings.Text = "Сохранить настройки";
+            this.btnSaveTaxSettings.UseVisualStyleBackColor = true;
+            this.btnSaveTaxSettings.Click += new System.EventHandler(this.btnSaveTaxSettings_Click);
+            // 
+            // txtTaxOne
+            // 
+            this.txtTaxOne.Location = new System.Drawing.Point(235, 40);
+            this.txtTaxOne.Name = "txtTaxOne";
+            this.txtTaxOne.Size = new System.Drawing.Size(109, 20);
+            this.txtTaxOne.TabIndex = 21;
+            // 
+            // txtTaxThree
+            // 
+            this.txtTaxThree.Location = new System.Drawing.Point(235, 92);
+            this.txtTaxThree.Name = "txtTaxThree";
+            this.txtTaxThree.Size = new System.Drawing.Size(109, 20);
+            this.txtTaxThree.TabIndex = 23;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(22, 69);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(207, 13);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "Превышение лимита \"ГородТелеком\": ";
+            // 
+            // txtTaxTwo
+            // 
+            this.txtTaxTwo.Location = new System.Drawing.Point(235, 66);
+            this.txtTaxTwo.Name = "txtTaxTwo";
+            this.txtTaxTwo.Size = new System.Drawing.Size(109, 20);
+            this.txtTaxTwo.TabIndex = 22;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 95);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(223, 13);
+            this.label11.TabIndex = 27;
+            this.label11.Text = "Превышение лимита \"МестныйТелеком\": ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(31, 43);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(198, 13);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "Превышение лимита \"МирТелеком\": ";
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.btnSaveTariff);
@@ -630,7 +736,7 @@ namespace PhoneAnalyzer
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Location = new System.Drawing.Point(8, 243);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(350, 142);
+            this.groupBox4.Size = new System.Drawing.Size(350, 144);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Тарифные план (оплата за минуту разговора)";
@@ -638,7 +744,7 @@ namespace PhoneAnalyzer
             // 
             // btnSaveTariff
             // 
-            this.btnSaveTariff.Location = new System.Drawing.Point(207, 97);
+            this.btnSaveTariff.Location = new System.Drawing.Point(207, 104);
             this.btnSaveTariff.Name = "btnSaveTariff";
             this.btnSaveTariff.Size = new System.Drawing.Size(137, 23);
             this.btnSaveTariff.TabIndex = 3;
@@ -648,14 +754,14 @@ namespace PhoneAnalyzer
             // 
             // txtTariffThree
             // 
-            this.txtTariffThree.Location = new System.Drawing.Point(137, 71);
+            this.txtTariffThree.Location = new System.Drawing.Point(137, 78);
             this.txtTariffThree.Name = "txtTariffThree";
             this.txtTariffThree.Size = new System.Drawing.Size(207, 20);
             this.txtTariffThree.TabIndex = 2;
             // 
             // txtTariffOne
             // 
-            this.txtTariffOne.Location = new System.Drawing.Point(137, 19);
+            this.txtTariffOne.Location = new System.Drawing.Point(137, 26);
             this.txtTariffOne.Name = "txtTariffOne";
             this.txtTariffOne.Size = new System.Drawing.Size(207, 20);
             this.txtTariffOne.TabIndex = 0;
@@ -663,7 +769,7 @@ namespace PhoneAnalyzer
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(27, 74);
+            this.label8.Location = new System.Drawing.Point(27, 81);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(104, 13);
             this.label8.TabIndex = 20;
@@ -672,7 +778,7 @@ namespace PhoneAnalyzer
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(52, 22);
+            this.label10.Location = new System.Drawing.Point(52, 29);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(79, 13);
             this.label10.TabIndex = 16;
@@ -680,7 +786,7 @@ namespace PhoneAnalyzer
             // 
             // txtTariffTwo
             // 
-            this.txtTariffTwo.Location = new System.Drawing.Point(137, 45);
+            this.txtTariffTwo.Location = new System.Drawing.Point(137, 52);
             this.txtTariffTwo.Name = "txtTariffTwo";
             this.txtTariffTwo.Size = new System.Drawing.Size(207, 20);
             this.txtTariffTwo.TabIndex = 1;
@@ -688,7 +794,7 @@ namespace PhoneAnalyzer
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(43, 48);
+            this.label9.Location = new System.Drawing.Point(43, 55);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(88, 13);
             this.label9.TabIndex = 17;
@@ -702,21 +808,21 @@ namespace PhoneAnalyzer
             this.groupBox3.Controls.Add(this.listSite);
             this.groupBox3.Location = new System.Drawing.Point(364, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(411, 385);
+            this.groupBox3.Size = new System.Drawing.Size(346, 381);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "запрещённые сайты";
+            this.groupBox3.Text = "Запрещённые сайты";
             // 
             // txtSite
             // 
-            this.txtSite.Location = new System.Drawing.Point(6, 356);
+            this.txtSite.Location = new System.Drawing.Point(6, 343);
             this.txtSite.Name = "txtSite";
-            this.txtSite.Size = new System.Drawing.Size(237, 20);
+            this.txtSite.Size = new System.Drawing.Size(167, 20);
             this.txtSite.TabIndex = 1;
             // 
             // btnAddSite
             // 
-            this.btnAddSite.Location = new System.Drawing.Point(249, 354);
+            this.btnAddSite.Location = new System.Drawing.Point(179, 341);
             this.btnAddSite.Name = "btnAddSite";
             this.btnAddSite.Size = new System.Drawing.Size(75, 23);
             this.btnAddSite.TabIndex = 2;
@@ -726,7 +832,7 @@ namespace PhoneAnalyzer
             // 
             // btnDeleteSite
             // 
-            this.btnDeleteSite.Location = new System.Drawing.Point(330, 354);
+            this.btnDeleteSite.Location = new System.Drawing.Point(260, 341);
             this.btnDeleteSite.Name = "btnDeleteSite";
             this.btnDeleteSite.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteSite.TabIndex = 3;
@@ -739,7 +845,7 @@ namespace PhoneAnalyzer
             this.listSite.FormattingEnabled = true;
             this.listSite.Location = new System.Drawing.Point(6, 19);
             this.listSite.Name = "listSite";
-            this.listSite.Size = new System.Drawing.Size(399, 329);
+            this.listSite.Size = new System.Drawing.Size(329, 316);
             this.listSite.TabIndex = 0;
             // 
             // groupBox2
@@ -749,9 +855,9 @@ namespace PhoneAnalyzer
             this.groupBox2.Controls.Add(this.rbtnGenerateAtcCalls);
             this.groupBox2.Controls.Add(this.rbtnGenerateCalls);
             this.groupBox2.Controls.Add(this.rbtnGenerateDb);
-            this.groupBox2.Location = new System.Drawing.Point(8, 391);
+            this.groupBox2.Location = new System.Drawing.Point(364, 393);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(350, 148);
+            this.groupBox2.Size = new System.Drawing.Size(346, 146);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Тестирование системы";
@@ -961,6 +1067,17 @@ namespace PhoneAnalyzer
             this.label3.TabIndex = 1;
             this.label3.Text = "Smtp сервер: ";
             // 
+            // btnSendReport
+            // 
+            this.btnSendReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSendReport.Location = new System.Drawing.Point(143, 516);
+            this.btnSendReport.Name = "btnSendReport";
+            this.btnSendReport.Size = new System.Drawing.Size(129, 23);
+            this.btnSendReport.TabIndex = 12;
+            this.btnSendReport.Text = "Отправить отчёт";
+            this.btnSendReport.UseVisualStyleBackColor = true;
+            this.btnSendReport.Click += new System.EventHandler(this.btnSendReport_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -982,6 +1099,8 @@ namespace PhoneAnalyzer
             this.atcCallTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.atcCallGrid)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1074,6 +1193,17 @@ namespace PhoneAnalyzer
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtTariffTwo;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtTaxSite;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btnSaveTaxSettings;
+        private System.Windows.Forms.TextBox txtTaxOne;
+        private System.Windows.Forms.TextBox txtTaxThree;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtTaxTwo;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnSendReport;
         
 
     }

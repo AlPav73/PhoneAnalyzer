@@ -2,6 +2,7 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using CursProject.Doc;
@@ -77,7 +78,10 @@ namespace PhoneAnalyzer
         {
             var db = DataBase.Context;
             workerGrid.DataSource = db.Workers.OrderBy(p => p.Fio).Select(p => p.ToGrid()).ToList();
-            GridHelper.SetHeaders(workerGrid, new[] { "ID", "ФИО", "Подразделение", "Оклад" });
+            GridHelper.SetHeaders(workerGrid, new[]
+            {
+                "ID", "ФИО", "Подразделение", "Оклад", "Лимит 'Миртелеком'", "Лимит 'Городтелеком'", "Лимит 'Местныйтелеком'",
+            });
             GridHelper.SetInvisible(workerGrid, new[] { 0 });
             db.Dispose();
         }
@@ -155,15 +159,53 @@ namespace PhoneAnalyzer
             var dateFrom = dtpReportFrom.Value.Date;
             var dateTo = dtpReportTo.Value.Date;
 
-            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber)).Where(p => dateFrom <= p.Date.Date && p.Date.Date <= dateTo);
-
-            foreach (var sub in db.Subdivisions)
+            if (subdivisionGrid.SelectedRows.Count == 0)
             {
-                var fileName = PdfGenerator.MakeReport(calls.Where(p => p.Number.Worker.Subdivision.Id == sub.Id), dtpReportFrom.Value.Date,
-                    dtpReportTo.Value.Date);
-
-                Mailer.SendReport(sub, dateFrom, dateTo, fileName);
+                return;
             }
+
+            int id = GridHelper.GetIntFromRow(subdivisionGrid.SelectedRows[0], 0);
+
+            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber))
+                                .Where(p => dateFrom <= p.Date.Date && p.Date.Date <= dateTo)
+                                .Where(p => p.Number.Worker.SubdivisionId == id);
+
+            var dialog = new SaveFileDialog();
+            dialog.Filter = ".pdf|*.pdf";
+
+            if (dialog.ShowDialog() != DialogResult.Cancel)
+            {
+                var fileName = PdfGenerator.MakeReport(calls, dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
+                File.Move(fileName, dialog.FileName);
+            }
+            
+
+            db.Dispose();
+        }
+
+
+        private void btnSendReport_Click(object sender, EventArgs e)
+        {
+            var db = DataBase.Context;
+
+            var numbers = db.Numbers;
+            var dateFrom = dtpReportFrom.Value.Date;
+            var dateTo = dtpReportTo.Value.Date;
+
+            if (subdivisionGrid.SelectedRows.Count == 0)
+            {
+                return;
+            }
+
+            int id = GridHelper.GetIntFromRow(subdivisionGrid.SelectedRows[0], 0);
+
+            var calls = db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber))
+                                .Where(p => dateFrom <= p.Date.Date && p.Date.Date <= dateTo)
+                                .Where(p => p.Number.Worker.SubdivisionId == id);
+
+            var sub = db.Subdivisions.FirstOrDefault(p => p.Id == id);
+            var fileName = PdfGenerator.MakeReport(calls, dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
+            Mailer.SendReport(sub, dateFrom, dateTo, fileName);
 
             db.Dispose();
         }
@@ -501,6 +543,11 @@ namespace PhoneAnalyzer
             txtTariffOne.Text = Setting.TariffOne.ToString();
             txtTariffTwo.Text = Setting.TariffTwo.ToString();
             txtTariffThree.Text = Setting.TariffThree.ToString();
+
+            txtTaxSite.Text = Setting.TaxSite.ToString();
+            txtTaxOne.Text = Setting.TaxOne.ToString();
+            txtTaxTwo.Text = Setting.TaxTwo.ToString();
+            txtTaxThree.Text = Setting.TaxThree.ToString();
         }
 
         private void btnSaveSettings_Click(object sender, EventArgs e)
@@ -531,9 +578,14 @@ namespace PhoneAnalyzer
 
             if (rbtnGenerateCalls.Checked)
             {
-                var calls = Generator.GenerateCalls().ToList();
-                var fileName = ExcelGenerator.SaveCalls(calls);
-                Mailer.SendMail(Setting.Login, "CallsNew", "Отчёт о звонках", fileName);
+                var fileNameOne = ExcelGenerator.SaveCalls(Generator.GenerateCalls(0).ToList());
+                Mailer.SendMail(Setting.Login, "Миртелеком CallsNew", "Отчёт о звонках", fileNameOne);
+
+                var fileNameTwo = ExcelGenerator.SaveCalls(Generator.GenerateCalls(1).ToList());
+                Mailer.SendMail(Setting.Login, "Городтелеком CallsNew", "Отчёт о звонках", fileNameTwo);
+
+                var fileNameThree = ExcelGenerator.SaveCalls(Generator.GenerateCalls(2).ToList());
+                Mailer.SendMail(Setting.Login, "Местныйтелеком CallsNew", "Отчёт о звонках", fileNameThree);
 
                 MessageBox.Show("Файл сгенерирован и отправлен на почту", "Генерация");
             }
@@ -575,6 +627,28 @@ namespace PhoneAnalyzer
             Setting.TariffOne = TariffOne;
             Setting.TariffTwo = TariffTwo;
             Setting.TariffThree = TariffThree;
+        }
+
+
+
+        private void btnSaveTaxSettings_Click(object sender, EventArgs e)
+        {
+            decimal TaxSite = 0;
+            decimal.TryParse(txtTaxSite.Text, out TaxSite);
+
+           decimal TaxOne = 0;
+            decimal.TryParse(txtTariffOne.Text, out TaxOne);
+
+            decimal TaxTwo = 0;
+            decimal.TryParse(txtTariffTwo.Text, out TaxTwo);
+
+            decimal TaxThree = 0;
+            decimal.TryParse(txtTariffThree.Text, out TaxThree);
+
+            Setting.TaxSite = TaxSite;
+            Setting.TaxOne = TaxOne;
+            Setting.TaxTwo = TaxTwo;
+            Setting.TaxThree = TaxThree;
         }
 
         private void groupBox4_Enter(object sender, EventArgs e)

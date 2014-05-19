@@ -1,15 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PaDb" Class="PaDbDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\PaDb.mdf;Integrated Security=True" SettingsObjectName="PhoneAnalyzer.Properties.Settings" SettingsPropertyName="PaDbConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Worker" Member="Workers">
-    <Type Name="Worker">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SubdivisionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Fio" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Salary" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Worker_Number" Member="Numbers" ThisKey="Id" OtherKey="WorkerId" Type="Number" />
-      <Association Name="Subdivision_Worker" Member="Subdivision" ThisKey="SubdivisionId" OtherKey="Id" Type="Subdivision" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Number" Member="Numbers">
     <Type Name="Number">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -26,8 +16,8 @@
       <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="DirectorFio" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Association Name="Subdivision_Worker" Member="Workers" ThisKey="Id" OtherKey="SubdivisionId" Type="Worker" />
       <Association Name="Subdivision_AtcCall" Member="AtcCalls" ThisKey="Id" OtherKey="SubdivisionId" Type="AtcCall" />
+      <Association Name="Subdivision_Worker" Member="Workers" ThisKey="Id" OtherKey="SubdivisionId" Type="Worker" />
     </Type>
   </Table>
   <Table Name="dbo.Settings" Member="Settings">
@@ -62,6 +52,20 @@
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
       <Column Name="Tariff" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Number_Call" Member="Number" ThisKey="NumberId" OtherKey="Id" Type="Number" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Worker" Member="Workers">
+    <Type Name="Worker">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubdivisionId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fio" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Salary" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LimitIn" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LimitOne" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LimitTwo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LimitThree" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Worker_Number" Member="Numbers" ThisKey="Id" OtherKey="WorkerId" Type="Number" />
+      <Association Name="Subdivision_Worker" Member="Subdivision" ThisKey="SubdivisionId" OtherKey="Id" Type="Subdivision" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

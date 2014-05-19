@@ -2,38 +2,18 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="PaDb">
   <DataContextMoniker Name="/PaDbDataContext" />
   <nestedChildShapes>
-    <classShape Id="433eb07e-27cc-4a69-b90f-c6f7ebcba25a" absoluteBounds="3.5, 5.125, 2, 1.4248478190104166">
-      <DataClassMoniker Name="/PaDbDataContext/Worker" />
-      <nestedChildShapes>
-        <elementListCompartment Id="38716af7-d11f-412d-99f8-cae8ae001f5f" absoluteBounds="3.515, 5.585, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="1022d515-e0e2-46a1-ba9c-443273f9d447" absoluteBounds="3.5, 2.875, 2, 1.4248478190104166">
       <DataClassMoniker Name="/PaDbDataContext/Number" />
       <nestedChildShapes>
         <elementListCompartment Id="fe2a3461-a145-4ad9-bd55-06cc52bdb1ec" absoluteBounds="3.515, 3.335, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.5 : 5.125); (4.5 : 4.29984781901042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/PaDbDataContext/Worker/Worker_Number" />
-      <nodes>
-        <classShapeMoniker Id="433eb07e-27cc-4a69-b90f-c6f7ebcba25a" />
-        <classShapeMoniker Id="1022d515-e0e2-46a1-ba9c-443273f9d447" />
-      </nodes>
-    </associationConnector>
     <classShape Id="e36b4b84-5bef-4730-ab62-7bc2e459bfdb" absoluteBounds="0.875, 5.125, 2, 1.4248478190104166">
       <DataClassMoniker Name="/PaDbDataContext/Subdivision" />
       <nestedChildShapes>
         <elementListCompartment Id="3c01f709-7c5f-442d-a1ab-0686670ecdd0" absoluteBounds="0.89, 5.585, 1.9700000000000002, 0.86484781901041663" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 5.83742390950521); (3.5 : 5.83742390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/PaDbDataContext/Subdivision/Subdivision_Worker" />
-      <nodes>
-        <classShapeMoniker Id="e36b4b84-5bef-4730-ab62-7bc2e459bfdb" />
-        <classShapeMoniker Id="433eb07e-27cc-4a69-b90f-c6f7ebcba25a" />
-      </nodes>
-    </associationConnector>
     <classShape Id="6671a6b3-b578-4449-ad3b-2fdca39db8fd" absoluteBounds="6.125, 5.125, 2, 1.0961531575520827">
       <DataClassMoniker Name="/PaDbDataContext/Setting" />
       <nestedChildShapes>
@@ -65,11 +45,31 @@
         <elementListCompartment Id="d14cf5a0-15dc-4928-8f96-18e50bbcaefb" absoluteBounds="6.14, 3.335, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.5 : 3.58742390950521); (6.125 : 3.58742390950521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.5 : 3.58742390950521); (6.125 : 3.58742390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PaDbDataContext/Number/Number_Call" />
       <nodes>
         <classShapeMoniker Id="1022d515-e0e2-46a1-ba9c-443273f9d447" />
         <classShapeMoniker Id="599e4cdc-3d06-42cb-9e9d-49fab76b3af9" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="2fa7f2a4-527e-4de7-bc65-19f835fbe97e" absoluteBounds="3.5, 5.125, 2, 2.0822371419270831">
+      <DataClassMoniker Name="/PaDbDataContext/Worker" />
+      <nestedChildShapes>
+        <elementListCompartment Id="31b1134a-bcbb-4b05-bd27-9d20fbbfa4b8" absoluteBounds="3.515, 5.585, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.5 : 5.125); (4.5 : 4.29984781901042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PaDbDataContext/Worker/Worker_Number" />
+      <nodes>
+        <classShapeMoniker Id="2fa7f2a4-527e-4de7-bc65-19f835fbe97e" />
+        <classShapeMoniker Id="1022d515-e0e2-46a1-ba9c-443273f9d447" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.875 : 5.83742390950521); (3.5 : 5.83742390950521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PaDbDataContext/Subdivision/Subdivision_Worker" />
+      <nodes>
+        <classShapeMoniker Id="e36b4b84-5bef-4730-ab62-7bc2e459bfdb" />
+        <classShapeMoniker Id="2fa7f2a4-527e-4de7-bc65-19f835fbe97e" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

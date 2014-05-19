@@ -102,6 +102,64 @@ namespace PhoneAnalyzer.Classes
 
 
 
+        public static decimal TaxSite
+        {
+            get
+            {
+                decimal value = 0;
+                decimal.TryParse(GetValue("TaxSite"), out value);
+                return value;
+            }
+            set { SetValue("TaxSite", value.ToString()); }
+        }
+
+
+        public static decimal TaxIn
+        {
+            get
+            {
+                decimal value = 0;
+                decimal.TryParse(GetValue("TaxIn"), out value);
+                return value;
+            }
+            set { SetValue("TaxIn", value.ToString()); }
+        }
+
+        public static decimal TaxOne
+        {
+            get
+            {
+                decimal value = 0;
+                decimal.TryParse(GetValue("TaxOne"), out value);
+                return value;
+            }
+            set { SetValue("TaxOne", value.ToString()); }
+        }
+
+
+        public static decimal TaxTwo
+        {
+            get
+            {
+                decimal value = 0;
+                decimal.TryParse(GetValue("TaxTwo"), out value);
+                return value;
+            }
+            set { SetValue("TaxTwo", value.ToString()); }
+        }
+
+
+        public static decimal TaxThree
+        {
+            get
+            {
+                decimal value = 0;
+                decimal.TryParse(GetValue("TaxThree"), out value);
+                return value;
+            }
+            set { SetValue("TaxThree", value.ToString()); }
+        }
+
 
 
 

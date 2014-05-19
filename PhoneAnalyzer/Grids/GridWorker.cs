@@ -12,5 +12,8 @@ namespace PhoneAnalyzer.Grids
         public string Fio { get; set; }
         public string Subdivision { get; set; }
         public string Salary { get; set; }
+        public string TaxOne  { get; set; }
+        public string TaxTwo  { get; set; }
+        public string TaxThree { get; set; }
     }
 }

@@ -46,6 +46,43 @@ namespace PhoneAnalyzer
             MessageBox.Show("Генерация завершена", "Генерация");
         }
 
+        public static IEnumerable<Call> GenerateCalls(int tariff)
+        {
+            var list = new List<Call>();
+
+            var outNumbes = db.Numbers.Where(p => p.Type == (int)NumberType.Out).ToList();
+            foreach (var number in outNumbes)
+            {
+                int callsCount = R.Next(5, 21);
+
+                for (int i = 0; i < callsCount; i++)
+                {
+                    var date = new DateTime(2014, R.Next(1, 6), R.Next(1, 29));
+                    var phoneNumber = outNumbes[R.Next(0, outNumbes.Count)].PhoneNumber;
+                    int duration = R.Next(30, 120);
+                    decimal price = 0;
+                    switch (tariff)
+                    {
+                        case 0:
+                            price = decimal.Round(duration * Setting.TariffOne / 60, 2);
+                            break;
+
+                        case 1:
+                            price = decimal.Round(duration * Setting.TariffTwo / 60, 2);
+                            break;
+
+                        case 2:
+                            price = decimal.Round(duration * Setting.TariffThree / 60, 2);
+                            break;
+                    }
+
+                    list.Add(new Call { Number = number, ToNumber = phoneNumber, Date = date, Duration = duration, Price = price, Tariff = tariff });
+                }
+            }
+
+            return list;
+        }
+
         public static IEnumerable<Call> GenerateCalls()
         {
             var list = new List<Call>();
@@ -59,7 +96,7 @@ namespace PhoneAnalyzer
                 {
                     var date = new DateTime(2014, R.Next(1, 6), R.Next(1, 29));
                     var phoneNumber = outNumbes[R.Next(0, outNumbes.Count)].PhoneNumber;
-                    int duration = R.Next(30, 300);
+                    int duration = R.Next(30, 120);
                     int tariff = R.Next(0, 3);
                     decimal price = 0;
                     switch (tariff)
@@ -132,7 +169,16 @@ namespace PhoneAnalyzer
                 var workersCount = R.Next(3, 5);
                 for (int i = 0; i < workersCount; i++)
                 {
-                    list.Add(new Worker { SubdivisionId = sub.Id, Fio = GenerateFio(), Salary = R.Next(15, 46) * 1000 });
+                    list.Add(new Worker
+                    {
+                        SubdivisionId = sub.Id, 
+                        Fio = GenerateFio(), 
+                        Salary = R.Next(15, 46) * 1000,
+                        LimitIn = R.Next(30, 45) * 30,
+                        LimitOne = R.Next(30, 45) * 15,
+                        LimitTwo = R.Next(30, 45) * 20,
+                        LimitThree = R.Next(30, 45) * 30
+                    });
                 }
             }
 

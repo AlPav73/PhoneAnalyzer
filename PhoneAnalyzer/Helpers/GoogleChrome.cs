@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using System.Windows.Forms;
 
 namespace PhoneAnalyzer.Helpers
 {
@@ -26,10 +27,17 @@ namespace PhoneAnalyzer.Helpers
                 documentsFolder = tempstr1 + "Local\\Google\\Chrome\\User Data\\Default";
             }
 
-            // Check if directory exists
-            if (Directory.Exists(documentsFolder))
+            try
             {
-                return ExtractUserHistory(documentsFolder);
+                // Check if directory exists
+                if (Directory.Exists(documentsFolder))
+                {
+                    return ExtractUserHistory(documentsFolder);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Не удаётся прочитать историю сайтов. Закройте GoogleChrome и проведите перерасчёт.");
             }
             return null;
         }

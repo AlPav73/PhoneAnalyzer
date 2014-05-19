@@ -80,6 +80,9 @@ namespace PhoneAnalyzer.Forms
             CurrentSubdivision = worker.Subdivision;
             txtSalary.Text = worker.Salary.ToString();
             txtFio.Text = worker.Fio;
+            txtLimitOne.Text = worker.LimitOne.ToString();
+            txtLimitTwo.Text = worker.LimitTwo.ToString();
+            txtLimitThree.Text = worker.LimitThree.ToString();
         }
 
         // Получаем объект из формы
@@ -89,6 +92,10 @@ namespace PhoneAnalyzer.Forms
 
             worker.Subdivision = CurrentSubdivision;
             worker.Salary = int.Parse(txtSalary.Text);
+            worker.LimitOne = int.Parse(txtLimitOne.Text);
+            worker.LimitTwo = int.Parse(txtLimitTwo.Text);
+            worker.LimitThree = int.Parse(txtLimitThree.Text);
+            worker.LimitIn = 0;
             worker.Fio = txtFio.Text;
 
             return worker;
