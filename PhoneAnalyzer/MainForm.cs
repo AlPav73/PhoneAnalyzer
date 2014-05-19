@@ -15,8 +15,6 @@ namespace PhoneAnalyzer
 {
     public partial class MainForm : Form
     {
-        private readonly PaDbDataContext db = DataBase.Context;
-
         public MainForm()
         {
             InitializeComponent();
@@ -50,44 +48,56 @@ namespace PhoneAnalyzer
 
         private void RefreshAtcCall()
         {
+            var db = DataBase.Context;
             atcCallGrid.DataSource = db.AtcCalls.OrderBy(p => p.Date).Select(p => p.ToGrid()).ToList();
             GridHelper.SetHeaders(atcCallGrid, new[] { "ID", "Подразделение", "Куда звонили", "Дата", "Длительность" });
             GridHelper.SetInvisible(atcCallGrid, new[] { 0 });
+            db.Dispose();
         }
 
         private void RefreshNumber()
         {
+            var db = DataBase.Context;
             outNumberGrid.DataSource = db.Numbers.OrderBy(p => p.PhoneNumber).Select(p => p.ToGrid()).ToList();
             GridHelper.SetHeaders(outNumberGrid, new[] { "ID", "Сотрудник", "Номер", "Тип" });
             GridHelper.SetInvisible(outNumberGrid, new[] { 0 });
+            db.Dispose();
         }
 
         private void RefreshSubdivision()
         {
+            var db = DataBase.Context;
             subdivisionGrid.DataSource = db.Subdivisions.OrderBy(p => p.Name).Select(p => p.ToGrid()).ToList();
             GridHelper.SetHeaders(subdivisionGrid, new[] { "ID", "Название", "ФИО руководителя", "Email" });
             GridHelper.SetInvisible(subdivisionGrid, new[] { 0 });
+            db.Dispose();
         }
 
         private void RefreshWorker()
         {
+            var db = DataBase.Context;
             workerGrid.DataSource = db.Workers.OrderBy(p => p.Fio).Select(p => p.ToGrid()).ToList();
             GridHelper.SetHeaders(workerGrid, new[] { "ID", "ФИО", "Подразделение", "Оклад" });
             GridHelper.SetInvisible(workerGrid, new[] { 0 });
+            db.Dispose();
         }
 
         private void RefreshCall()
         {
+            var db = DataBase.Context;
             callGrid.DataSource = db.Calls.OrderBy(p => p.Date).Select(p => p.ToGrid()).ToList();
             GridHelper.SetHeaders(callGrid, new[] { "ID", "Номер", "Куда звонили", "Дата", "Длительность", "Сумма" });
             GridHelper.SetInvisible(callGrid, new[] { 0 });
+            db.Dispose();
         }
 
 
         private void RefreshSites()
         {
+            var db = DataBase.Context;
             listSite.Items.Clear();
             listSite.Items.AddRange(db.CloseSites.OrderBy(p => p.Url).Select(p => p.Url).ToArray());
+            db.Dispose();
         }
 
 
@@ -129,14 +139,18 @@ namespace PhoneAnalyzer
 
             int id = GridHelper.GetIntFromRow(subdivisionGrid.SelectedRows[0], 0);
 
+            var db = DataBase.Context;
             db.Subdivisions.DeleteAllOnSubmit(db.Subdivisions.Where(t => t.Id == id));
             db.SubmitChanges();
+            db.Dispose();
 
             RefreshSubdivision();
         }
 
         private void btnSubReport_Click(object sender, EventArgs e)
         {
+            var db = DataBase.Context;
+
             var numbers = db.Numbers;
             var dateFrom = dtpReportFrom.Value.Date;
             var dateTo = dtpReportTo.Value.Date;
@@ -150,6 +164,8 @@ namespace PhoneAnalyzer
 
                 Mailer.SendReport(sub, dateFrom, dateTo, fileName);
             }
+
+            db.Dispose();
         }
 
         private void btnMakeGraph_Click(object sender, EventArgs e)
@@ -205,8 +221,10 @@ namespace PhoneAnalyzer
 
             int id = GridHelper.GetIntFromRow(outNumberGrid.SelectedRows[0], 0);
 
+            var db = DataBase.Context;
             db.Numbers.DeleteAllOnSubmit(db.Numbers.Where(t => t.Id == id));
             db.SubmitChanges();
+            db.Dispose();
 
             RefreshNumber();
         }
@@ -249,8 +267,10 @@ namespace PhoneAnalyzer
 
             int id = GridHelper.GetIntFromRow(workerGrid.SelectedRows[0], 0);
 
+            var db = DataBase.Context;
             db.Workers.DeleteAllOnSubmit(db.Workers.Where(t => t.Id == id));
             db.SubmitChanges();
+            db.Dispose();
 
             RefreshWorker();
         }
@@ -265,7 +285,9 @@ namespace PhoneAnalyzer
 
             int id = GridHelper.GetIntFromRow(workerGrid.SelectedRows[0], 0);
 
+            var db = DataBase.Context;
             var worker = db.Workers.FirstOrDefault(t => t.Id == id);
+            db.Dispose();
 
             CalcGenerator.MakeReport(worker);
         }
@@ -308,14 +330,18 @@ namespace PhoneAnalyzer
 
             int id = GridHelper.GetIntFromRow(callGrid.SelectedRows[0], 0);
 
+            var db = DataBase.Context;
             db.Calls.DeleteAllOnSubmit(db.Calls.Where(t => t.Id == id));
             db.SubmitChanges();
+            db.Dispose();
 
             RefreshCall();
         }
 
         private void btnCallReport_Click(object sender, EventArgs e)
         {
+            var db = DataBase.Context;
+
             var numbers = db.Numbers;
             var calls =
                 db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber)).Where(
@@ -325,10 +351,14 @@ namespace PhoneAnalyzer
 
             var fileName = PdfGenerator.MakeReport(calls, dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
             Process.Start(fileName);
+
+            db.Dispose();
         }
 
         private void btnSendFinDir_Click(object sender, EventArgs e)
         {
+            var db = DataBase.Context;
+
             var numbers = db.Numbers;
             var calls =
                 db.Calls.Where(p => numbers.Any(n => n.PhoneNumber == p.ToNumber)).Where(
@@ -338,6 +368,8 @@ namespace PhoneAnalyzer
 
             var fileName = PdfGenerator.MakeReport(calls, dtpReportFrom.Value.Date, dtpReportTo.Value.Date);
             Mailer.SendReport(Setting.FinEmail, dtpReportFrom.Value.Date, dtpReportTo.Value.Date, fileName);
+
+            db.Dispose();
         }
 
         private void btnLoadCallsFromFile_Click(object sender, EventArgs e)
@@ -391,8 +423,10 @@ namespace PhoneAnalyzer
 
             int id = GridHelper.GetIntFromRow(atcCallGrid.SelectedRows[0], 0);
 
+            var db = DataBase.Context;
             db.AtcCalls.DeleteAllOnSubmit(db.AtcCalls.Where(t => t.Id == id));
             db.SubmitChanges();
+            db.Dispose();
 
             RefreshAtcCall();
         }
@@ -416,17 +450,23 @@ namespace PhoneAnalyzer
 
         private void btnAddSite_Click(object sender, EventArgs e)
         {
+            var db = DataBase.Context;
+
             var site = new CloseSite { Url = txtSite.Text.ToLower().Trim() };
             db.CloseSites.InsertOnSubmit(site);
             db.SubmitChanges();
 
             txtSite.Clear();
             RefreshSites();
+
+            db.Dispose();
         }
 
 
         private void btnDeleteSite_Click(object sender, EventArgs e)
         {
+            var db = DataBase.Context;
+
             if (listSite.SelectedIndex != -1)
             {
                 var site = db.CloseSites.FirstOrDefault(p => p.Url == listSite.SelectedItem);
@@ -439,6 +479,8 @@ namespace PhoneAnalyzer
                     RefreshSites();
                 }
             }
+
+            db.Dispose();
         }
 
         //
@@ -506,6 +548,11 @@ namespace PhoneAnalyzer
                 MessageBox.Show("Загрузка завершена", "Загрузка");
                 RefreshAllGrids();
             }
+        }
+
+        private void workerTab_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

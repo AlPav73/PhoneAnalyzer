@@ -330,6 +330,7 @@ namespace PhoneAnalyzer
             this.workerTab.TabIndex = 0;
             this.workerTab.Text = "Сотрудники";
             this.workerTab.UseVisualStyleBackColor = true;
+            this.workerTab.Click += new System.EventHandler(this.workerTab_Click);
             // 
             // btnGenerateWorkerReport
             // 
